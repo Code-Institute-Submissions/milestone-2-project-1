@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Oswald&display=swap:,300,500,600,700,800,900");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css");
+
+/* main body */
+
+/* Setting default font size for page */
+body,
+html {
+  font-size: 16px;
+}
+
+/* removing all margins and padding from bootsrap rows an cols */
+.container-fluid,
+.container,
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+/* setting fonts */
+
+.text-barlow {
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.text-oswald {
+  font-family: "Oswald", sans-serif;
+}
+
+* {
+  border: 1px solid red !important;
+}
+/* End main body set up */
