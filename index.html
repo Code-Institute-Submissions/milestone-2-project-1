@@ -23,8 +23,11 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand text-oswald" href="#">Football Stats</a>
+      <nav
+        class="navbar navbar-expand-md navbar-light bg-light navbar-fixed-top"
+      >
+        <a class="navbar-brand text-oswald capitals" href="#">Football Stats</a
+        ><i class="fas fa-futbol"></i>
         <!-- navbar toggler button added here -->
         <button
           class="navbar-toggler"
@@ -41,20 +44,41 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav m-auto">
             <li class="nav-item active">
-              <a class="nav-link text-barlow" href="#"
+              <a
+                class="nav-link text-barlow nav-border"
+                aria-label="home navigation link"
+                href="#"
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link text-barlow" href="#">Stats</a>
+              <a
+                class="nav-link text-barlow nav-border"
+                href="#"
+                aria-label="stats navigation link"
+                >Stats</a
+              >
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-barlow" href="#">Transfer History</a>
+            <li class="nav-item nav-border">
+              <a
+                class="nav-link text-barlow"
+                href="#"
+                aria-label="transfer history navigation link"
+                >Transfer History</a
+              >
             </li>
           </ul>
         </div>
       </nav>
     </header>
+
+    <section class="container-fluid img-wrapper">
+      <div class="callout-container">
+        <div class="jumbotron">
+          <p>Hello World</p>
+        </div>
+      </div>
+    </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.12.0/d3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
