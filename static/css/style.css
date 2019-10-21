@@ -31,3 +31,7 @@ html {
   border: 1px solid red !important;
 }
 /* End main body set up */
+/* navbar */
+ul .navbar-nav {
+  font-size: 1.3rem;
+}
