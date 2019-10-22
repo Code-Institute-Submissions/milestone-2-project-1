@@ -42,23 +42,23 @@ html {
 /* 
 /* End main body set up */
 /* navbar */
-
+/* fixed navbar  added here z-index added to put navbar on top of background Image  */
 .navbar-fixed-top {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 1;
 }
 
 .navbar-brand,
 .navbar-nav {
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding: 0.3rem;
 }
-
+.data_btn,
 .nav-border {
-  border: 3px solid black;
+  border: 4px solid black;
   margin: 0 0.4rem 0 0.4rem;
 }
 i {
@@ -66,14 +66,15 @@ i {
 }
 
 /* callout section */
-
+/* wrapper for callout Image */
 .img-wrapper {
   height: 100%;
   width: 100%;
 }
+/* fixed background Image added here to take up full view height */
 .callout-container {
   height: 100vh;
-  background: url("https://res.cloudinary.com/plyn85/image/upload/v1571657701/milestone-2/milestone_2_background_image_rodryh.jpg")
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1571734319/milestone-2/milestone_2_background_image_ual5hh.jpg")
     no-repeat fixed;
   background-position-x: 50%;
   background-size: cover;
@@ -90,12 +91,19 @@ i {
   position: relative;
 }
 
-.jumbotron {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  background-color: transparent;
+#callout_text {
+  position: relative;
 }
-/* 
+.data_btn,
+.callout_main_text {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.data_btn {
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  background: transparent;
+}
+/* * {
   border: 1px solid red !important;
 } */
