@@ -96,14 +96,39 @@ i {
 }
 .data_btn,
 .callout_main_text {
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 .data_btn {
   font-size: 2.5rem;
-  letter-spacing: 3px;
   background: transparent;
 }
+
+/* media queries */
+/* small tablets */
+@media (min-width: 567px) {
+  data_btn,
+  .callout_main_text {
+    font-size: 2rem;
+  }
+  .data_btn {
+    letter-spacing: 3px;
+    background: transparent;
+  }
+}
+
+/* for larger tablets */
+
+@media (min-width: 992px) {
+}
+/* for laptops */
+@media (min-width: 1200px) {
+}
+/* for large desktops */
+
+@media (min-width: 1400px) {
+}
+
 /* * {
   border: 1px solid red !important;
 } */
