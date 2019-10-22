@@ -1,6 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Oswald&display=swap:,300,500,600,700,800,900");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css");
+/* for graphs js page */
+/* tageting axis to add angle */
 
+#line_graph .x.axis text {
+  text-anchor: end !important;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  font-weight: 600;
+}
+
+#line_graph {
+  margin-top: 8.5rem;
+}
 /* main body */
 
 /* Setting default font size for page */
