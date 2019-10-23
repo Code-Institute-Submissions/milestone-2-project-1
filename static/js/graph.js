@@ -29,9 +29,11 @@ d3.csv("data/data.csv").then(function(sportData) {
 function showAverageOnLineChart(ndx) {
   var seasonDim = ndx.dimension(dc.pluck("Season"));
   averageSpeadPerSeasonDim = seasonDim.group().reduceSum(function(d) {
-    return d.Transfer_fee;
+    return [d.Transfer_fee];
   });
+
   console.log(averageSpeadPerSeasonDim.all());
+  //linechart added id from html div here
   dc.lineChart("#line_graph")
     .width(600)
     .height(550)
@@ -44,7 +46,14 @@ function showAverageOnLineChart(ndx) {
     .curve(d3.curveCatmullRom.alpha(0.5))
     .renderArea(true)
     .renderDataPoints(true)
+    .title(function(d) {
+      return "€" + d.value;
+    })
     .colors("black")
+
+    .colorAccessor(function(d) {
+      return d.Transfer_fee;
+    })
     .xAxisLabel("Seasons")
     .yAxisLabel("Transfer Fee")
     .yAxis()
