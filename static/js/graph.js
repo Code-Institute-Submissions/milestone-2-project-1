@@ -5,12 +5,17 @@ $(document).ready(function() {
   $("#data_btn_callout").click(function() {
     $("#callout_text").hide();
   });
+  //hiding main section until button is clicked here
+  $("#hiding_section_wrapper").hide();
+  $("#data_btn_callout").click(function() {
+    $("#hiding_section_wrapper").show();
+  });
 });
 //end of jquery
 
 //
 //main graph buliding section
-//gobal var added here will be passed into tickforamt
+//gobal var added here will be passed into tickformat
 //function to change amounts to euros
 var euroFormat = function(d) {
   return "€" + d3.format(".2s")(d);
@@ -25,18 +30,17 @@ d3.csv("data/data.csv").then(function(sportData) {
   dc.renderAll();
 });
 
-//line graph function
+//line graph function//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showAverageOnLineChart(ndx) {
   var seasonDim = ndx.dimension(dc.pluck("Season"));
   averageSpeadPerSeasonDim = seasonDim.group().reduceSum(function(d) {
     return [d.Transfer_fee];
   });
-
   console.log(averageSpeadPerSeasonDim.all());
   //linechart added id from html div here
   dc.lineChart("#line_graph")
-    .width(600)
-    .height(550)
+    .width(700)
+    .height(400)
     .margins({ top: 10, right: 40, bottom: 75, left: 75 })
     .dimension(seasonDim)
     .group(averageSpeadPerSeasonDim)
@@ -49,11 +53,7 @@ function showAverageOnLineChart(ndx) {
     .title(function(d) {
       return "€" + d.value;
     })
-    .colors("black")
-
-    .colorAccessor(function(d) {
-      return d.Transfer_fee;
-    })
+    .colors("black", "grey")
     .xAxisLabel("Seasons")
     .yAxisLabel("Transfer Fee")
     .yAxis()

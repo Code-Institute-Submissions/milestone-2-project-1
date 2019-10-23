@@ -101,10 +101,18 @@ Is centered in the row an conatins the main callout text -->
     <!-- end of callout section -->
 
     <!-- main graphs section -->
-    <section class="row">
-      <div class="col-md-6"></div>
-      <div class="col-md-6" id="line_graph"></div>
+
+    <section class="container-fluid" id="hiding_section_wrapper">
+      <div class="row">
+        <div class="col-10 col-lg-4 text-oswald  line_graph_section">
+          <h2>
+            The total amont spent per season
+          </h2>
+        </div>
+        <div class="col-10 col-lg-8 line_graph_section" id="line_graph"></div>
+      </div>
     </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.12.0/d3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/3.1.5/dc.min.js"></script>
