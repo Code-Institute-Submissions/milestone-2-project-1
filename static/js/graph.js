@@ -1,19 +1,3 @@
-// jquery
-//targeting button in callout section
-//here that will hide the callout section when clicked an shoe that
-$(document).ready(function() {
-  $("#data_btn_callout").click(function() {
-    $("#callout_text").hide();
-  });
-  //hiding main section until button is clicked here
-  $("#hiding_section_wrapper").hide();
-  $("#data_btn_callout").click(function() {
-    $("#hiding_section_wrapper").show();
-  });
-});
-//end of jquery
-
-//
 //main graph buliding section
 //gobal var added here will be passed into tickformat
 //function to change amounts to euros
@@ -27,11 +11,14 @@ d3.csv("data/data.csv").then(function(sportData) {
   //passing crossfiltered data into function that will then be rendered below
   showAverageOnLineChart(ndx);
 
+  scatterPlotAllTransfers(ndx);
+
   dc.renderAll();
 });
 
 //line graph function//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showAverageOnLineChart(ndx) {
+  //getting the total transfer value for each season below an returning it in an array
   var seasonDim = ndx.dimension(dc.pluck("Season"));
   averageSpeadPerSeasonDim = seasonDim.group().reduceSum(function(d) {
     return [d.Transfer_fee];
@@ -59,3 +46,38 @@ function showAverageOnLineChart(ndx) {
     .yAxis()
     .tickFormat(euroFormat);
 }
+// end of line graph function////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// scatterplot function/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function scatterPlotAllTransfers(ndx) {
+  var plotGraphSeasonDim = ndx.dimension(dc.pluck("Season"));
+  var plotGraphSeasonDimGroup = ndx.dimension(function(d) {
+    return [
+      d.Season,
+      d.Transfer_fee,
+      d.Name,
+      d.Team_from,
+      d.Team_to,
+      d.Position
+    ];
+  });
+}
+plotGraphSeasonDimGroup.group();
+
+//adding scatterplot chart here
+dc.scatterPlot();
+//end of scatterplot function//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// jquery
+//targeting button in callout section
+//here that will hide the callout section when clicked an shoe that
+$(document).ready(function() {
+  $("#data_btn_callout").click(function() {
+    $("#callout_text").hide();
+  });
+  //hiding main section until button is clicked here
+  $("#hiding_section_wrapper").hide();
+  $("#data_btn_callout").click(function() {
+    $("#hiding_section_wrapper").show();
+  });
+});
+//end of jquery
