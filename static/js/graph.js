@@ -41,7 +41,7 @@ function showAverageOnLineChart(ndx) {
   dc.lineChart("#line_graph")
     .width(700)
     .height(400)
-    .margins({ top: 10, right: 40, bottom: 75, left: 75 })
+    .margins({ top: 20, right: 40, bottom: 75, left: 50 })
     .dimension(seasonDim)
     .group(averageSpeadPerSeasonDim)
     .x(d3.scaleBand())
@@ -53,7 +53,7 @@ function showAverageOnLineChart(ndx) {
     .title(function(d) {
       return "€" + d.value;
     })
-    .colors("black", "grey")
+    .colors("#756bb1")
     .xAxisLabel("Seasons")
     .yAxisLabel("Transfer Fee")
     .yAxis()
