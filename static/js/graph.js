@@ -1,3 +1,19 @@
+// jquery
+//targeting button in callout section
+//here that will hide the callout section when clicked an shoe that
+$(document).ready(function() {
+  $("#data_btn_callout").click(function() {
+    $("#callout_text").hide();
+  });
+  //hiding main section until button is clicked here
+  $("#hiding_section_wrapper").hide();
+  $("#data_btn_callout").click(function() {
+    $("#hiding_section_wrapper").show();
+  });
+});
+//end of jquery
+
+//
 //main graph buliding section
 //gobal var added here will be passed into tickformat
 //function to change amounts to euros
@@ -18,7 +34,6 @@ d3.csv("data/data.csv").then(function(sportData) {
 
 //line graph function//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showAverageOnLineChart(ndx) {
-  //getting the total transfer value for each season below an returning it in an array
   var seasonDim = ndx.dimension(dc.pluck("Season"));
   averageSpeadPerSeasonDim = seasonDim.group().reduceSum(function(d) {
     return [d.Transfer_fee];
@@ -51,7 +66,7 @@ function showAverageOnLineChart(ndx) {
 // scatterplot function/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function scatterPlotAllTransfers(ndx) {
   var plotGraphSeasonDim = ndx.dimension(dc.pluck("Season"));
-  var plotGraphSeasonDimGroup = ndx.dimension(function(d) {
+  var plottingTheDotsDim = ndx.dimension(function(d) {
     return [
       d.Season,
       d.Transfer_fee,
@@ -61,23 +76,41 @@ function scatterPlotAllTransfers(ndx) {
       d.Position
     ];
   });
-}
-plotGraphSeasonDimGroup.group();
 
-//adding scatterplot chart here
-dc.scatterPlot();
+  var plotGraphSeasonDimGroup = plottingTheDotsDim.group();
+
+  //adding scatterplot chart here
+  dc.scatterPlot("#scatterplot_graph")
+    .width(700)
+    .height(400)
+    .x(d3.scaleBand())
+    .xUnits(dc.units.ordinal)
+    .brushOn(false)
+    .symbolSize(6)
+    .clipPadding(10)
+    .yAxisLabel("Transfer Fee")
+    .xAxisLabel("Seasons")
+    .title(function(d) {
+      return (
+        "In " +
+        d.key[0] +
+        " " +
+        d.key[2] +
+        " Was Transfered From " +
+        d.key[3] +
+        " to " +
+        d.key[4] +
+        " for €" +
+        d.key[1]
+      );
+    })
+    .colors("#756bb1")
+    .dimension(plotGraphSeasonDim)
+    .group(plotGraphSeasonDimGroup)
+    .renderHorizontalGridLines(true)
+    .renderVerticalGridLines(true)
+    .margins({ top: 10, right: 50, bottom: 75, left: 75 })
+    .yAxis()
+    .tickFormat(euroFormat);
+}
 //end of scatterplot function//////////////////////////////////////////////////////////////////////////////////////////////////////////
-// jquery
-//targeting button in callout section
-//here that will hide the callout section when clicked an shoe that
-$(document).ready(function() {
-  $("#data_btn_callout").click(function() {
-    $("#callout_text").hide();
-  });
-  //hiding main section until button is clicked here
-  $("#hiding_section_wrapper").hide();
-  $("#data_btn_callout").click(function() {
-    $("#hiding_section_wrapper").show();
-  });
-});
-//end of jquery

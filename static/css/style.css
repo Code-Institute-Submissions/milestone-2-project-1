@@ -126,7 +126,7 @@ i {
   background: transparent;
 }
 /* linegraph section */
-.line_graph_section {
+.graph_section {
   margin-top: 4.5rem;
 }
 
@@ -152,7 +152,7 @@ i {
 }
 
 /* linegraph section */
-.line_graph_section {
+.graph_section {
   margin-top: 7rem;
 }
 
@@ -162,7 +162,7 @@ i {
 }
 /* for laptops */
 @media (min-width: 1200px) {
-  .line_graph_section {
+  .graph_section {
     margin-top: 9rem;
   }
 }
