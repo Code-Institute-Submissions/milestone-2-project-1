@@ -13,26 +13,36 @@
 // });
 //end of jquery
 
-//adding variables to be reused in graph buliding functions below
+//adding variables to be used in graph buliding functions below
 //changes format to euros
 var euroFormat = function(d) {
   return "€" + d3.format(".2s")(d);
+};
+//euro sign function
+var euroSign = function(d) {
+  return "€" + d.value;
 };
 //setting var for transfer fee total
 transferFeeTotal = function(d) {
   return [d.Transfer_fee];
 };
+
+//setting height an width variables
+var w = 700;
+var h = 400;
+//setting margins variable
+var margins = { top: 20, right: 40, bottom: 75, left: 50 };
+//setting scalebands
+var scaleBand = d3.scaleBand();
+var ordUnits = dc.units.ordinal;
+var scaleLinear = d3.scaleLinear();
 //setting graphs variables
 var lineChart = dc.lineChart("#line_graph");
 var scatterplot = dc.scatterPlot("#scatterplot_graph");
 var leagueRowChart = dc.rowChart("#leagues_spending_rowchart");
 var teamsRowChart = dc.rowChart("#teams_spending_rowchart");
 var playersPositionChart = dc.pieChart("#piechart_players_position");
-//settinf height an width variables
-var w = 700;
-var h = 400;
-//setting margins variable
-var margins = { top: 20, right: 40, bottom: 75, left: 50 };
+
 //calling csv data here then passing though crossfilter function
 d3.csv("data/data.csv").then(function(sportData) {
   var ndx = crossfilter(sportData);
@@ -63,16 +73,13 @@ function showTotalSpendOnLineChart(ndx) {
     .margins(margins)
     .dimension(seasonDim)
     .group(totalSpendPerSeasonDim)
-    .x(d3.scaleBand())
-    .xUnits(dc.units.ordinal)
+    .x(scaleBand)
+    .xUnits(ordUnits)
     .renderHorizontalGridLines(true)
     .curve(d3.curveCatmullRom.alpha(0.5))
     .renderArea(true)
     .renderDataPoints(true)
-    .title(function(d) {
-      return "€" + d.value;
-    })
-    .colors("#756bb1")
+    .title(euroSign)
     .xAxisLabel("Seasons")
     .yAxisLabel("Transfer Fee")
     .yAxis()
@@ -101,8 +108,8 @@ function scatterPlotAllTransfers(ndx) {
     .width(w)
     .height(h)
     .margins(margins)
-    .x(d3.scaleBand())
-    .xUnits(dc.units.ordinal)
+    .x(scaleBand)
+    .xUnits(ordUnits)
     .brushOn(false)
     .symbolSize(6)
     .clipPadding(10)
@@ -147,7 +154,7 @@ function topTenSpendingLeauges(ndx) {
     .margins(margins)
     .dimension(leaugeToDim)
     .group(groupByTransfer)
-    .x(d3.scaleLinear())
+    .x(scaleLinear)
     .elasticX(true)
     .xAxis()
     .ticks(5)
@@ -170,7 +177,7 @@ function topTenTeamSpend(ndx) {
     .margins(margins)
     .dimension(topTenTeamSpendDim)
     .group(topTenTeamSpendGroup)
-    .x(d3.scaleLinear())
+    .x(scaleLinear)
     .elasticX(true)
     .xAxis()
     .ticks(5)
