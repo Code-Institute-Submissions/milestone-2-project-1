@@ -25,27 +25,31 @@ d3.csv("data/data.csv").then(function(sportData) {
   var ndx = crossfilter(sportData);
 
   //passing crossfiltered data into function that will then be rendered below
-  showAverageOnLineChart(ndx);
+  showTotalSpendOnLineChart(ndx);
 
   scatterPlotAllTransfers(ndx);
+
+  topTenSpendingLeauges(ndx);
+
+  topTenTeamSpend(ndx);
 
   dc.renderAll();
 });
 
 //line graph function//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function showAverageOnLineChart(ndx) {
+function showTotalSpendOnLineChart(ndx) {
   var seasonDim = ndx.dimension(dc.pluck("Season"));
-  averageSpeadPerSeasonDim = seasonDim.group().reduceSum(function(d) {
+  totalSpendPerSeasonDim = seasonDim.group().reduceSum(function(d) {
     return [d.Transfer_fee];
   });
-  console.log(averageSpeadPerSeasonDim.all());
+  console.log(totalSpendPerSeasonDim.all());
   //linechart added id from html div here
   dc.lineChart("#line_graph")
-    .width(700)
+    .width(800)
     .height(400)
     .margins({ top: 20, right: 40, bottom: 75, left: 50 })
     .dimension(seasonDim)
-    .group(averageSpeadPerSeasonDim)
+    .group(totalSpendPerSeasonDim)
     .x(d3.scaleBand())
     .xUnits(dc.units.ordinal)
     .renderHorizontalGridLines(true)
@@ -83,6 +87,7 @@ function scatterPlotAllTransfers(ndx) {
   dc.scatterPlot("#scatterplot_graph")
     .width(700)
     .height(400)
+    .margins({ top: 10, right: 50, bottom: 75, left: 75 })
     .x(d3.scaleBand())
     .xUnits(dc.units.ordinal)
     .brushOn(false)
@@ -109,8 +114,66 @@ function scatterPlotAllTransfers(ndx) {
     .group(plotGraphSeasonDimGroup)
     .renderHorizontalGridLines(true)
     .renderVerticalGridLines(true)
-    .margins({ top: 10, right: 50, bottom: 75, left: 75 })
     .yAxis()
     .tickFormat(euroFormat);
 }
 //end of scatterplot function//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//top ten spending leauges function/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function topTenSpendingLeauges(ndx) {
+  leaugeToDim = ndx.dimension(dc.pluck("League_to"));
+  groupByTransfer = leaugeToDim.group().reduceSum(function(d) {
+    return [d.Transfer_fee];
+  });
+
+  // building the line chart here
+  dc.rowChart("#leagues_spending_rowchart")
+    .width(700)
+    .height(400)
+    .rowsCap(10)
+    .othersGrouper(false)
+    .margins({
+      top: 10,
+      right: 50,
+      bottom: 75,
+      left: 75
+    })
+    .dimension(leaugeToDim)
+    .group(groupByTransfer)
+    .x(d3.scaleLinear())
+    .elasticX(true)
+    .xAxis()
+    .ticks(5)
+    .tickFormat(euroFormat);
+}
+// end of top ten league spend row chart
+
+//top ten club spend row chart
+
+function topTenTeamSpend(ndx) {
+  topTenTeamSpendDim = ndx.dimension(dc.pluck("Team_to"));
+  topTenTeamSpendGroup = topTenTeamSpendDim.group().reduceSum(function(d) {
+    return [d.Transfer_fee];
+  });
+  console.log(topTenTeamSpendGroup.all());
+  //adding row chart
+  dc.rowChart("#teams_spending_rowchart")
+    .width(700)
+    .height(400)
+    .rowsCap(10)
+    .othersGrouper(false)
+    .margins({
+      top: 10,
+      right: 50,
+      bottom: 75,
+      left: 75
+    })
+    .dimension(topTenTeamSpendDim)
+    .group(topTenTeamSpendGroup)
+    .x(d3.scaleLinear())
+    .elasticX(true)
+    .xAxis()
+    .ticks(5)
+    .tickFormat(euroFormat);
+}

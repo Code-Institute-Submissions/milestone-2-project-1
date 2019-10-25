@@ -73,18 +73,13 @@ text.x-axis-label,
   z-index: 1;
 }
 
-.navbar-brand,
-.navbar-nav {
-  font-size: 2rem;
-  padding: 0.3rem;
-}
 .data_btn,
 .nav-border {
   border: 4px solid black;
-  margin: 0 0.4rem 0 0.4rem;
+  margin: 0 0.2rem 0 0.2rem;
 }
 i {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 /* callout section */
@@ -118,7 +113,7 @@ i {
 }
 .data_btn,
 .callout_main_text {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 .data_btn {
@@ -141,13 +136,20 @@ i {
 }
 /* small tablets and up */
 @media (min-width: 567px) {
+  .navbar-brand,
+  .navbar-nav {
+    font-size: 2rem;
+    padding: 0.3rem;
+  }
+
   data_btn,
   .callout_main_text {
     font-size: 2rem;
   }
-  .data_btn {
-    letter-spacing: 3px;
-    background: transparent;
+  .data_btn,
+  .nav-border {
+    border: 4px solid black;
+    margin: 0 0.2rem 0 0.2rem;
   }
 }
 
