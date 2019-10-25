@@ -2,7 +2,7 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css");
 /* for graphs js page */
 /* targeting axis to add angle */
-
+text.pie-slice.pie-label,
 .x.axis text {
   text-anchor: end !important;
   -webkit-transform: rotate(-45deg);

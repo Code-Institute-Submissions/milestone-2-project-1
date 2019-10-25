@@ -1,16 +1,16 @@
 // jquery
 //targeting button in callout section
 //here that will hide the callout section when clicked an shoe that
-$(document).ready(function() {
-  $("#data_btn_callout").click(function() {
-    $("#callout_text").hide();
-  });
-  //hiding main section until button is clicked here
-  $("#hiding_section_wrapper").hide();
-  $("#data_btn_callout").click(function() {
-    $("#hiding_section_wrapper").show();
-  });
-});
+// $(document).ready(function() {
+//   $("#data_btn_callout").click(function() {
+//     $("#callout_text").hide();
+//   });
+//   //hiding main section until button is clicked here
+//   $("#hiding_section_wrapper").hide();
+//   $("#data_btn_callout").click(function() {
+//     $("#hiding_section_wrapper").show();
+//   });
+// });
 //end of jquery
 
 //
@@ -190,4 +190,21 @@ function playersPositionPieChart(ndx) {
   });
   playersPositionGroup = playersPositionDim.group();
   console.log(playersPositionGroup.all());
+
+  //adding pie chart here
+  dc.pieChart("#piechart_players_position")
+    .height(400)
+    .innerRadius(20)
+    .slicesCap(13)
+    .othersGrouper(false)
+    .legend(
+      dc
+        .legend()
+        .x(4)
+        .y(0)
+        .itemHeight(16)
+        .gap(2)
+    )
+    .dimension(playersPositionDim)
+    .group(playersPositionGroup);
 }
