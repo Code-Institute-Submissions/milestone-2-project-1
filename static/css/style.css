@@ -2,7 +2,8 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css");
 /* for graphs js page */
 /* targeting axis to add angle */
-text.pie-slice.pie-label,
+text.pie-slice.pie-label {
+}
 .x.axis text {
   text-anchor: end !important;
   -webkit-transform: rotate(-45deg);
@@ -30,10 +31,14 @@ html {
 }
 
 /* reusable componets */
+text.pie-slice.pie-label,
+text.row,
 .capitals {
   text-transform: uppercase;
 }
 
+text.pie-slice.pie-label,
+text.row,
 .black {
   color: black;
 }
@@ -48,11 +53,15 @@ text.x-axis-label {
   font-weight: 700;
 }
 /* setting fonts */
+
+/* barlow semi condensed added to all smaller text here  */
 .para,
 .x.axis text,
 .y.axis text,
 text.y-axis-label,
 text.x-axis-label,
+text.pie-slice.pie-label,
+text.row,
 .text-barlow {
   font-family: "Barlow Semi Condensed", sans-serif;
 }
