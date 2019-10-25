@@ -33,6 +33,8 @@ d3.csv("data/data.csv").then(function(sportData) {
 
   topTenTeamSpend(ndx);
 
+  playersPositionPieChart(ndx);
+
   dc.renderAll();
 });
 
@@ -176,4 +178,16 @@ function topTenTeamSpend(ndx) {
     .xAxis()
     .ticks(5)
     .tickFormat(euroFormat);
+}
+
+// end of rowchart top spending teams graph
+
+//pie chart for players position
+
+function playersPositionPieChart(ndx) {
+  playersPositionDim = ndx.dimension(function(d) {
+    return [d.Position];
+  });
+  playersPositionGroup = playersPositionDim.group();
+  console.log(playersPositionGroup.all());
 }
