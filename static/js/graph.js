@@ -13,14 +13,27 @@
 // });
 //end of jquery
 
-//
-//main graph buliding section
-//gobal var added here will be passed into tickformat
-//function to change amounts to euros
+//adding variables to be reused in graph buliding functions below
+//changes format to euros
 var euroFormat = function(d) {
   return "€" + d3.format(".2s")(d);
 };
-//calling csv data here then pssing though crossfilter function
+//setting var for transfer fee total
+transferFeeTotal = function(d) {
+  return [d.Transfer_fee];
+};
+//setting graphs variables
+var lineChart = dc.lineChart("#line_graph");
+var scatterplot = dc.scatterPlot("#scatterplot_graph");
+var leagueRowChart = dc.rowChart("#leagues_spending_rowchart");
+var teamsRowChart = dc.rowChart("#teams_spending_rowchart");
+var playersPositionChart = dc.pieChart("#piechart_players_position");
+//settinf height an width variables
+var w = 700;
+var h = 400;
+//setting margins variable
+var margins = { top: 20, right: 40, bottom: 75, left: 50 };
+//calling csv data here then passing though crossfilter function
 d3.csv("data/data.csv").then(function(sportData) {
   var ndx = crossfilter(sportData);
 
@@ -41,15 +54,13 @@ d3.csv("data/data.csv").then(function(sportData) {
 //line graph function//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showTotalSpendOnLineChart(ndx) {
   var seasonDim = ndx.dimension(dc.pluck("Season"));
-  totalSpendPerSeasonDim = seasonDim.group().reduceSum(function(d) {
-    return [d.Transfer_fee];
-  });
+  totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
   console.log(totalSpendPerSeasonDim.all());
   //linechart added id from html div here
-  dc.lineChart("#line_graph")
-    .width(800)
-    .height(400)
-    .margins({ top: 20, right: 40, bottom: 75, left: 50 })
+  lineChart
+    .width(w)
+    .height(h)
+    .margins(margins)
     .dimension(seasonDim)
     .group(totalSpendPerSeasonDim)
     .x(d3.scaleBand())
@@ -86,10 +97,10 @@ function scatterPlotAllTransfers(ndx) {
   var plotGraphSeasonDimGroup = plottingTheDotsDim.group();
 
   //adding scatterplot chart here
-  dc.scatterPlot("#scatterplot_graph")
-    .width(700)
-    .height(400)
-    .margins({ top: 10, right: 50, bottom: 75, left: 75 })
+  scatterplot
+    .width(w)
+    .height(h)
+    .margins(margins)
     .x(d3.scaleBand())
     .xUnits(dc.units.ordinal)
     .brushOn(false)
@@ -125,22 +136,15 @@ function scatterPlotAllTransfers(ndx) {
 
 function topTenSpendingLeauges(ndx) {
   leaugeToDim = ndx.dimension(dc.pluck("League_to"));
-  groupByTransfer = leaugeToDim.group().reduceSum(function(d) {
-    return [d.Transfer_fee];
-  });
+  groupByTransfer = leaugeToDim.group().reduceSum(transferFeeTotal);
 
   // building the line chart here
-  dc.rowChart("#leagues_spending_rowchart")
-    .width(700)
-    .height(400)
+  leagueRowChart
+    .width(w)
+    .height(h)
     .rowsCap(10)
     .othersGrouper(false)
-    .margins({
-      top: 10,
-      right: 50,
-      bottom: 75,
-      left: 75
-    })
+    .margins(margins)
     .dimension(leaugeToDim)
     .group(groupByTransfer)
     .x(d3.scaleLinear())
@@ -155,22 +159,15 @@ function topTenSpendingLeauges(ndx) {
 
 function topTenTeamSpend(ndx) {
   topTenTeamSpendDim = ndx.dimension(dc.pluck("Team_to"));
-  topTenTeamSpendGroup = topTenTeamSpendDim.group().reduceSum(function(d) {
-    return [d.Transfer_fee];
-  });
+  topTenTeamSpendGroup = topTenTeamSpendDim.group().reduceSum(transferFeeTotal);
   console.log(topTenTeamSpendGroup.all());
   //adding row chart
-  dc.rowChart("#teams_spending_rowchart")
-    .width(700)
-    .height(400)
+  teamsRowChart
+    .width(w)
+    .height(h)
     .rowsCap(10)
     .othersGrouper(false)
-    .margins({
-      top: 10,
-      right: 50,
-      bottom: 75,
-      left: 75
-    })
+    .margins(margins)
     .dimension(topTenTeamSpendDim)
     .group(topTenTeamSpendGroup)
     .x(d3.scaleLinear())
@@ -192,7 +189,7 @@ function playersPositionPieChart(ndx) {
   console.log(playersPositionGroup.all());
 
   //adding pie chart here
-  dc.pieChart("#piechart_players_position")
+  playersPositionChart
     .height(400)
     .innerRadius(20)
     .slicesCap(13)
