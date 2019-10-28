@@ -17,7 +17,7 @@
 d3.csv("data/data.csv").then(function(sportData) {
   var ndx = crossfilter(sportData);
   //adding variables to be used in graph buliding functions below
-  //changes format to euros
+  //changes format on axis  to euros
   var euroFormat = function(d) {
     return "€" + d3.format(".2s")(d);
   };
@@ -25,10 +25,8 @@ d3.csv("data/data.csv").then(function(sportData) {
   var euroSign = function(d) {
     return "€" + d.value;
   };
+
   //setting var for transfer fee total
-  transferFeeTotal = function(d) {
-    return [d.Transfer_fee];
-  };
 
   //setting height an width variables
   var w = 700;
@@ -48,8 +46,12 @@ d3.csv("data/data.csv").then(function(sportData) {
 
   //setting the reduce an group variables/////////////////////////////////////////////////////////////////////////////////////
   //dimensions
+  var transferFeeTotal = function(d) {
+    return [d.Transfer_fee];
+  };
+
   var seasonDim = ndx.dimension(function(d) {
-    return d.Season;
+    return [d.Season];
   });
   var plottingTheDotsDim = ndx.dimension(function(d) {
     return [
@@ -61,6 +63,7 @@ d3.csv("data/data.csv").then(function(sportData) {
       d.Position
     ];
   });
+  console.log(plottingTheDotsDim);
   var leaugeToDim = ndx.dimension(dc.pluck("League_to"));
   var topTenTeamSpendDim = ndx.dimension(dc.pluck("Team_to"));
 
@@ -68,6 +71,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     return [d.Position];
   });
   //groups
+
   var totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
 
   var plotGraphSeasonDimGroup = plottingTheDotsDim.group();
@@ -80,7 +84,8 @@ d3.csv("data/data.csv").then(function(sportData) {
 
   var playersPositionGroup = playersPositionDim.group();
   // end of reduce an group vatiables
-  //making charts
+
+  // making charts
   //line chart
   lineChart
     .width(w)
@@ -98,6 +103,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     .xAxisLabel("Seasons")
     .yAxisLabel("Transfer Fee")
     .yAxis()
+
     .tickFormat(euroFormat);
   //end of line chart
   //scatterplot function
@@ -126,7 +132,6 @@ d3.csv("data/data.csv").then(function(sportData) {
         d.key[1]
       );
     })
-    .colors("#756bb1")
     .dimension(seasonDim)
     .group(plotGraphSeasonDimGroup)
     .renderHorizontalGridLines(true)
@@ -167,7 +172,6 @@ d3.csv("data/data.csv").then(function(sportData) {
   //player position pie chart
   playersPositionChart
     .height(400)
-    .innerRadius(20)
     .slicesCap(13)
     .othersGrouper(false)
     .legend(
@@ -178,28 +182,39 @@ d3.csv("data/data.csv").then(function(sportData) {
         .itemHeight(16)
         .gap(2)
     )
+    .colors([
+      "#082A2A",
+      "#0C3536",
+      "#124143",
+      "#184C51",
+      "#1F5860",
+      "#27656F",
+      "#30717E",
+      "#3A7E8E",
+      "#448A9F",
+      "#5097B0",
+      "#5DA4C1",
+      "#6AB1D2",
+      "#79BDE4",
+      "#89CAF6"
+    ])
+    // (optional) define color domain to match your data domain if you want to bind data or color
+    .colorDomain([-1750, 1644])
+    // (optional) define color value accessor
+    .colorAccessor(function(d) {
+      return d.value;
+    })
     .dimension(playersPositionDim)
-    .group(playersPositionGroup);
+    .group(playersPositionGroup)
+    .title(function(d) {
+      return (
+        d.data.Player +
+        "(" +
+        Math.floor((d.data.value / all.value()) * 100) +
+        "%)"
+      );
+    })
+    .renderTitle(true);
   //end player position pie chart
   dc.renderAll();
 });
-
-//line graph function//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//linechart added id from html div here
-
-// end of line graph function////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// scatterplot function/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//end of scatterplot function//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//top ten spending leauges function/////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// end of top ten league spend row chart
-
-//top ten club spend row chart
-
-// end of rowchart top spending teams graph
-
-//pie chart for players position
