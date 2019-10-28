@@ -83,6 +83,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     .reduceSum(transferFeeTotal);
 
   var playersPositionGroup = playersPositionDim.group();
+  console.log(playersPositionGroup.all());
   // end of reduce an group vatiables
 
   // making charts
@@ -208,10 +209,10 @@ d3.csv("data/data.csv").then(function(sportData) {
     .group(playersPositionGroup)
     .title(function(d) {
       return (
-        d.data.Player +
-        "(" +
-        Math.floor((d.data.value / all.value()) * 100) +
-        "%)"
+        d.key[0] +
+        " " +
+        Math.floor((d.value / ndx.groupAll().value()) * 100) +
+        "%"
       );
     })
     .renderTitle(true);
