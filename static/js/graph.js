@@ -28,20 +28,20 @@ d3.csv("data/data.csv").then(function(sportData) {
   // setting colors variable
 
   var colors = [
-    "#082A2A",
-    "#0C3536",
-    "#124143",
-    "#184C51",
-    "#1F5860",
-    "#27656F",
-    "#30717E",
-    "#3A7E8E",
-    "#448A9F",
-    "#5097B0",
-    "#5DA4C1",
-    "#6AB1D2",
-    "#79BDE4",
-    "#89CAF6"
+    "#3F1D1D",
+    "#4F272D",
+    "#5D323F",
+    "#693E53",
+    "#724D68",
+    "#765D7E",
+    "#766E93",
+    "#7181A6",
+    "#6894B6",
+    "#5BA7C3",
+    "#4DBBCC",
+    "#44CDCF",
+    "#47E0CE",
+    "#5AF1C9"
   ];
   //setting height an width variables
   var w = 700;
@@ -95,7 +95,6 @@ d3.csv("data/data.csv").then(function(sportData) {
   var topTenTeamSpendGroup = topTenTeamSpendDim
     .group()
     .reduceSum(transferFeeTotal);
-  console.log(topTenTeamSpendGroup.all());
   var playersPositionGroup = playersPositionDim.group();
   // end of reduce an group vatiables
 
@@ -121,6 +120,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     .margins(margins)
     .dimension(seasonDim)
     .group(totalSpendPerSeasonDim)
+    .ordinalColors(["#7181A6"])
     .x(scaleBand)
     .xUnits(ordUnits)
     .renderHorizontalGridLines(true)
@@ -138,6 +138,12 @@ d3.csv("data/data.csv").then(function(sportData) {
     .width(w)
     .height(h)
     .margins(margins)
+    .dimension(seasonDim)
+    .group(plotGraphSeasonDimGroup)
+    .ordinalColors(colors)
+    .colorAccessor(function(d) {
+      return d.key[5];
+    })
     .x(scaleBand)
     .xUnits(ordUnits)
     .brushOn(false)
@@ -158,17 +164,6 @@ d3.csv("data/data.csv").then(function(sportData) {
         " for €" +
         d.key[1]
       );
-    })
-    .dimension(seasonDim)
-    .group(plotGraphSeasonDimGroup)
-    .ordinalColors(colors);
-  calcalateColorDomain(function(d, i) {
-    for (var i = 0; i < d.Season.length; i++) {
-      Season = d.Season[i];
-    }
-  })
-    .colorAccessor(function(d) {
-      return d.key[0];
     })
 
     // calculateColorDoimain()

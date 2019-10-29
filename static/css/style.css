@@ -2,7 +2,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css");
 /* for graphs js page */
 /* targeting axis to add angle */
-
 .x.axis text {
   text-anchor: end !important;
   -webkit-transform: rotate(-45deg);
@@ -39,11 +38,11 @@ text.row,
 .black {
   color: black;
 }
-
+h2,
 .white {
   color: white;
 }
-
+text.row,
 text.pie-slice.pie-label,
 text.y-axis-label,
 text.x-axis-label {
@@ -53,6 +52,7 @@ text.x-axis-label {
 /* setting fonts */
 
 /* barlow semi condensed added to all smaller text here  */
+
 .para,
 .x.axis text,
 .y.axis text,
@@ -62,9 +62,12 @@ text.pie-slice.pie-label,
 text.row,
 .text-barlow {
   font-family: "Barlow Semi Condensed", sans-serif;
+  color: white;
 }
 
-  font-size: 1.3rem;
+ #hiding_section_wrapper{
+   background-color: black;;
+ }
 
 .text-oswald {
   font-family: "Oswald", sans-serif;
@@ -87,6 +90,9 @@ text.row,
   border: 4px solid black;
   margin: 0 0.2rem 0 0.2rem;
 }
+.data_btn{
+  background-color: black;
+}
 i {
   font-size: 1.5rem;
 }
@@ -100,7 +106,7 @@ i {
 /* fixed background Image added here to take up full view height */
 .callout-container {
   height: 100vh;
-  background: url("https://res.cloudinary.com/plyn85/image/upload/v1571734319/milestone-2/milestone_2_background_image_ual5hh.jpg")
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1572370878/milestone-2/football_data_radcs8.jpg")
     no-repeat fixed;
   background-position-x: 50%;
   background-size: cover;
