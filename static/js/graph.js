@@ -161,6 +161,17 @@ d3.csv("data/data.csv").then(function(sportData) {
     })
     .dimension(seasonDim)
     .group(plotGraphSeasonDimGroup)
+    .ordinalColors(colors);
+  calcalateColorDomain(function(d, i) {
+    for (var i = 0; i < d.Season.length; i++) {
+      Season = d.Season[i];
+    }
+  })
+    .colorAccessor(function(d) {
+      return d.key[0];
+    })
+
+    // calculateColorDoimain()
     .renderHorizontalGridLines(true)
     .renderVerticalGridLines(true)
     .yAxis()
@@ -173,6 +184,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     .rowsCap(10)
     .othersGrouper(false)
     .margins(margins)
+    .ordinalColors(colors)
     .dimension(leaugeToDim)
     .group(groupByTransfer)
     .x(scaleLinear)
@@ -188,11 +200,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     .rowsCap(10)
     .othersGrouper(false)
     .margins(margins)
-    .colors(colors)
-    .colorDomain([0, 9])
-    .colorAccessor(function(d) {
-      return d.key[0];
-    })
+    .ordinalColors(colors)
     .dimension(topTenTeamSpendDim)
     .group(topTenTeamSpendGroup)
     .x(scaleLinear)
@@ -214,13 +222,7 @@ d3.csv("data/data.csv").then(function(sportData) {
         .itemHeight(16)
         .gap(2)
     )
-    .colors(colors)
-    // (optional) define color domain to match your data domain if you want to bind data or color
-    .colorDomain([-1750, 1644])
-    // (optional) define color value accessor
-    .colorAccessor(function(d) {
-      return d.value;
-    })
+    .ordinalColors(colors)
     .dimension(playersPositionDim)
     .group(playersPositionGroup)
     .title(function(d) {
