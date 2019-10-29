@@ -2,8 +2,7 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css");
 /* for graphs js page */
 /* targeting axis to add angle */
-text.pie-slice.pie-label {
-}
+
 .x.axis text {
   text-anchor: end !important;
   -webkit-transform: rotate(-45deg);
@@ -45,6 +44,7 @@ text.row,
   color: white;
 }
 
+text.pie-slice.pie-label,
 text.y-axis-label,
 text.x-axis-label {
   font-size: 1.1rem;
@@ -63,6 +63,8 @@ text.row,
 .text-barlow {
   font-family: "Barlow Semi Condensed", sans-serif;
 }
+
+  font-size: 1.3rem;
 
 .text-oswald {
   font-family: "Oswald", sans-serif;
@@ -182,4 +184,5 @@ i {
 
 /* * {
   border: 1px solid red !important;
-} */
+} **/
+}

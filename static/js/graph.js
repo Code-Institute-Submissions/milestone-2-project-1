@@ -25,9 +25,24 @@ d3.csv("data/data.csv").then(function(sportData) {
   var euroSign = function(d) {
     return "€" + d.value;
   };
+  // setting colors variable
 
-  //setting var for transfer fee total
-
+  var colors = [
+    "#082A2A",
+    "#0C3536",
+    "#124143",
+    "#184C51",
+    "#1F5860",
+    "#27656F",
+    "#30717E",
+    "#3A7E8E",
+    "#448A9F",
+    "#5097B0",
+    "#5DA4C1",
+    "#6AB1D2",
+    "#79BDE4",
+    "#89CAF6"
+  ];
   //setting height an width variables
   var w = 700;
   var h = 400;
@@ -71,7 +86,6 @@ d3.csv("data/data.csv").then(function(sportData) {
     return [d.Position];
   });
   //groups
-
   var totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
 
   var plotGraphSeasonDimGroup = plottingTheDotsDim.group();
@@ -81,11 +95,24 @@ d3.csv("data/data.csv").then(function(sportData) {
   var topTenTeamSpendGroup = topTenTeamSpendDim
     .group()
     .reduceSum(transferFeeTotal);
-
+  console.log(topTenTeamSpendGroup.all());
   var playersPositionGroup = playersPositionDim.group();
-  console.log(playersPositionGroup.all());
   // end of reduce an group vatiables
 
+  //Used to override the default angle of the text in pie chart
+  //Taken froma tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
+  playersPositionChart.on("renderlet", function(chart) {
+    playersPositionChart
+      .selectAll("text.pie-slice")
+      .attr("transform", function(d) {
+        var translate = d3.select(this).attr("transform");
+        var ang = ((((d.startAngle + d.endAngle) / 2) * 180) / Math.PI) % 360;
+        if (ang < 180) ang -= 90;
+        else ang += 90;
+        return translate + " rotate(" + ang + ")";
+      });
+  });
+  //end//
   // making charts
   //line chart
   lineChart
@@ -104,7 +131,6 @@ d3.csv("data/data.csv").then(function(sportData) {
     .xAxisLabel("Seasons")
     .yAxisLabel("Transfer Fee")
     .yAxis()
-
     .tickFormat(euroFormat);
   //end of line chart
   //scatterplot function
@@ -162,6 +188,11 @@ d3.csv("data/data.csv").then(function(sportData) {
     .rowsCap(10)
     .othersGrouper(false)
     .margins(margins)
+    .colors(colors)
+    .colorDomain([0, 9])
+    .colorAccessor(function(d) {
+      return d.key[0];
+    })
     .dimension(topTenTeamSpendDim)
     .group(topTenTeamSpendGroup)
     .x(scaleLinear)
@@ -183,22 +214,7 @@ d3.csv("data/data.csv").then(function(sportData) {
         .itemHeight(16)
         .gap(2)
     )
-    .colors([
-      "#082A2A",
-      "#0C3536",
-      "#124143",
-      "#184C51",
-      "#1F5860",
-      "#27656F",
-      "#30717E",
-      "#3A7E8E",
-      "#448A9F",
-      "#5097B0",
-      "#5DA4C1",
-      "#6AB1D2",
-      "#79BDE4",
-      "#89CAF6"
-    ])
+    .colors(colors)
     // (optional) define color domain to match your data domain if you want to bind data or color
     .colorDomain([-1750, 1644])
     // (optional) define color value accessor
