@@ -47,7 +47,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   var w = 700;
   var h = 400;
   //setting margins variable
-  var margins = { top: 20, right: 40, bottom: 75, left: 50 };
+  var margins = { top: 0, right: 0, bottom: 70, left: 70 };
   //setting scalebands
   var scaleBand = d3.scaleBand();
   var ordUnits = dc.units.ordinal;
@@ -128,8 +128,6 @@ d3.csv("data/data.csv").then(function(sportData) {
     .renderArea(true)
     .renderDataPoints(true)
     .title(euroSign)
-    .xAxisLabel("Seasons")
-    .yAxisLabel("Transfer Fee")
     .yAxis()
     .tickFormat(euroFormat);
   //end of line chart
@@ -149,8 +147,6 @@ d3.csv("data/data.csv").then(function(sportData) {
     .brushOn(false)
     .symbolSize(6)
     .clipPadding(10)
-    .yAxisLabel("Transfer Fee")
-    .xAxisLabel("Seasons")
     .title(function(d) {
       return (
         "In " +
@@ -165,8 +161,6 @@ d3.csv("data/data.csv").then(function(sportData) {
         d.key[1]
       );
     })
-
-    // calculateColorDoimain()
     .renderHorizontalGridLines(true)
     .renderVerticalGridLines(true)
     .yAxis()
