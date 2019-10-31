@@ -1,4 +1,4 @@
-// jquery
+//jquery
 //targeting button in callout section
 //here that will hide the callout section when clicked an shoe that
 // $(document).ready(function() {
@@ -10,9 +10,9 @@
 //   $("#data_btn_callout").click(function() {
 //     $("#hiding_section_wrapper").show();
 //   });
+
 // });
 //end of jquery
-
 //calling csv data here then passing though crossfilter function
 d3.csv("data/data.csv").then(function(sportData) {
   var ndx = crossfilter(sportData);
@@ -21,10 +21,11 @@ d3.csv("data/data.csv").then(function(sportData) {
   var euroFormat = function(d) {
     return "€" + d3.format(".2s")(d);
   };
-  //euro sign function
+
   var euroSign = function(d) {
-    return "€" + d.value;
+    return d.key + " " + d3.format(".2s")(d.value);
   };
+
   // setting colors variable
 
   var colors = [
@@ -44,7 +45,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     "#5AF1C9"
   ];
   //setting height an width variables
-  var w = 700;
+  var w = 800;
   var h = 400;
   //setting margins variable
   var margins = { top: 0, right: 0, bottom: 70, left: 70 };
@@ -66,7 +67,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   };
 
   var seasonDim = ndx.dimension(function(d) {
-    return [d.Season];
+    return d.Season;
   });
   var plottingTheDotsDim = ndx.dimension(function(d) {
     return [
@@ -78,9 +79,12 @@ d3.csv("data/data.csv").then(function(sportData) {
       d.Position
     ];
   });
-  console.log(plottingTheDotsDim);
-  var leaugeToDim = ndx.dimension(dc.pluck("League_to"));
-  var topTenTeamSpendDim = ndx.dimension(dc.pluck("Team_to"));
+  var leaugeToDim = ndx.dimension(function(d) {
+    return d.League_to;
+  });
+  var topTenTeamSpendDim = ndx.dimension(function(d) {
+    return d.Team_to;
+  });
 
   var playersPositionDim = ndx.dimension(function(d) {
     return [d.Position];
@@ -178,9 +182,12 @@ d3.csv("data/data.csv").then(function(sportData) {
     .group(groupByTransfer)
     .x(scaleLinear)
     .elasticX(true)
+    .title(euroSign)
+    .renderTitle(true)
     .xAxis()
     .ticks(5)
     .tickFormat(euroFormat);
+
   //end league top ten row chart
   //teams top ten row chart
   teamsRowChart
@@ -194,6 +201,8 @@ d3.csv("data/data.csv").then(function(sportData) {
     .group(topTenTeamSpendGroup)
     .x(scaleLinear)
     .elasticX(true)
+    .title(euroSign)
+    .renderTitle(true)
     .xAxis()
     .ticks(5)
     .tickFormat(euroFormat);
