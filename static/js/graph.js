@@ -150,7 +150,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     .xUnits(ordUnits)
     .brushOn(false)
     .symbolSize(6)
-    .clipPadding(10)
+    .clipPadding(1)
     .title(function(d) {
       return (
         "In " +
@@ -165,28 +165,28 @@ d3.csv("data/data.csv").then(function(sportData) {
         d.key[1]
       );
     })
-    .renderHorizontalGridLines(true)
+
     .renderVerticalGridLines(true)
     .yAxis()
-    .tickFormat(euroFormat);
-  //end scatterplot function
-  //league top ten row chart
-  leagueRowChart
-    .width(w)
-    .height(h)
-    .rowsCap(10)
-    .othersGrouper(false)
-    .margins(margins)
-    .ordinalColors(colors)
-    .dimension(leaugeToDim)
-    .group(groupByTransfer)
-    .x(scaleLinear)
-    .elasticX(true)
-    .title(euroSign)
-    .renderTitle(true)
-    .xAxis()
-    .ticks(5)
-    .tickFormat(euroFormat);
+    .tickFormat(euroFormat),
+    //end scatterplot function
+    //league top ten row chart
+    leagueRowChart
+      .width(w)
+      .height(h)
+      .rowsCap(10)
+      .othersGrouper(false)
+      .margins(margins)
+      .ordinalColors(colors)
+      .dimension(leaugeToDim)
+      .group(groupByTransfer)
+      .x(scaleLinear)
+      .elasticX(true)
+      .title(euroSign)
+      .renderTitle(true)
+      .xAxis()
+      .ticks(5)
+      .tickFormat(euroFormat);
 
   //end league top ten row chart
   //teams top ten row chart

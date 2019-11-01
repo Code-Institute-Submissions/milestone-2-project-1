@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Oswald&display=swap:,300,500,600,700,800,900");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css");
 /* for graphs js page */
+/* targeting axis to add angle */
+.x.axis text {
+  text-anchor: end !important;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
 .x.axis text,
 .y.axis text {
   font-weight: 800;
@@ -49,7 +55,7 @@ h2,
 g.axis,
 .para,
 .x.axis text,
-.y.axis text,
+ .y.axis text,
 text.pie-slice.pie-label,
 text.row,
 .text-barlow {
@@ -61,8 +67,8 @@ text.row,
 
 /* over riding default row chart axis width here  */
 .axis line{
-  stroke-width:5px;
-  
+stroke-width:5px;
+
 }
 
 /* setting background color of main section */
@@ -107,7 +113,7 @@ i {
 .callout-container {
   height: 100vh;
   background: url("https://res.cloudinary.com/plyn85/image/upload/v1572370878/milestone-2/football_data_radcs8.jpg")
-  no-repeat fixed;
+    no-repeat fixed;
   background-position-x: 50%;
   background-size: cover;
   -webkit-background-size: cover;
@@ -139,7 +145,7 @@ i {
 .graph_section {
   margin-top: 4.5rem;
 }
-.titlerow{
+ .titlerow{
   color: white;
 }
 .para {
@@ -147,12 +153,6 @@ i {
   font-size: 1.1rem;
 }
 
-/* targeting axis to add angle */
-.x.axis text {
-  text-anchor: end !important;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
 /* media queries */
 /* for mobile only */
 @media (max-width: 566px) {
