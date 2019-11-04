@@ -53,7 +53,8 @@ h2,
 
 /* setting fonts */
 
-/* barlow semi condensed added to all smaller text here  */
+/* barlow semi condensed added to all smaller text here as well as font size and weight being set  */
+/* also  changing color legend text */
 #piechart_players_position,  g.row text,
 g.axis,
 .para,
@@ -161,6 +162,13 @@ i {
 .reset-data-btn{
 border: 2px solid white;
 background-color:#724D68;
+}
+/* adding css to be target in javascript to hide an show div when button is clicked */
+.hide-content {
+  display: none;
+}
+.show-content{
+  display: block;
 }
 
 /* media queries */

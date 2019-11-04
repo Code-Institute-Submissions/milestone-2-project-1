@@ -52,12 +52,13 @@
               >
             </li>
             <li class="nav-item">
-              <a
+              <button
                 class="nav-link text-barlow nav-border"
-                href="stats_btn"
+                id="stats_btn"
                 aria-label="stats navigation link"
-                >Stats</a
               >
+                Stats
+              </button>
             </li>
             <li class="nav-item nav-border">
               <a
@@ -88,6 +89,7 @@ Is centered in the row an conatins the main callout text -->
         </p>
         <div class="row justify-content-center">
           <button
+            type="button"
             class="white data_btn  col-md-3 text-oswald"
             id="data_btn_callout"
           >
@@ -101,7 +103,7 @@ Is centered in the row an conatins the main callout text -->
 
     <!-- main graphs section -->
     <!-- all graphs will be added in this section -->
-    <main class="container-fluid" id="hiding_section_wrapper">
+    <main class="container-fluid hide-content" id="hiding_section_wrapper">
       <!-- total amount spent per season lne graph -->
       <div class="row">
         <div

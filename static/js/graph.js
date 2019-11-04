@@ -1,18 +1,3 @@
-//jquery
-//targeting button in callout section
-//here that will hide the callout section when clicked an shoe that
-// $(document).ready(function() {
-//   $("#data_btn_callout").click(function() {
-//     $("#callout_text").hide();
-//   });
-//   //hiding main section until button is clicked here
-//   $("#hiding_section_wrapper").hide();
-//   $("#data_btn_callout").click(function() {
-//     $("#hiding_section_wrapper").show();
-//   });
-
-// });
-//end of jquery
 //calling csv data here then passing though crossfilter function
 d3.csv("data/data.csv").then(function(sportData) {
   var ndx = crossfilter(sportData);
@@ -220,9 +205,8 @@ d3.csv("data/data.csv").then(function(sportData) {
     })
     .renderTitle(true);
   //end player position pie chart
-  dc.renderAll();
-  //Used to override the default angle of the text in pie chart
-  //Taken froma tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
+  // Used to override the default angle of the text in pie chart
+  // Taken froma tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
   playersPositionChart.on("renderlet", function(chart) {
     playersPositionChart
       .selectAll("text.pie-slice")
@@ -234,4 +218,22 @@ d3.csv("data/data.csv").then(function(sportData) {
         return translate + " rotate(" + ang + ")";
       });
   });
+  dc.renderAll();
+});
+
+//Adding onclick function here that will hide call out section and show
+//main graphs section when data button os clicked
+document.addEventListener("DOMContentLoaded", function() {
+  var dataBtn = document.getElementById("data_btn_callout");
+  var callOutSection = document.getElementById("callout_text");
+  var mainSection = document.getElementById("hiding_section_wrapper");
+  var statBtn = document.getElementById("stats_btn");
+  dataBtn.onclick = function() {
+    callOutSection.classList.add("hide-content");
+    mainSection.classList.remove("hide-content");
+  };
+  statBtn.onclick = function() {
+    callOutSection.classList.add("hide-content");
+    mainSection.classList.remove("hide-content");
+  };
 });
