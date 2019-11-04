@@ -42,6 +42,9 @@ text.row,
 .black {
   color: black;
 }
+
+.reset-data-btn,
+ .titlerow,
 h2,
 .white {
   color: white;
@@ -51,7 +54,7 @@ h2,
 /* setting fonts */
 
 /* barlow semi condensed added to all smaller text here  */
-
+#piechart_players_position,  g.row text,
 g.axis,
 .para,
 .x.axis text,
@@ -63,6 +66,7 @@ text.row,
   color: white; 
   font-size: 1.1rem;
   font-weight: 700;
+  fill: white
 }
 
 /* over riding default row chart axis width here  */
@@ -147,15 +151,12 @@ i {
   margin-top: 4.5rem;
 }
 
-.reset-data-btn,
- .titlerow{
-  color: white;
-}
 .para {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.1rem
 }
-
+/* changing color of legend text here */
+/* #piechart_players_position,  g.row text {fill:white;} */
 /* adding style for reset data button */
 .reset-data-btn{
 border: 2px solid white;
