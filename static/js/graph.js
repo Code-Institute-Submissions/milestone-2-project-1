@@ -1,6 +1,7 @@
 //calling csv data here then passing though crossfilter function
 d3.csv("data/data.csv").then(function(sportData) {
   var ndx = crossfilter(sportData);
+
   //adding variables to be used in graph buliding functions below
   //changes format on axis  to euros
   var euroFormat = function(d) {
@@ -93,6 +94,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   lineChart
     .width(w)
     .height(h)
+    .useViewBoxResizing(true)
     .margins(margins)
     .dimension(seasonDim)
     .group(totalSpendPerSeasonDim)
@@ -111,6 +113,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   scatterplot
     .width(w)
     .height(h)
+    .useViewBoxResizing(true)
     .margins(margins)
     .dimension(seasonDim)
     .group(plotGraphSeasonDimGroup)
@@ -146,6 +149,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     leagueRowChart
       .width(w)
       .height(h)
+      .useViewBoxResizing(true)
       .rowsCap(10)
       .othersGrouper(false)
       .margins(margins)
@@ -165,6 +169,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   teamsRowChart
     .width(w)
     .height(h)
+    .useViewBoxResizing(true)
     .rowsCap(10)
     .othersGrouper(false)
     .margins(margins)
@@ -180,11 +185,11 @@ d3.csv("data/data.csv").then(function(sportData) {
     .tickFormat(euroFormat);
   //end teams top ten row chart
   //player position pie chart
-  var adjustX = 165,
-    adjustY = 40;
+
   chart
-    .width(window.innerWidth - adjustX)
-    .height(window.innerHeight - adjustY)
+    .width(w)
+    .height(h)
+    .useViewBoxResizing(true)
     .slicesCap(13)
     .othersGrouper(false)
     .legend(
@@ -207,7 +212,7 @@ d3.csv("data/data.csv").then(function(sportData) {
       );
     })
     .renderTitle(true);
-  apply_resizing(chart, adjustX, adjustY);
+
   // end player position pie chart
   // Used to override the default angle of the text in pie chart
   // Taken froma tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
@@ -240,51 +245,3 @@ document.addEventListener("DOMContentLoaded", function() {
     mainSection.classList.remove("hide-content");
   };
 });
-
-//resizing js copy an pasted from https://github.com/dc-js/dc.js/blob/master/web/resizing/resizing-pie.html
-var find_query = (function() {
-  var _map = window.location.search
-    .substr(1)
-    .split("&")
-    .map(function(a) {
-      return a.split("=");
-    })
-    .reduce(function(p, v) {
-      if (v.length > 1) p[v[0]] = decodeURIComponent(v[1].replace(/\+/g, " "));
-      else p[v[0]] = true;
-      return p;
-    }, {});
-  return function(field) {
-    return _map[field] || null;
-  };
-})();
-var resizeMode = find_query("resize") || "widhei";
-
-function apply_resizing(chart, adjustX, adjustY, onresize) {
-  if (resizeMode.toLowerCase() === "viewbox") {
-    chart
-      .width(600)
-      .height(400)
-      .useViewBoxResizing(true);
-    d3.select(chart.anchor()).classed("fullsize", true);
-  } else {
-    adjustX = adjustX || 0;
-    adjustY = adjustY || adjustX || 0;
-    chart
-      .width(window.innerWidth - adjustX)
-      .height(window.innerHeight - adjustY);
-    window.onresize = function() {
-      if (onresize) {
-        onresize(chart);
-      }
-      chart
-        .width(window.innerWidth - adjustX)
-        .height(window.innerHeight - adjustY);
-
-      if (chart.rescale) {
-        chart.rescale();
-      }
-      chart.redraw();
-    };
-  }
-}
