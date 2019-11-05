@@ -43,7 +43,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   var scatterplot = dc.scatterPlot("#scatterplot_graph");
   var leagueRowChart = dc.rowChart("#leagues_spending_rowchart");
   var teamsRowChart = dc.rowChart("#teams_spending_rowchart");
-  var playersPositionChart = dc.pieChart("#piechart_players_position");
+  var chart = dc.pieChart("#piechart_players_position");
 
   //setting the reduce an group variables/////////////////////////////////////////////////////////////////////////////////////
   //dimensions
@@ -180,8 +180,11 @@ d3.csv("data/data.csv").then(function(sportData) {
     .tickFormat(euroFormat);
   //end teams top ten row chart
   //player position pie chart
-  playersPositionChart
-    .height(400)
+  var adjustX = 165,
+    adjustY = 40;
+  chart
+    .width(window.innerWidth - adjustX)
+    .height(window.innerHeight - adjustY)
     .slicesCap(13)
     .othersGrouper(false)
     .legend(
@@ -204,25 +207,25 @@ d3.csv("data/data.csv").then(function(sportData) {
       );
     })
     .renderTitle(true);
-  //end player position pie chart
+  apply_resizing(chart, adjustX, adjustY);
+  // end player position pie chart
   // Used to override the default angle of the text in pie chart
   // Taken froma tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
-  playersPositionChart.on("renderlet", function(chart) {
-    playersPositionChart
-      .selectAll("text.pie-slice")
-      .attr("transform", function(d) {
-        var translate = d3.select(this).attr("transform");
-        var ang = ((((d.startAngle + d.endAngle) / 2) * 180) / Math.PI) % 360;
-        if (ang < 180) ang -= 90;
-        else ang += 90;
-        return translate + " rotate(" + ang + ")";
-      });
+  chart.on("renderlet", function() {
+    chart.selectAll("text.pie-slice").attr("transform", function(d) {
+      var translate = d3.select(this).attr("transform");
+      var ang = ((((d.startAngle + d.endAngle) / 2) * 180) / Math.PI) % 360;
+      if (ang < 180) ang -= 90;
+      else ang += 90;
+      return translate + " rotate(" + ang + ")";
+    });
   });
+
   dc.renderAll();
 });
 
 //Adding onclick function here that will hide call out section and show
-//main graphs section when data button os clicked
+//main graphs section when data an stats button is clicked
 document.addEventListener("DOMContentLoaded", function() {
   var dataBtn = document.getElementById("data_btn_callout");
   var callOutSection = document.getElementById("callout_text");
@@ -237,3 +240,51 @@ document.addEventListener("DOMContentLoaded", function() {
     mainSection.classList.remove("hide-content");
   };
 });
+
+//resizing js copy an pasted from https://github.com/dc-js/dc.js/blob/master/web/resizing/resizing-pie.html
+var find_query = (function() {
+  var _map = window.location.search
+    .substr(1)
+    .split("&")
+    .map(function(a) {
+      return a.split("=");
+    })
+    .reduce(function(p, v) {
+      if (v.length > 1) p[v[0]] = decodeURIComponent(v[1].replace(/\+/g, " "));
+      else p[v[0]] = true;
+      return p;
+    }, {});
+  return function(field) {
+    return _map[field] || null;
+  };
+})();
+var resizeMode = find_query("resize") || "widhei";
+
+function apply_resizing(chart, adjustX, adjustY, onresize) {
+  if (resizeMode.toLowerCase() === "viewbox") {
+    chart
+      .width(600)
+      .height(400)
+      .useViewBoxResizing(true);
+    d3.select(chart.anchor()).classed("fullsize", true);
+  } else {
+    adjustX = adjustX || 0;
+    adjustY = adjustY || adjustX || 0;
+    chart
+      .width(window.innerWidth - adjustX)
+      .height(window.innerHeight - adjustY);
+    window.onresize = function() {
+      if (onresize) {
+        onresize(chart);
+      }
+      chart
+        .width(window.innerWidth - adjustX)
+        .height(window.innerHeight - adjustY);
+
+      if (chart.rescale) {
+        chart.rescale();
+      }
+      chart.redraw();
+    };
+  }
+}
