@@ -46,11 +46,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   var teamsRowChart = dc.rowChart("#teams_spending_rowchart");
   var chart = dc.pieChart("#piechart_players_position");
 
-  //setting the reduce an group variables/////////////////////////////////////////////////////////////////////////////////////
   //dimensions
-  var transferFeeTotal = function(d) {
-    return [d.Transfer_fee];
-  };
 
   var seasonDim = ndx.dimension(function(d) {
     return d.Season;
@@ -76,6 +72,10 @@ d3.csv("data/data.csv").then(function(sportData) {
     return [d.Position];
   });
   //groups
+  //setting transfer fee total to be passed into reducesum function below
+  var transferFeeTotal = function(d) {
+    return [d.Transfer_fee];
+  };
   var totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
 
   var plotGraphSeasonDimGroup = plottingTheDotsDim.group();

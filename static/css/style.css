@@ -13,9 +13,6 @@
   font-size: 0.9rem;
 }
 
-/* #leagues_spending_rowchart svg g g.axis.x{
-  font-size: 1.2rem
-} */
 /* main body */
 
 /* Setting default font size for page */
@@ -155,9 +152,13 @@ i {
   font-size: 1.1rem;
 }
 /* changing color of legend text here */
-/* #piechart_players_position,  g.row text {fill:white;} */
 /* adding style for reset data button */
+#reset_btn_wrapper {
+  text-align: center;
+}
+
 .reset-data-btn {
+  margin-top: 1.5rem;
   border: 2px solid white;
   background-color: #724d68;
 }
@@ -212,11 +213,6 @@ i {
 @media (min-width: 1400px) {
 }
 
-/* copyed an pasted from https://github.com/dc-js/dc.js/blob/master/web/resizing/dc-resizing.css */
-#piechart_players_position .fullsize {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+* {
+  border: 1px solid red;
 }
