@@ -19,7 +19,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css"
     />
 
-    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="static/css/style.css" />
   </head>
   <body>
     <header>
@@ -33,15 +33,15 @@
           class="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Adding navbar with 3 links here  -->
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav m-auto">
             <li class="nav-item active">
               <a
@@ -104,6 +104,12 @@ Is centered in the row an conatins the main callout text -->
     <!-- main graphs section -->
     <!-- all graphs will be added in this section -->
     <main class="container-fluid hide-content" id="hiding_section_wrapper">
+      <!-- adding reset data button -->
+      <div class="reset_btn_wrapper">
+        <button class="btn reset-data-btn reset-data-btn-top capitals">
+          <a href="javascript:dc.filterAll();dc.renderAll();"> Reset</a>
+        </button>
+      </div>
       <!-- total amount spent per season lne graph -->
       <div class="row">
         <div
@@ -241,7 +247,7 @@ Is centered in the row an conatins the main callout text -->
       </div>
       <!-- end of pie chart -->
       <!-- adding reset data button -->
-      <div id="reset_btn_wrapper">
+      <div class="reset_btn_wrapper">
         <button class="btn reset-data-btn capitals">
           <a href="javascript:dc.filterAll();dc.renderAll();"> Reset</a>
         </button>

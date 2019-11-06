@@ -40,7 +40,6 @@ text.row,
   color: black;
 }
 
-.reset-data-btn,
 .titlerow,
 h2,
 .white {
@@ -51,6 +50,7 @@ h2,
 
 /* barlow semi condensed added to all smaller text here as well as font size and weight being set  */
 /* also  changing color legend text */
+.reset-data-btn a,
 #piechart_players_position,
 g.row text,
 g.axis,
@@ -153,7 +153,7 @@ i {
 }
 /* changing color of legend text here */
 /* adding style for reset data button */
-#reset_btn_wrapper {
+.reset_btn_wrapper {
   text-align: center;
 }
 
@@ -162,6 +162,12 @@ i {
   border: 2px solid white;
   background-color: #724d68;
 }
+/* added to top so button is not hidden ubder fixed navbar */
+.reset-data-btn-top {
+  position: relative;
+  top: 4rem;
+}
+
 /* adding css to be target in javascript to hide an show div when button is clicked */
 .hide-content {
   display: none;
