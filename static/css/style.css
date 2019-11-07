@@ -93,9 +93,12 @@ text.row,
   z-index: 1;
 }
 
-.data_btn,
 .nav-border {
   border: 4px solid black;
+  margin: 0 0.2rem 0 0.2rem;
+}
+.data_btn {
+  border: 4px solid white;
   margin: 0 0.2rem 0 0.2rem;
 }
 
@@ -162,7 +165,7 @@ i {
   border: 2px solid white;
   background-color: #724d68;
 }
-/* added to top so button is not hidden ubder fixed navbar */
+/* added to top button it  is  not hidden ubder fixed navbar */
 .reset-data-btn-top {
   position: relative;
   top: 4rem;
@@ -192,7 +195,7 @@ i {
   .callout_main_text {
     font-size: 2rem;
   }
-  .data_btn,
+
   .nav-border {
     border: 4px solid black;
     margin: 0 0.2rem 0 0.2rem;

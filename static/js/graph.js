@@ -212,10 +212,10 @@ d3.csv("data/data.csv").then(function(sportData) {
       );
     })
     .renderTitle(true);
-
   // end player position pie chart
+
   // Used to override the default angle of the text in pie chart
-  // Taken froma tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
+  // Taken from tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
   chart.on("renderlet", function() {
     chart.selectAll("text.pie-slice").attr("transform", function(d) {
       var translate = d3.select(this).attr("transform");
