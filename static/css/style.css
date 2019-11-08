@@ -152,7 +152,8 @@ i {
 
 .para {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  line-height: 2rem;
 }
 /* changing color of legend text here */
 /* adding style for reset data button */
