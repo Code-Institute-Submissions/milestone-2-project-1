@@ -77,7 +77,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     return [d.Transfer_fee];
   };
   var totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
-  console.log(totalSpendPerSeasonDim.all());
+
   var plotGraphSeasonDimGroup = plottingTheDotsDim.group();
 
   var groupByTransfer = leaugeToDim.group().reduceSum(transferFeeTotal);
