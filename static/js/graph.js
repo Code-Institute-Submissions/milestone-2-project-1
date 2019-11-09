@@ -9,9 +9,12 @@ d3.csv("data/data.csv").then(function(sportData) {
   };
 
   var euroSign = function(d) {
-    return d.key + " " + d3.format(".2s")(d.value);
+    return d.key + " €" + d3.format(".2s")(d.value);
   };
 
+  var euroSignForScatterPlot = function(d) {
+    return " €" + d3.format(".2s")(d.key[1]);
+  };
   // setting colors variable
 
   var colors = [
@@ -79,7 +82,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   var totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
 
   var plotGraphSeasonDimGroup = plottingTheDotsDim.group();
-
+  console.log(plotGraphSeasonDimGroup.all());
   var groupByTransfer = leaugeToDim.group().reduceSum(transferFeeTotal);
 
   var topTenTeamSpendGroup = topTenTeamSpendDim
@@ -121,11 +124,6 @@ d3.csv("data/data.csv").then(function(sportData) {
     .colorAccessor(function(d) {
       return d.key[5];
     })
-    .x(scaleBand)
-    .xUnits(ordUnits)
-    .brushOn(false)
-    .symbolSize(6)
-    .clipPadding(1)
     .title(function(d) {
       return (
         "In " +
@@ -137,10 +135,15 @@ d3.csv("data/data.csv").then(function(sportData) {
         " to " +
         d.key[4] +
         " for €" +
-        d.key[1]
+        d3.format(".2s")(d.key[1])
       );
     })
 
+    .x(scaleBand)
+    .xUnits(ordUnits)
+    .brushOn(false)
+    .symbolSize(6)
+    .clipPadding(1)
     .renderVerticalGridLines(true)
     .yAxis()
     .tickFormat(euroFormat),
