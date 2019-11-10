@@ -50,6 +50,7 @@ h2,
 
 /* barlow semi condensed added to all smaller text here as well as font size and weight being set  */
 /* also  changing color legend text */
+.football_history_main_header,
 .reset-data-btn a,
 #piechart_players_position,
 g.row text,
@@ -65,6 +66,11 @@ text.row,
   font-size: 1.1rem;
   font-weight: 700;
   fill: white;
+}
+
+.football_history_main_header {
+  margin-top: 7rem;
+  font-size: 2rem;
 }
 
 /* over riding default row chart axis width here  */
@@ -152,12 +158,11 @@ i {
   background: transparent;
 }
 /* linegraph section */
+
 .graph_section {
-  margin-top: 4rem;
+  margin-top: 4.5rem;
 }
-.neymar-img{
-  margin-top: 5rem;
-}
+
 .para {
   font-weight: 600;
   font-size: 1.2rem;
