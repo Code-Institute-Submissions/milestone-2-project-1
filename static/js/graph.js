@@ -2,18 +2,14 @@
 d3.csv("data/data.csv").then(function(sportData) {
   var ndx = crossfilter(sportData);
 
-  //adding variables to be used in graph buliding functions below
-  //changes format on axis  to euros
+  //adding functions here to be used in graph buliding functions below
+  //changes format on x an y  axis  to display in monatary amount
   var euroFormat = function(d) {
     return "€" + d3.format(".2s")(d);
   };
 
   var euroSign = function(d) {
     return d.key + " €" + d3.format(".2s")(d.value);
-  };
-
-  var euroSignForScatterPlot = function(d) {
-    return " €" + d3.format(".2s")(d.key[1]);
   };
   // setting colors variable
 
@@ -235,10 +231,15 @@ d3.csv("data/data.csv").then(function(sportData) {
 //Adding onclick function here that will hide call out section and show
 //main graphs section when data an stats button is clicked
 document.addEventListener("DOMContentLoaded", function() {
-  var dataBtn = document.getElementById("data_btn_callout");
   var callOutSection = document.getElementById("callout_text");
+  var transferHistorySection = document.getElementById(
+    "transfer_history_section"
+  );
   var mainSection = document.getElementById("hiding_section_wrapper");
+  var transferHistoryBtn = document.getElementById("transfer_history_btn");
   var statBtn = document.getElementById("stats_btn");
+  var dataBtn = document.getElementById("data_btn_callout");
+
   dataBtn.onclick = function() {
     callOutSection.classList.add("hide-content");
     mainSection.classList.remove("hide-content");
@@ -246,5 +247,11 @@ document.addEventListener("DOMContentLoaded", function() {
   statBtn.onclick = function() {
     callOutSection.classList.add("hide-content");
     mainSection.classList.remove("hide-content");
+  };
+
+  transferHistoryBtn.onclick = function() {
+    callOutSection.classList.add("hide-content");
+    mainSection.classList.add("hide-content");
+    transferHistorySection.classList.remove("hide-content");
   };
 });
