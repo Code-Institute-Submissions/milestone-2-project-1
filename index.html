@@ -75,7 +75,8 @@
     <!-- Callout section -->
     <!-- bootsrap col and row classes used here section is the row an a col-8 
 Is centered in the row an conatins the main callout text -->
-    <section
+  <main>
+<section
       class="container-fluid img-wrapper callout-container row"
       id="callout_text"
     >
@@ -103,7 +104,7 @@ Is centered in the row an conatins the main callout text -->
 
     <!-- main graphs section -->
     <!-- all graphs will be added in this section -->
-    <main class="container-fluid hide-content" id="hiding_section_wrapper">
+    <section class="container-fluid hide-content" id="hiding_section_wrapper">
       <!-- adding reset data button -->
       <div class="reset_btn_wrapper">
         <button class="btn reset-data-btn reset-data-btn-top capitals">
@@ -238,12 +239,36 @@ Is centered in the row an conatins the main callout text -->
           <a href="javascript:dc.filterAll();dc.renderAll();"> Reset</a>
         </button>
       </div>
-    </main>
-        <section id="transfer_history_section" class="hide-content">
-  
-        <p class="black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ratione quas nobis, vero iure ad eligendi eum eveniet aliquid esse, veritatis voluptatum ea laudantium 
-          maiores explicabo impedit necessitatibus inventore laboruml.</p>
+    </section>
+    <!-- transfer history section that will only be visable when transfer history btn is was clicked -->
+      <section id="transfer_history_section" class="hide-content container-fluid">
+          <div class="row justify-content-center">
+              <div
+                class="col-10 col-xl-6 order-2 order-xl-1  graph_section text-center">
+        <img src="https://res.cloudinary.com/plyn85/image/upload/v1573398151/milestone-2/footballs_first_transfer_zkmqiw.jpg" alt="an image of the first ever transfered player in football" class="img-fluid"
+              ></img>
+      </div>
+              <div
+                class="col-10 col-xl-4 order-1 order-xl-2 text-oswald  graph_section"
+              >
+                <h2>
+                  The total amount spent per season
+                </h2>
+                <p class="mt-3 graph_para para">
+                  This graph shows the total amount spent per season on the top 250
+                  transfers, by all teams in all leagues. The spending peaked
+                  2017/2018 season In which 4.7 billion was spent nearly 5 times what
+                  was spent in the lowest spending season. Please hover over the dots
+                  from every season this will give you each total. This chart is also
+                  interactive and will change dynamically when all other charts are
+                  clicked displaying what was spent by each league, team or even on
+                  what was spent on players in a certain position.
+                </p>
+              </div>
+            </div>
+      
         </section>
+      </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script>

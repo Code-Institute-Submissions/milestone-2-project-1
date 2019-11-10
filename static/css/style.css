@@ -73,6 +73,7 @@ text.row,
 }
 
 /* setting background color of main section */
+#transfer_history_section,
 #hiding_section_wrapper {
   background-color: black;
 }
