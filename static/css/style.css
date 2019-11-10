@@ -153,9 +153,11 @@ i {
 }
 /* linegraph section */
 .graph_section {
-  margin-top: 4.5rem;
+  margin-top: 4rem;
 }
-
+.neymar-img{
+  margin-top: 5rem;
+}
 .para {
   font-weight: 600;
   font-size: 1.2rem;
