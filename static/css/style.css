@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Oswald&display=swap:,300,500,600,700,800,900");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css");
+
 /* for graphs js page */
 /* targeting axis to add angle */
 .x.axis text {
@@ -7,6 +8,7 @@
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+
 .x.axis text,
 .y.axis text {
   font-weight: 800;
@@ -112,6 +114,7 @@ text.row,
 .navbar-light .navbar-nav .nav-link:hover {
   color: black;
 }
+
 .data_btn {
   border: 4px solid white;
   margin: 0 0.2rem 0 0.2rem;
@@ -127,11 +130,11 @@ i {
   height: 100%;
   width: 100%;
 }
+
 /* fixed background Image added here to take up full view height */
 .callout-container {
   height: 100vh;
-  background: url("https://res.cloudinary.com/plyn85/image/upload/v1572370878/milestone-2/football_data_radcs8.jpg")
-    no-repeat fixed;
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1572370878/milestone-2/football_data_radcs8.jpg") no-repeat fixed;
   background-position-x: 50%;
   background-size: cover;
   -webkit-background-size: cover;
@@ -148,18 +151,22 @@ i {
 }
 
 #callout_text {
+  margin-top: 1.5rem;
   position: relative;
 }
+
 .reset-data-btn,
 .data_btn,
 .callout_main_text {
   font-size: 1rem;
   font-weight: 600;
 }
+
 .data_btn {
   font-size: 2.5rem;
   background: transparent;
 }
+
 /* linegraph section */
 
 .para {
@@ -167,6 +174,7 @@ i {
   font-size: 1.2rem;
   line-height: 2rem;
 }
+
 /* changing color of legend text here */
 /* adding style for reset data button */
 .reset_btn_wrapper {
@@ -183,9 +191,11 @@ i {
 .hide-content {
   display: none;
 }
+
 .show-content {
   display: block;
 }
+
 /*football history section*/
 .football-vid {
   height: 30rem;
@@ -196,10 +206,12 @@ i {
 .graph_section {
   margin-top: 2rem;
 }
+
 /* media queries */
 
 /* small tablets and up */
 @media (min-width: 567px) {
+
   .navbar-brand,
   .navbar-nav {
     font-size: 2rem;
@@ -230,8 +242,8 @@ i {
 
 /* these where added here to adjust callout section for mobile in landscape view */
 @media screen and (orientation: landscape) and (min-width: 300px) and (max-width: 767px) {
- /* making adjustmennts here for navbar an callout section in mobile landscape mode */
- 
+  /* making adjustmennts here for navbar an callout section in mobile landscape mode */
+
   .navbar-brand,
   .navbar-nav {
     font-size: 1rem;
@@ -244,6 +256,7 @@ i {
   .callout_main_text {
     font-size: 1rem;
   }
+
   .data_btn {
     font-size: 1rem;
     width: 30%;
