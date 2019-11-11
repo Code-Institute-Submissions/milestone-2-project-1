@@ -51,7 +51,7 @@ h2,
 /* barlow semi condensed added to all smaller text here as well as font size and weight being set  */
 /* also  changing color legend text */
 .footer-copyright,
-.football_history_main_header,
+.main_header,
 .reset-data-btn a,
 #piechart_players_position,
 g.row text,
@@ -69,17 +69,18 @@ text.row,
   fill: white;
 }
 
-.football_history_main_header {
+.main_header {
   margin-top: 7rem;
   font-size: 2rem;
 }
 
 /* over riding default row chart axis width here  */
+
 .axis line {
   stroke-width: 5px;
 }
 
-/* setting background color of main section */
+/* setting background color of all  section */
 #footer,
 #transfer_history_section,
 #hiding_section_wrapper {
@@ -160,10 +161,6 @@ i {
   background: transparent;
 }
 /* linegraph section */
-.transfer_history_section,
-.graph_section {
-  margin-top: 4.5rem;
-}
 
 .para {
   font-weight: 600;
@@ -181,11 +178,6 @@ i {
   border: 2px solid white;
   background-color: #724d68;
 }
-/* added to top button it  is  not hidden ubder fixed navbar */
-.reset-data-btn-top {
-  position: relative;
-  top: 4rem;
-}
 
 /* adding css to be target in javascript to hide an show div when button is clicked */
 .hide-content {
@@ -200,6 +192,10 @@ i {
   width: 10rem;
 }
 
+.transfer_history_section,
+.graph_section {
+  margin-top: 2rem;
+}
 /* media queries */
 /* for mobile only */
 @media (max-width: 566px) {
@@ -221,18 +217,18 @@ i {
     border: 4px solid black;
     margin: 0 0.2rem 0 0.2rem;
   }
-}
 
-/* added here so border takes doesnt take effect in dropdown navbar  */
-nav-border {
-  border: 4px solid black;
-}
+  /* added here so border takes doesnt take effect in dropdown navbar  */
+  nav-border {
+    border: 4px solid black;
+  }
 
-/* linegraph section */
-.graph_section {
-  margin-top: 7rem;
+  /* linegraph an transfer history section */
+  .transfer_history_section,
+  .graph_section {
+    margin-top: 4.5rem;
+  }
 }
-
 /* for larger tablets  and up*/
 
 @media (min-width: 992px) {
@@ -240,7 +236,6 @@ nav-border {
 /* for laptops */
 @media (min-width: 1200px) {
   .graph_section {
-    margin-top: 9rem;
   }
 }
 /* for large desktops */
