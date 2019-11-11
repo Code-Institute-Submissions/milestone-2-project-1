@@ -33,7 +33,12 @@ d3.csv("data/data.csv").then(function(sportData) {
   var w = 800;
   var h = 400;
   //setting margins variable
-  var margins = { top: 0, right: 0, bottom: 70, left: 70 };
+  var margins = {
+    top: 0,
+    right: 0,
+    bottom: 70,
+    left: 70
+  };
   //setting scalebands
   var scaleBand = d3.scaleBand();
   var ordUnits = dc.units.ordinal;

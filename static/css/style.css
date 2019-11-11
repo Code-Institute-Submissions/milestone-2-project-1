@@ -230,6 +230,8 @@ i {
 
 /* these where added here to adjust callout section for mobile in landscape view */
 @media screen and (orientation: landscape) and (min-width: 300px) and (max-width: 767px) {
+ /* making adjustmennts here for navbar an callout section in mobile landscape mode */
+ 
   .navbar-brand,
   .navbar-nav {
     font-size: 1rem;
