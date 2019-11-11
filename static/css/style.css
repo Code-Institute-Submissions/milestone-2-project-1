@@ -158,7 +158,7 @@ i {
   background: transparent;
 }
 /* linegraph section */
-
+.transfer_history_section,
 .graph_section {
   margin-top: 4.5rem;
 }
@@ -191,6 +191,11 @@ i {
 }
 .show-content {
   display: block;
+}
+/*football history section*/
+.football-vid {
+  height: 30rem;
+  width: 10rem;
 }
 
 /* media queries */
