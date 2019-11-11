@@ -50,6 +50,7 @@ h2,
 
 /* barlow semi condensed added to all smaller text here as well as font size and weight being set  */
 /* also  changing color legend text */
+.footer-copyright,
 .football_history_main_header,
 .reset-data-btn a,
 #piechart_players_position,
@@ -79,6 +80,7 @@ text.row,
 }
 
 /* setting background color of main section */
+#footer,
 #transfer_history_section,
 #hiding_section_wrapper {
   background-color: black;

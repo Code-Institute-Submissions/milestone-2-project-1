@@ -235,6 +235,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var transferHistorySection = document.getElementById(
     "transfer_history_section"
   );
+  var footer = document.getElementById("footer");
   var mainSection = document.getElementById("hiding_section_wrapper");
   var transferHistoryBtn = document.getElementById("transfer_history_btn");
   var statBtn = document.getElementById("stats_btn");
@@ -243,15 +244,19 @@ document.addEventListener("DOMContentLoaded", function() {
   dataBtn.onclick = function() {
     callOutSection.classList.add("hide-content");
     mainSection.classList.remove("hide-content");
+    footer.classList.remove("hide-content");
   };
   statBtn.onclick = function() {
     callOutSection.classList.add("hide-content");
     mainSection.classList.remove("hide-content");
+    footer.classList.remove("hide-content");
+    transferHistorySection.classList.add("hide-content");
   };
 
   transferHistoryBtn.onclick = function() {
     callOutSection.classList.add("hide-content");
     mainSection.classList.add("hide-content");
     transferHistorySection.classList.remove("hide-content");
+    footer.classList.remove("hide-content");
   };
 });
