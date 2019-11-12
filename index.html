@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Football Transfers</title>
-    <link
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Football Transfers</title>
+		<link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link
+		<link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/dc/3.1.3/dc.css"
     />
-    <link
+		<link
       rel="stylesheet"
       type="text/css"
       href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css"
     />
-
-    <link rel="stylesheet" href="static/css/style.css" />
-  </head>
-  <body>
-    <header>
+		<link rel="stylesheet" href="static/css/style.css" />
+	</head>
+	<body>
+		<header>
+    <!-- adding navabar here  -->
       <nav
         class="navbar navbar-expand-md navbar-light bg-light navbar-fixed-top"
       >
-        <h2 class="navbar-brand text-oswald capitals" href="#">Football Stats</h2
-        ><i class="fas fa-futbol"></i>
-        <!-- navbar toggler button added here -->
-        <button
+      <!-- adding football stats an logo here -->
+				<h2 class="navbar-brand text-oswald capitals" href="#">Football Stats</h2
+        >
+				<i class="fas fa-futbol"></i>
+				<!-- navbar toggler button added here -->
+				<button
           class="navbar-toggler"
           type="button"
           data-toggle="collapse"
@@ -38,94 +40,98 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Adding navbar with 3 links here -->
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav m-auto">
-            <li class="nav-item active">
-              <a
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<!-- Adding navbar with 3 links here -->
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav m-auto">
+						<li class="nav-item active">
+							<a
                 class="nav-link text-barlow nav-border"
                 aria-label="home navigation link"
                 href="index.html"
-                >Home <span class="sr-only">(current)</span></a
+                >Home 
+								<span class="sr-only">(current)</span>
+							</a
               >
-            </li>
-            <li class="nav-item">
-              
-                <a href="#" class="nav-link text-barlow nav-border"
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link text-barlow nav-border"
                 id="stats_btn"
                 aria-label="stats navigation link"
               >
                 Stats</a>
-            
-            </li>
-            <li class="nav-item nav-border">
-              <a
+						</li>
+						<li class="nav-item nav-border">
+							<a
                 class="nav-link text-barlow" id="transfer_history_btn"
                 href="#"
                 aria-label="transfer history navigation link"
                 >Transfer History</a
               >
-            </li>
-          </ul>
-        </div> 
-     
-    </header>
-    <!-- Callout section -->
-    <!-- bootsrap col and row classes used here section is the row an a col-8 
+						</li>
+					</ul>
+				</div>
+			</header>
+			<!-- Callout section -->
+			<!-- bootsrap col and row classes used here section is the row an a col-8 
 Is centered in the row an conatins the main callout text -->
-  <main>
-<section
+			<main>
+				<section
       class="container-fluid img-wrapper callout-container row"
       id="callout_text"
     >
-      <div class="col-8">
-        <p class="text-barlow white callout_main_text">
+					<div class="col-8">
+						<p class="text-barlow white callout_main_text">
           Football, The Peoples game and the worlds most popular sport. Played
           In at least 200 countries, with 250 million players worldwide. This
           website will examine the data behind the transfers. By looking at the
           top 250 transfers every season from the last 19 seasons. Please click
           on the data button below, or the stats button above to take the journey. Also check out our football transfer history section for more Infomation. 
         </p>
-        <div class="row justify-content-center">
-              <button
+						<div class="row justify-content-center">
+							<button
             type="button"
             class="white data_btn  col-md-3 text-oswald"
             id="data_btn_callout"
           >
             DATA
           </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- end of callout section -->
-
-    <!-- main graphs section -->
-    <!-- all graphs will be added in this section -->
-    <section class="container-fluid hide-content" id="hiding_section_wrapper">
-        <div class="row"><div class="col text-center"><h1 class="main_header">The Growth of Football Transfers</h1></div></div>
-      <!-- adding reset data button -->
-      <div class="reset_btn_wrapper">
-        <button class="btn reset-data-btn reset-data-btn-top capitals">
-          <a href="javascript:dc.filterAll();dc.renderAll();"> Reset</a>
-        </button>
-      </div>
-      <!-- total amount spent per season lne graph -->
-      <div class="row justify-content-center">
-        <div
+						</div>
+					</div>
+				</section>
+				<!-- end of callout section -->
+				<!-- main graphs section -->
+        <!-- all graphs will be added in this section -->
+				<section class="container-fluid hide-content" id="hiding_section_wrapper">
+        <!-- row here wraps heading linegraph an explination text -->
+          <div class="row">
+            <!-- col added here that wraps  main header -->
+	<div class="col text-center">
+              <!-- adding main header -->
+							<h1 class="main_header">The Growth of Football Transfers</h1>
+						</div>
+					</div>
+					<!-- adding reset data button this will reset all data  in the graphs when ckicked-->
+					<div class="reset_btn_wrapper">
+						<button class="btn reset-data-btn reset-data-btn-top capitals">
+							<a href="javascript:dc.filterAll();dc.renderAll();"> Reset</a>
+						</button>
+					</div>
+					<!-- total amount spent per season line graph added here  -->
+        
+          <div class="row justify-content-center">
+						<div
           class="col-10 col-xl-8 order-2 order-xl-1  graph_section"
           id="line_graph"
         ></div>
-
-        <div
+						<div
           class="col-10 col-xl-4 order-1 order-xl-2 text-oswald  graph_section"
         >
-          <h2>
+							<h2>
             The total amount spent per season
           </h2>
-          <p class="mt-3 graph_para para">
+							<p class="mt-3 graph_para para">
             This graph shows the total amount spent per season on the top 250
             transfers, by all teams in all leagues. The spending peaked
             2017/2018 season In which 4.7 billion was spent nearly 5 times what
@@ -135,16 +141,16 @@ Is centered in the row an conatins the main callout text -->
             clicked displaying what was spent by each league, team or even on
             what was spent on players in a certain position.
           </p>
-        </div>
-      </div>
-      <!-- end of line graph -->
-      <!-- All transfers scatterplot graph -->
-      <div class="row  justify-content-center">
-        <div class="col-10  col-xl-4 text-oswald  graph_section">
-          <h2>
+						</div>
+					</div>
+					<!-- end of line graph -->
+					<!-- All transfers scatterplot graph -->
+					<div class="row  justify-content-center">
+						<div class="col-10  col-xl-4 text-oswald  graph_section">
+							<h2>
             Every Transfer By Season
           </h2>
-          <p class="mt-3 graph_para para">
+							<p class="mt-3 graph_para para">
             This graph shows every single transfer across every season. Hover
             over any of the dots and a transfer will be revealed. It will
             display the season, the clubs where the players were transferred
@@ -155,24 +161,23 @@ Is centered in the row an conatins the main callout text -->
             dot is also linked to the players position which is displayed in the
             pie chart below.
           </p>
-        </div>
-        <div class="col-10 col-xl-8 graph_section" id="scatterplot_graph"></div>
-      </div>
-      <!-- end of scatterplot graph -->
-
-      <!-- 10 top leagues who are the biggest spenders graph -->
-      <div class="row  justify-content-center">
-        <div
+						</div>
+						<div class="col-10 col-xl-8 graph_section" id="scatterplot_graph"></div>
+					</div>
+					<!-- end of scatterplot graph -->
+					<!-- 10 top leagues who are the biggest spenders graph -->
+					<div class="row  justify-content-center">
+						<div
           class="col-10 col-xl-8 order-2 order-xl-1  graph_section"
           id="leagues_spending_rowchart"
         ></div>
-        <div
+						<div
           class="col-10 col-xl-4 order-1 order-xl-2 text-oswald  graph_section"
         >
-          <h2>
+							<h2>
             The Top Ten Leagues For Spending
           </h2>
-          <p class="mt-3 graph_para para">
+							<p class="mt-3 graph_para para">
             This graph displays the top ten highest spending leagues from the
             last 19 seasons. As you can see the premier league has spent double
             what the closet other highest spending league has spent. If you
@@ -181,16 +186,15 @@ Is centered in the row an conatins the main callout text -->
             Click on one of the leagues and you will see how it interacts with
             every other graph on the page.
           </p>
-        </div>
-      </div>
-
-      <!-- Rowchart top ten highest spending teams -->
-      <div class="row  justify-content-center">
-        <div class="col-10 col-xl-4 text-oswald  graph_section">
-          <h2>
+						</div>
+					</div>
+					<!-- Rowchart top ten highest spending teams -->
+					<div class="row  justify-content-center">
+						<div class="col-10 col-xl-4 text-oswald  graph_section">
+							<h2>
             Top Ten Spending Teams
           </h2>
-          <p class="mt-3 graph_para para">
+							<p class="mt-3 graph_para para">
             This graph displays the top ten highest spending teams from the last
             19 seasons. As you can see chelsea are the highest spenders. If you
             hover over the graph it will display the total for each team. The
@@ -200,27 +204,26 @@ Is centered in the row an conatins the main callout text -->
             the top spending leagues chart just above. This chart will change to
             the top spending teams for that league.
           </p>
-        </div>
-        <div
+						</div>
+						<div
           class="col-10 col-xl-8 graph_section"
           id="teams_spending_rowchart"
         ></div>
-      </div>
-      <!-- end of row chart graph -->
-
-      <!--Pie Chart For Players Position -->
-      <div class="row  justify-content-center">
-        <div
+					</div>
+					<!-- end of row chart graph -->
+					<!--Pie Chart For Players Position -->
+					<div class="row  justify-content-center">
+						<div
           class="col-10 col-xl-8 order-2 order-xl-1  graph_section"
           id="piechart_players_position"
         ></div>
-        <div
+						<div
           class="col-10 col-xl-4 order-1 order-xl-2 text-oswald  graph_section"
         >
-          <h2>
+							<h2>
             Position of The of The Players
           </h2>
-          <p class="mt-3 graph_para para">
+							<p class="mt-3 graph_para para">
             This pie-chart displays position of the players who were transferred
             from last 19 seasons. As you can see center forwards where the most
             signed players. If you hover over a slice of the pie it will display
@@ -231,111 +234,123 @@ Is centered in the row an conatins the main callout text -->
             players from that position will be displayed on the scatterplot
             graph and in the same color.
           </p>
-        </div>
-      </div>
-      <!-- end of pie chart -->
-      <!-- adding reset data button -->
-      <div class="reset_btn_wrapper">
-        <button class="btn reset-data-btn capitals">
-          <a href="javascript:dc.filterAll();dc.renderAll();"> Reset</a>
-        </button>
-      </div>
-    </section>
-    <!-- transfer history section that will only be visable when transfer history btn is was clicked -->
-      <section id="transfer_history_section" class="hide-content container-fluid">
-        <div class="row"><div class="col text-center"><h1 class="main_header">The History of Football Transfers</h1></div></div>
-        <!-- footballs first transfer section -->
-        <div class="row justify-content-center">
-              <div
+						</div>
+					</div>
+					<!-- end of pie chart -->
+					<!-- adding reset data button -->
+					<div class="reset_btn_wrapper">
+						<button class="btn reset-data-btn capitals">
+							<a href="javascript:dc.filterAll();dc.renderAll();"> Reset</a>
+						</button>
+					</div>
+				</section>
+				<!-- transfer history section that will only be visable when transfer history btn is was clicked -->
+				<section id="transfer_history_section" class="hide-content container-fluid">
+					<div class="row">
+						<div class="col text-center">
+							<h1 class="main_header">The History of Football Transfers</h1>
+						</div>
+					</div>
+					<!-- footballs first transfer section -->
+					<div class="row justify-content-center">
+						<div
               class="col-10 col-xl-6 order-2 order-xl-1  transfer_history_section text-center">
-        <img src="https://res.cloudinary.com/plyn85/image/upload/v1573398151/milestone-2/footballs_first_transfer_zkmqiw.jpg" alt="an image of the first ever transfered player in football" class="img-fluid"
+							<img src="https://res.cloudinary.com/plyn85/image/upload/v1573398151/milestone-2/footballs_first_transfer_zkmqiw.jpg" alt="an image of the first ever transfered player in football" class="img-fluid"
               ></img>
-      </div>
-              <div
+						</div>
+						<div
                 class="col-10 col-xl-4 order-1 order-xl-2 text-oswald  transfer_history_section"
               >
-                <h2>
+							<h2>
                   The Frist Transfer In Football History
                 </h2>
-                <p class="mt-3 graph_para para">
+							<p class="mt-3 graph_para para">
                   In professional football, a transfer is the action taken whenever a player under contract moves between clubs.
                   This is a  picture of the first player ever to be transfered  the history of football. The player was transferred for a fee of over £100 was Scottish striker Willie Groves when he made the switch from West Bromwich Albion to Aston Villa in 1893, eight years after the legalisation of professionalism in the sport. 
                   
                 </p>
-              </div>
-            </div>
-      <!-- end of footballs first transfer section -->
-     
-      <!-- footballs first million pound player section -->
-        <div class="row  justify-content-center">
-         <div class="col-10 col-xl-4 text-oswald transfer_history_section">
-           <h2>
+						</div>
+					</div>
+					<!-- end of footballs first transfer section -->
+					<!-- footballs first million pound player section -->
+					<div class="row  justify-content-center">
+						<div class="col-10 col-xl-4 text-oswald transfer_history_section">
+							<h2>
              Top First Million Pound Footballer
             </h2>
-            <p class="mt-3 graph_para para">
+							<p class="mt-3 graph_para para">
               Giuseppe Savoldi was born on January 21 1947, in Gorlago, a municipality in the province of Bergamo, a town you can find about 60 kilometres northeast of Milan. 
               Gorlago is a “blink and you could miss it” kind of place with a population of around 5,000 gorlaghesi.Napoli spent 2 billion Italian Lira (£1.2 million) on attacker Giuseppe Savoldi from Bologna in 1975, making him football’s first million pound player.
             </p>
-          </div>
-          <div
+						</div>
+						<div
           class="col-10 col-xl-6 transfer_history_section text-center"
+
           
-          >           <img src="https://res.cloudinary.com/plyn85/image/upload/v1573493700/milestone-2/footballs_first_million_pound_man_sjkxzw.png" alt="an image of the first ever million pound transfered player in football" class="img-fluid"
-          ></img></div>
-        </div>
-          <!-- end of footballs first million pound player section -->
-         <!-- footballs first 100  million pound player section -->
-              <div class="row  justify-content-center">
-                <div
+          >
+							<img src="https://res.cloudinary.com/plyn85/image/upload/v1573493700/milestone-2/footballs_first_million_pound_man_sjkxzw.png" alt="an image of the first ever million pound transfered player in football" class="img-fluid"
+          ></img>
+						</div>
+					</div>
+					<!-- end of footballs first million pound player section -->
+					<!-- footballs first 100  million pound player section -->
+					<div class="row  justify-content-center">
+						<div
                   class="col-10 col-xl-6 order-2 order-xl-1  transfer_history_section text-center"
                   id="leagues_spending_rowchart"
-                ><img src="https://res.cloudinary.com/plyn85/image/upload/v1573407862/milestone-2/footballs_first_100_million_player_uhgvts.jpg" alt="an image of the first ever 100 milllion pound transfered player in football" class="img-fluid"
-                ></img></div>
-                <div
+                >
+							<img src="https://res.cloudinary.com/plyn85/image/upload/v1573407862/milestone-2/footballs_first_100_million_player_uhgvts.jpg" alt="an image of the first ever 100 milllion pound transfered player in football" class="img-fluid"
+                ></img>
+						</div>
+						<div
                   class="col-10 col-xl-4 order-1 order-xl-2 text-oswald  transfer_history_section"
                 >
-                  <h2>
+							<h2>
                     The First 100 Hundred Million Euro Footballer
                   </h2>
-                  <p class="mt-3 graph_para para">
+							<p class="mt-3 graph_para para">
                     On 1 September 2013, Spanish club Real Madrid announced that they had reached an agreement for the transfer of Bale, 
                     signing a six-year deal in a then world record deal.The Spanish press reported that Bale had cost £77 million (€91 million), 
                     while the British press reported a world record transfer fee of £85.3 million (€100 million), which would be above Cristiano Ronaldo's transfer record fee of £80 million (€94 million).However, in January 2016, documents 
                     pertaining to the transfer were leaked by Football Leaks which confirmed a world record transfer fee of €100.8 million 
                   </p>
-                         </div>
-              </div>
-   <!-- end of footballs first 100 million pound player section -->
- <!--footballs most expesive player ever section-->       
- <div class="row  justify-content-center">
-    <div class="col-10 col-xl-4 text-oswald  transfer_history_section">
-      <h2>
+						</div>
+					</div>
+					<!-- end of footballs first 100 million pound player section -->
+					<!--footballs most expesive player ever section-->
+					<div class="row  justify-content-center">
+						<div class="col-10 col-xl-4 text-oswald  transfer_history_section">
+							<h2>
         The Most Expensive Footballer of All Time. 
        </h2>
-       <p class="mt-3 graph_para para">
+							<p class="mt-3 graph_para para">
          
         The current transfer record was set by the transfer of Neymar from Barcelona to Paris Saint-Germain for €222 million (£198 million) in August of 2017.​Neymar's move from Barcelona to PSG in 2017 didn't so much break the world transfer record as smash it into a million pieces. He became the first player to command a nine-figure sum, with the £198m fee being more than double the previous record of Paul Pogba.
        </p>
-     </div>
-     <div
+						</div>
+						<div
      class="col-10 col-xl-6 transfer_history_section text-center"
      
-     ><img src="https://res.cloudinary.com/plyn85/image/upload/v1573408546/milestone-2/footballs_most_exspensive_player_ever_ouobdz.jpg" alt="an image of the most exsensive  transfered player in football" class="img-fluid neymar-img"
-     ></img></div>
-   </div>
-   <!-- end of footballs most expensive player ever section -->
-     <!-- footballs first 100  million pound player section -->
-     <div class="row  justify-content-center">
-           <div
+     >
+							<img src="https://res.cloudinary.com/plyn85/image/upload/v1573408546/milestone-2/footballs_most_exspensive_player_ever_ouobdz.jpg" alt="an image of the most exsensive  transfered player in football" class="img-fluid neymar-img"
+     ></img>
+						</div>
+					</div>
+					<!-- end of footballs most expensive player ever section -->
+					<!-- footballs first 100  million pound player section -->
+					<div class="row  justify-content-center">
+						<div
         class="col-10 col-xl-6 order-2 order-xl-1 transfer_history_section embed-responsive embed-responsive-21by9 z-depth-1-half text-center"
-      > <iframe class="embed-responsive-item"   src="https://www.youtube.com/embed/iPSV3fy2koA" allowfullscreen></iframe></div>
-      <div
+      >
+							<iframe class="embed-responsive-item"   src="https://www.youtube.com/embed/iPSV3fy2koA" allowfullscreen></iframe>
+						</div>
+						<div
         class="col-10 col-xl-4 order-1 order-xl-2 ml-5  text-oswald  transfer_history_section"
       >
-        <h2>
+							<h2>
           Is Money Ruining The Beautiful Game?
         </h2>
-        <p class="pt-3  graph_para para">
+							<p class="pt-3  graph_para para">
           The big clubs make millions, and spend millions, often ploughing revenue back into the club to attain success.
 
           Lower down the leagues however, clubs struggle to make ends meet, have to sell their best players, 
@@ -343,30 +358,26 @@ Is centered in the row an conatins the main callout text -->
           Watch this short youtube documentary an decide for your self has the money being spent on transfers runied the worlds most popular sport?
 
         </p>
-      </div>
-    </div>
- </section>
- <!-- Footer -->
-<footer id="footer" class="hide-content">
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3 pt-3">© 2019 Copyright:
-    <a href="https://github.com/plyn85" target="_blank">https://github.com/plyn85 </a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
-      </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.12.0/d3.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/3.1.5/dc.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-queue/3.0.7/d3-queue.min.js"></script>
-
-    <script src="static/js/graph.js" type="text/javascript"></script>
-  </body>
-</html>
+						</div>
+					</div>
+				</section>
+				<!-- Footer -->
+				<footer id="footer" class="hide-content">
+					<!-- Copyright -->
+					<div class="footer-copyright text-center py-3 pt-3">© 2019 Copyright:
+    
+						<a href="https://github.com/plyn85" target="_blank">https://github.com/plyn85 </a>
+					</div>
+					<!-- Copyright -->
+				</footer>
+				<!-- Footer -->
+			</main>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.12.0/d3.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/dc/3.1.5/dc.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-queue/3.0.7/d3-queue.min.js"></script>
+			<script src="static/js/graph.js" type="text/javascript"></script>
+		</body>
+	</html>
