@@ -1,14 +1,14 @@
 //calling csv data here then passing though crossfilter function
-d3.csv("data/data.csv").then(function(sportData) {
+d3.csv("data/data.csv").then(function (sportData) {
   var ndx = crossfilter(sportData);
 
   //adding functions here to be used in graph buliding functions below
   //changes format on x an y  axis  to display in monatary amount
-  var euroFormat = function(d) {
+  var euroFormat = function (d) {
     return "€" + d3.format(".2s")(d);
   };
 
-  var euroSign = function(d) {
+  var euroSign = function (d) {
     return d.key + " €" + d3.format(".2s")(d.value);
   };
   // setting colors variable
@@ -50,12 +50,11 @@ d3.csv("data/data.csv").then(function(sportData) {
   var teamsRowChart = dc.rowChart("#teams_spending_rowchart");
   var chart = dc.pieChart("#piechart_players_position");
 
-  //dimensions
-
-  var seasonDim = ndx.dimension(function(d) {
+  //dimensions set here
+  var seasonDim = ndx.dimension(function (d) {
     return d.Season;
   });
-  var plottingTheDotsDim = ndx.dimension(function(d) {
+  var plottingTheDotsDim = ndx.dimension(function (d) {
     return [
       d.Season,
       d.Transfer_fee,
@@ -65,19 +64,19 @@ d3.csv("data/data.csv").then(function(sportData) {
       d.Position
     ];
   });
-  var leaugeToDim = ndx.dimension(function(d) {
+  var leaugeToDim = ndx.dimension(function (d) {
     return d.League_to;
   });
-  var topTenTeamSpendDim = ndx.dimension(function(d) {
+  var topTenTeamSpendDim = ndx.dimension(function (d) {
     return d.Team_to;
   });
 
-  var playersPositionDim = ndx.dimension(function(d) {
+  var playersPositionDim = ndx.dimension(function (d) {
     return [d.Position];
   });
   //groups
-  //setting transfer fee total to be passed into reducesum function below
-  var transferFeeTotal = function(d) {
+  //setting transfer fee total to be passed into reducesum functions below
+  var transferFeeTotal = function (d) {
     return [d.Transfer_fee];
   };
   var totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
@@ -122,10 +121,10 @@ d3.csv("data/data.csv").then(function(sportData) {
     .dimension(seasonDim)
     .group(plotGraphSeasonDimGroup)
     .ordinalColors(colors)
-    .colorAccessor(function(d) {
+    .colorAccessor(function (d) {
       return d.key[5];
     })
-    .title(function(d) {
+    .title(function (d) {
       return (
         "In " +
         d.key[0] +
@@ -151,22 +150,22 @@ d3.csv("data/data.csv").then(function(sportData) {
     //end scatterplot function
     //league top ten row chart
     leagueRowChart
-      .width(w)
-      .height(h)
-      .useViewBoxResizing(true)
-      .rowsCap(10)
-      .othersGrouper(false)
-      .margins(margins)
-      .ordinalColors(colors)
-      .dimension(leaugeToDim)
-      .group(groupByTransfer)
-      .x(scaleLinear)
-      .elasticX(true)
-      .title(euroSign)
-      .renderTitle(true)
-      .xAxis()
-      .ticks(5)
-      .tickFormat(euroFormat);
+    .width(w)
+    .height(h)
+    .useViewBoxResizing(true)
+    .rowsCap(10)
+    .othersGrouper(false)
+    .margins(margins)
+    .ordinalColors(colors)
+    .dimension(leaugeToDim)
+    .group(groupByTransfer)
+    .x(scaleLinear)
+    .elasticX(true)
+    .title(euroSign)
+    .renderTitle(true)
+    .xAxis()
+    .ticks(5)
+    .tickFormat(euroFormat);
 
   //end league top ten row chart
   //teams top ten row chart
@@ -198,16 +197,16 @@ d3.csv("data/data.csv").then(function(sportData) {
     .othersGrouper(false)
     .legend(
       dc
-        .legend()
-        .x(4)
-        .y(0)
-        .itemHeight(16)
-        .gap(2)
+      .legend()
+      .x(4)
+      .y(0)
+      .itemHeight(16)
+      .gap(2)
     )
     .ordinalColors(colors)
     .dimension(playersPositionDim)
     .group(playersPositionGroup)
-    .title(function(d) {
+    .title(function (d) {
       return (
         d.key[0] +
         " " +
@@ -220,8 +219,8 @@ d3.csv("data/data.csv").then(function(sportData) {
 
   // Used to override the default angle of the text in pie chart
   // Taken from tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
-  chart.on("renderlet", function() {
-    chart.selectAll("text.pie-slice").attr("transform", function(d) {
+  chart.on("renderlet", function () {
+    chart.selectAll("text.pie-slice").attr("transform", function (d) {
       var translate = d3.select(this).attr("transform");
       var ang = ((((d.startAngle + d.endAngle) / 2) * 180) / Math.PI) % 360;
       if (ang < 180) ang -= 90;
@@ -235,7 +234,8 @@ d3.csv("data/data.csv").then(function(sportData) {
 
 //Adding onclick function here that will hide call out section and show
 //main graphs section when data an stats button is clicked
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+  //setting all variables for onclick functions here 
   var callOutSection = document.getElementById("callout_text");
   var transferHistorySection = document.getElementById(
     "transfer_history_section"
@@ -246,19 +246,19 @@ document.addEventListener("DOMContentLoaded", function() {
   var statBtn = document.getElementById("stats_btn");
   var dataBtn = document.getElementById("data_btn_callout");
 
-  dataBtn.onclick = function() {
+  dataBtn.onclick = function () {
     callOutSection.classList.add("hide-content");
     mainSection.classList.remove("hide-content");
     footer.classList.remove("hide-content");
   };
-  statBtn.onclick = function() {
+  statBtn.onclick = function () {
     callOutSection.classList.add("hide-content");
     mainSection.classList.remove("hide-content");
     footer.classList.remove("hide-content");
     transferHistorySection.classList.add("hide-content");
   };
 
-  transferHistoryBtn.onclick = function() {
+  transferHistoryBtn.onclick = function () {
     callOutSection.classList.add("hide-content");
     mainSection.classList.add("hide-content");
     transferHistorySection.classList.remove("hide-content");

@@ -101,27 +101,31 @@ Is centered in the row an conatins the main callout text -->
 					</div>
 				</section>
 				<!-- end of callout section -->
+			
 				<!-- main graphs section -->
         <!-- all graphs will be added in this section -->
 				<section class="container-fluid hide-content" id="hiding_section_wrapper">
-        <!-- row here wraps heading linegraph an explination text -->
+        <!-- row here wraps main header and will take up full column on all devices-->
           <div class="row">
             <!-- col added here that wraps  main header -->
-	<div class="col text-center">
+         	<div class="col text-center">
               <!-- adding main header -->
 							<h1 class="main_header">The Growth of Football Transfers</h1>
 						</div>
 					</div>
-					<!-- adding reset data button this will reset all data  in the graphs when ckicked-->
+					<!-- adding reset data button this will reset all data  in the graphs when clicked-->
 					<div class="reset_btn_wrapper">
 						<button class="btn reset-data-btn reset-data-btn-top capitals">
 							<a href="javascript:dc.filterAll();dc.renderAll();"> Reset</a>
 						</button>
 					</div>
-					<!-- total amount spent per season line graph added here  -->
-        
+					<!-- start of line graph -->
+			<!-- this row wraps line graph text heading and text -->
           <div class="row justify-content-center">
-						<div
+              <!-- total amount spent per season line graph added here  -->
+              <!-- graph will be displayed in a col ten on mobile col 8 on desktop and above  -->
+              <!-- ordered will be switchted from text displaying frist  above graph on mobile to graph first with text to the right on desktop an above -->
+            <div
           class="col-10 col-xl-8 order-2 order-xl-1  graph_section"
           id="line_graph"
         ></div>
@@ -144,8 +148,12 @@ Is centered in the row an conatins the main callout text -->
 						</div>
 					</div>
 					<!-- end of line graph -->
-					<!-- All transfers scatterplot graph -->
+					<!-- start of scatterplot -->
+						<!-- this row wraps line graph text heading and text -->
 					<div class="row  justify-content-center">
+					 <!-- Every Transfer By season scatterplot  graph added here  -->
+              <!-- graph will be displayed in a col ten on mobile col 8 on desktop and above  -->
+              <!-- ordered will be switchted from text displaying frist above scatterplot on mobile to graph first with text to the right on desktop an above -->
 						<div class="col-10  col-xl-4 text-oswald  graph_section">
 							<h2>
             Every Transfer By Season
@@ -165,8 +173,11 @@ Is centered in the row an conatins the main callout text -->
 						<div class="col-10 col-xl-8 graph_section" id="scatterplot_graph"></div>
 					</div>
 					<!-- end of scatterplot graph -->
-					<!-- 10 top leagues who are the biggest spenders graph -->
+					<!--start of top ten leagues rowchart-->
+						<!-- this row wraps row chart text heading and text -->
 					<div class="row  justify-content-center">
+						 <!-- chart will be displayed in a col ten on mobile col 8 on desktop and above  -->
+              <!-- ordered will be switchted from text displaying frist above rowchart on mobile to graph first with text to the right on desktop an above -->
 						<div
           class="col-10 col-xl-8 order-2 order-xl-1  graph_section"
           id="leagues_spending_rowchart"
@@ -188,8 +199,12 @@ Is centered in the row an conatins the main callout text -->
           </p>
 						</div>
 					</div>
-					<!-- Rowchart top ten highest spending teams -->
+					<!-- end of top ten leagues row chart -->
+					<!-- start of top ten teams rowchart -->
+						<!-- this row wraps row chart text heading and text -->
 					<div class="row  justify-content-center">
+					 <!-- chart  will be displayed in a col ten on mobile col 8 on desktop and above  -->
+              <!-- ordered will be switchted from text displaying frist above rowchart on mobile to graph first with text to the right on desktop an above -->
 						<div class="col-10 col-xl-4 text-oswald  graph_section">
 							<h2>
             Top Ten Spending Teams
@@ -210,9 +225,11 @@ Is centered in the row an conatins the main callout text -->
           id="teams_spending_rowchart"
         ></div>
 					</div>
-					<!-- end of row chart graph -->
+					<!-- end of top ten row chart  -->
 					<!--Pie Chart For Players Position -->
 					<div class="row  justify-content-center">
+						 <!-- chart  will be displayed in a col ten on mobile col 8 on desktop and above  -->
+              <!-- ordered will be switchted from text displaying frist above rowchart on mobile to graph first with text to the right on desktop an above -->
 						<div
           class="col-10 col-xl-8 order-2 order-xl-1  graph_section"
           id="piechart_players_position"
@@ -352,10 +369,8 @@ Is centered in the row an conatins the main callout text -->
         </h2>
 							<p class="pt-3  graph_para para">
           The big clubs make millions, and spend millions, often ploughing revenue back into the club to attain success.
-
           Lower down the leagues however, clubs struggle to make ends meet, have to sell their best players, 
-          and often flirt with the threat of administration. 
-          Watch this short youtube documentary an decide for your self has the money being spent on transfers runied the worlds most popular sport?
+          and often flirt with the threat of administration.  Watch this short youtube documentary an decide for your self has the money being spent on transfers runied the worlds most popular sport?
 
         </p>
 						</div>
