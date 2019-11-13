@@ -252,7 +252,7 @@ i {
     margin: 0 0.2rem 0 0.2rem;
   }
 
-  /* linegraph an transfer history section */
+  /* linegraph an transfer history section setting differnt margin top here to giv more space on small tablets and bigger devices */
   .transfer_history_section,
   .graph_section {
     margin-top: 4.5rem;
@@ -261,25 +261,30 @@ i {
 
 /* these where added here to adjust callout section for mobile in landscape view */
 @media screen and (orientation: landscape) and (min-width: 300px) and (max-width: 767px) {
-  /* making adjustmennts here for navbar an callout section in mobile landscape mode */
 
+  /* making adjustmennts here for navbar an callout section in mobile landscape mode */
+  /* much smaller font size set here to make navbar brand and items suit smaller space avaiable on mobile landscape mode here  */
   .navbar-brand,
   .navbar-nav {
     font-size: 1rem;
   }
 
+  /* removing nav items border here so its not visable on dropdown in landsacpe mode on mobile here  */
   .nav-border {
     border: none;
   }
 
-
-
+  /* setting much smaller callout section text here so it fits mobile landscape mode here  */
   .callout_main_text {
     font-size: 1rem;
   }
 
+  /* setting much smaller font size an button width  here so it fits mobile landscape mode */
   .data_btn {
     font-size: 1rem;
     width: 30%;
   }
 }
+
+/* 
+end of media queries */
