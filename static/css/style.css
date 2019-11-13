@@ -115,6 +115,12 @@ text.row,
   color: black;
 }
 
+.navbar .navbar-toggler-icon {
+
+  background-image: url('https://mdbootstrap.com/img/svg/hamburger6.svg?color=000');
+  font-size: 2rem;
+}
+
 .data_btn {
   border: 4px solid white;
   margin: 0 0.2rem 0 0.2rem;
@@ -252,6 +258,8 @@ i {
   .nav-border {
     border: none;
   }
+
+
 
   .callout_main_text {
     font-size: 1rem;
