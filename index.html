@@ -44,8 +44,10 @@
 				</button>
 				<!-- Adding navbar with 3 links here -->
 				<div class="collapse navbar-collapse" id="navbarResponsive">
+				<!-- margin auto added here to center list Items -->
 					<ul class="navbar-nav m-auto">
 						<li class="nav-item active">
+						<!-- home button will bring the user back to the callout section -->
 							<a
                 class="nav-link text-barlow nav-border"
                 aria-label="home navigation link"
@@ -56,6 +58,8 @@
               >
 						</li>
 						<li class="nav-item">
+							<!-- when stats button is clicked it hides callout and transfer history sections an shows data and footer sections -->
+							<!-- this is done my adding and  removing hide-content class with javascirpt in the graph.js file. -->
 							<a href="#" class="nav-link text-barlow nav-border"
                 id="stats_btn"
                 aria-label="stats navigation link"
@@ -63,6 +67,8 @@
                 Stats</a>
 						</li>
 						<li class="nav-item nav-border">
+						<!-- when transfer history button is clicked it hides callout and data sections an shows  and transfer footer sections -->
+							<!-- this is done my adding and  removing hide-content class with javascirpt in the graph.js file. -->
 							<a
                 class="nav-link text-barlow" id="transfer_history_btn"
                 href="#"
@@ -107,7 +113,7 @@ Is centered in the row an conatins the main callout text -->
 				<section class="container-fluid hide-content" id="hiding_section_wrapper">
         <!-- row here wraps main header and will take up full column on all devices-->
           <div class="row">
-            <!-- col added here that wraps  main header -->
+      	<!-- this row and col wraps main header an col will take full width of screen on all devices -->
          	<div class="col text-center">
               <!-- adding main header -->
 							<h1 class="main_header">The Growth of Football Transfers</h1>
@@ -227,6 +233,7 @@ Is centered in the row an conatins the main callout text -->
 					</div>
 					<!-- end of top ten row chart  -->
 					<!--Pie Chart For Players Position -->
+						<!-- this row wraps row chart text heading and text -->
 					<div class="row  justify-content-center">
 						 <!-- chart  will be displayed in a col ten on mobile col 8 on desktop and above  -->
               <!-- ordered will be switchted from text displaying frist above rowchart on mobile to graph first with text to the right on desktop an above -->
@@ -254,22 +261,31 @@ Is centered in the row an conatins the main callout text -->
 						</div>
 					</div>
 					<!-- end of pie chart -->
-					<!-- adding reset data button -->
+				
+					<!-- adding reset data button this will reset all data  in the graphs when clicked-->
 					<div class="reset_btn_wrapper">
 						<button class="btn reset-data-btn capitals">
 							<a href="javascript:dc.filterAll();dc.renderAll();"> Reset</a>
 						</button>
 					</div>
 				</section>
+			
+				<!-- football transfer history section -->
 				<!-- transfer history section that will only be visable when transfer history btn is was clicked -->
+				<!-- a display none class is added in the css then removed using javascript in graph.js -->
 				<section id="transfer_history_section" class="hide-content container-fluid">
+				<!-- this row and col wraps main header an col will take full width of screen on all devices -->
 					<div class="row">
+					<!-- adding main header -->
 						<div class="col text-center">
 							<h1 class="main_header">The History of Football Transfers</h1>
 						</div>
 					</div>
-					<!-- footballs first transfer section -->
+					<!-- footballs first transfer -->
+						<!-- this row wraps row chart text heading and text -->
 					<div class="row justify-content-center">
+					 <!-- Image will be displayed in a col ten on mobile col 6 on desktop and above  -->
+              <!-- ordered will be switchted from text displaying frist above Image on mobile to graph first with text to the right on desktop an above -->
 						<div
               class="col-10 col-xl-6 order-2 order-xl-1  transfer_history_section text-center">
 							<img src="https://res.cloudinary.com/plyn85/image/upload/v1573398151/milestone-2/footballs_first_transfer_zkmqiw.jpg" alt="an image of the first ever transfered player in football" class="img-fluid"
@@ -289,8 +305,12 @@ Is centered in the row an conatins the main callout text -->
 						</div>
 					</div>
 					<!-- end of footballs first transfer section -->
+				
 					<!-- footballs first million pound player section -->
+						<!-- this row wraps row chart text heading and text -->
 					<div class="row  justify-content-center">
+					 <!-- Image will be displayed in a col ten on mobile col 6 on desktop and above  -->
+              <!-- ordered will be switchted from text displaying frist above Image on mobile to graph first with text to the right on desktop an above -->
 						<div class="col-10 col-xl-4 text-oswald transfer_history_section">
 							<h2>
              Top First Million Pound Footballer
@@ -311,7 +331,10 @@ Is centered in the row an conatins the main callout text -->
 					</div>
 					<!-- end of footballs first million pound player section -->
 					<!-- footballs first 100  million pound player section -->
+						<!-- this row wraps row chart text heading and text -->
 					<div class="row  justify-content-center">
+					 <!-- Image will be displayed in a col ten on mobile col 6 on desktop and above  -->
+              <!-- ordered will be switchted from text displaying frist above Image on mobile to graph first with text to the right on desktop an above -->
 						<div
                   class="col-10 col-xl-6 order-2 order-xl-1  transfer_history_section text-center"
                   id="leagues_spending_rowchart"
@@ -335,7 +358,10 @@ Is centered in the row an conatins the main callout text -->
 					</div>
 					<!-- end of footballs first 100 million pound player section -->
 					<!--footballs most expesive player ever section-->
+				<!-- this row wraps row chart text heading and text -->
 					<div class="row  justify-content-center">
+					 <!-- Image will be displayed in a col ten on mobile col 6 on desktop and above  -->
+              <!-- ordered will be switchted from text displaying frist above Image on mobile to graph first with text to the right on desktop an above -->
 						<div class="col-10 col-xl-4 text-oswald  transfer_history_section">
 							<h2>
         The Most Expensive Footballer of All Time. 
@@ -354,8 +380,12 @@ Is centered in the row an conatins the main callout text -->
 						</div>
 					</div>
 					<!-- end of footballs most expensive player ever section -->
-					<!-- footballs first 100  million pound player section -->
+				
+					<!-- Is money ruining the beautiful game  -->
+									<!-- this row wraps row chart text heading and text -->
 					<div class="row  justify-content-center">
+					 <!-- Video will be displayed in a col ten on mobile col 6 on desktop and above  -->
+              <!-- ordered will be switchted from text displaying frist above Video on mobile to graph first with text to the right on desktop an above -->
 						<div
         class="col-10 col-xl-6 order-2 order-xl-1 transfer_history_section embed-responsive embed-responsive-21by9 z-depth-1-half text-center"
       >
@@ -375,17 +405,23 @@ Is centered in the row an conatins the main callout text -->
         </p>
 						</div>
 					</div>
+					<!-- end of is money ruining the beautiful game -->
 				</section>
-				<!-- Footer -->
+				<!-- end of football transfer history section -->
+			
+				<!-- start of Footer -->
+			<!-- footer will be hidden when callout section is visable or when home button is clicked -->
+			<!-- this was used by adding display none class in css an reoming it when data, stats, or tranfer history buttons are clicked -->
 				<footer id="footer" class="hide-content">
 					<!-- Copyright -->
+				
 					<div class="footer-copyright text-center py-3 pt-3">© 2019 Copyright:
-    
+                       <!-- centering footer text here  -->
 						<a href="https://github.com/plyn85" target="_blank">https://github.com/plyn85 </a>
 					</div>
 					<!-- Copyright -->
 				</footer>
-				<!-- Footer -->
+				<!-- end of Footer -->
 			</main>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
