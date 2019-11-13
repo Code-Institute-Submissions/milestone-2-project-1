@@ -11,8 +11,7 @@ d3.csv("data/data.csv").then(function (sportData) {
   var euroSign = function (d) {
     return d.key + " €" + d3.format(".2s")(d.value);
   };
-  // setting colors variable
-
+  // setting colors variable here that will be passed into colors function in charts below
   var colors = [
     "#3F1D1D",
     "#4F272D",
@@ -29,10 +28,10 @@ d3.csv("data/data.csv").then(function (sportData) {
     "#47E0CE",
     "#5AF1C9"
   ];
-  //setting height an width variables
+  //setting height an width variables that will be passed into width an height functions of charts below
   var w = 800;
   var h = 400;
-  //setting margins variable
+  //setting margins variable that will be passed into margins functions in the charts below
   var margins = {
     top: 0,
     right: 0,
@@ -48,7 +47,7 @@ d3.csv("data/data.csv").then(function (sportData) {
   var scatterplot = dc.scatterPlot("#scatterplot_graph");
   var leagueRowChart = dc.rowChart("#leagues_spending_rowchart");
   var teamsRowChart = dc.rowChart("#teams_spending_rowchart");
-  var chart = dc.pieChart("#piechart_players_position");
+  var pieChart = dc.pieChart("#piechart_players_position");
 
   //dimensions set here
   var seasonDim = ndx.dimension(function (d) {
@@ -189,7 +188,7 @@ d3.csv("data/data.csv").then(function (sportData) {
   //end teams top ten row chart
   //player position pie chart
 
-  chart
+  pieChart
     .width(w)
     .height(h)
     .useViewBoxResizing(true)
@@ -219,8 +218,8 @@ d3.csv("data/data.csv").then(function (sportData) {
 
   // Used to override the default angle of the text in pie chart
   // Taken from tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
-  chart.on("renderlet", function () {
-    chart.selectAll("text.pie-slice").attr("transform", function (d) {
+  pieChart.on("renderlet", function () {
+    pieChart.selectAll("text.pie-slice").attr("transform", function (d) {
       var translate = d3.select(this).attr("transform");
       var ang = ((((d.startAngle + d.endAngle) / 2) * 180) / Math.PI) % 360;
       if (ang < 180) ang -= 90;
