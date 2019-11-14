@@ -229,6 +229,13 @@ d3.csv("data/data.csv").then(function(sportData) {
 
   dc.renderAll();
 });
+var resetBtn = document.getElementsByClassName("reset-data-btn");
+for (var i = 0; i < resetBtn.length; i++) {
+  resetBtn[i].onclick = function() {
+    dc.filterAll();
+    dc.renderAll();
+  };
+}
 
 //Adding onclick function here that will hide call out section and show
 //main graphs section when data an stats button is clicked
