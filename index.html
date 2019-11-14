@@ -130,6 +130,63 @@ Is centered in the row an conatins the main callout text -->
             <a href="javascript:dc.filterAll();dc.renderAll();"> Reset</a>
           </div>
         </div>
+        <!--Pie Chart For Players Position -->
+        <!-- this row wraps row chart text heading and text -->
+        <div class="row  justify-content-center">
+          <!-- chart  will be displayed in a col ten on mobile col 8 on desktop and above  -->
+          <!-- ordered will be switchted from text displaying frist above rowchart on mobile to graph first with text to the right on desktop an above -->
+          <div
+            class="col-10 col-xl-8 order-2 order-xl-1  graph_section"
+            id="piechart_players_position"
+          ></div>
+          <div
+            class="col-10 col-xl-4 order-1 order-xl-2 text-oswald  graph_section"
+          >
+            <h2>
+              Position of The of The Players
+            </h2>
+            <p class="mt-3 graph_para para">
+              This pie-chart displays position of the players who were
+              transferred from last 19 seasons. As you can see center forwards
+              where the most signed players. If you hover over a slice of the
+              pie it will display the percentage of the total of players signed
+              for each position. The graph is also dynamic and will interact
+              with all the other graphs. Click on one of the position and you
+              will see how it interacts with every other graph on the page. If
+              you click on any of the slices all players from that position will
+              be displayed on the scatterplot graph and in the same color.
+            </p>
+          </div>
+        </div>
+        <!-- end of pie chart -->
+        <!-- start of scatterplot -->
+        <!-- this row wraps line graph text heading and text -->
+        <div class="row  justify-content-center">
+          <!-- Every Transfer By season scatterplot  graph added here  -->
+          <!-- graph will be displayed in a col ten on mobile col 8 on desktop and above  -->
+          <!-- ordered will be switchted from text displaying frist above scatterplot on mobile to graph first with text to the right on desktop an above -->
+          <div class="col-10  col-xl-4 text-oswald  graph_section">
+            <h2>
+              Every Transfer By Season
+            </h2>
+            <p class="mt-3 graph_para para">
+              This graph shows every single transfer across every season. Hover
+              over any of the dots and a transfer will be revealed. It will
+              display the season, the clubs where the players were transferred
+              from and what team they were transferred too as well as the amount
+              they were transferred for. The chart is dynamic and will change
+              when they other charts are clicked. Displaying every player that
+              was transferred by a certain club, leauge or position. The color
+              of each dot is also linked to the players position which is
+              displayed in the pie chart below.
+            </p>
+          </div>
+          <div
+            class="col-10 col-xl-8 graph_section"
+            id="scatterplot_graph"
+          ></div>
+        </div>
+        <!-- end of scatterplot graph -->
         <!-- start of line graph -->
         <!-- this row wraps line graph text heading and text -->
         <div class="row justify-content-center">
@@ -159,34 +216,7 @@ Is centered in the row an conatins the main callout text -->
           </div>
         </div>
         <!-- end of line graph -->
-        <!-- start of scatterplot -->
-        <!-- this row wraps line graph text heading and text -->
-        <div class="row  justify-content-center">
-          <!-- Every Transfer By season scatterplot  graph added here  -->
-          <!-- graph will be displayed in a col ten on mobile col 8 on desktop and above  -->
-          <!-- ordered will be switchted from text displaying frist above scatterplot on mobile to graph first with text to the right on desktop an above -->
-          <div class="col-10  col-xl-4 text-oswald  graph_section">
-            <h2>
-              Every Transfer By Season
-            </h2>
-            <p class="mt-3 graph_para para">
-              This graph shows every single transfer across every season. Hover
-              over any of the dots and a transfer will be revealed. It will
-              display the season, the clubs where the players were transferred
-              from and what team they were transferred too as well as the amount
-              they were transferred for. The chart is dynamic and will change
-              when they other charts are clicked. Displaying every player that
-              was transferred by a certain club, leauge or position. The color
-              of each dot is also linked to the players position which is
-              displayed in the pie chart below.
-            </p>
-          </div>
-          <div
-            class="col-10 col-xl-8 graph_section"
-            id="scatterplot_graph"
-          ></div>
-        </div>
-        <!-- end of scatterplot graph -->
+
         <!--start of top ten leagues rowchart-->
         <!-- this row wraps row chart text heading and text -->
         <div class="row  justify-content-center">
@@ -240,35 +270,7 @@ Is centered in the row an conatins the main callout text -->
           ></div>
         </div>
         <!-- end of top ten row chart  -->
-        <!--Pie Chart For Players Position -->
-        <!-- this row wraps row chart text heading and text -->
-        <div class="row  justify-content-center">
-          <!-- chart  will be displayed in a col ten on mobile col 8 on desktop and above  -->
-          <!-- ordered will be switchted from text displaying frist above rowchart on mobile to graph first with text to the right on desktop an above -->
-          <div
-            class="col-10 col-xl-8 order-2 order-xl-1  graph_section"
-            id="piechart_players_position"
-          ></div>
-          <div
-            class="col-10 col-xl-4 order-1 order-xl-2 text-oswald  graph_section"
-          >
-            <h2>
-              Position of The of The Players
-            </h2>
-            <p class="mt-3 graph_para para">
-              This pie-chart displays position of the players who were
-              transferred from last 19 seasons. As you can see center forwards
-              where the most signed players. If you hover over a slice of the
-              pie it will display the percentage of the total of players signed
-              for each position. The graph is also dynamic and will interact
-              with all the other graphs. Click on one of the position and you
-              will see how it interacts with every other graph on the page. If
-              you click on any of the slices all players from that position will
-              be displayed on the scatterplot graph and in the same color.
-            </p>
-          </div>
-        </div>
-        <!-- end of pie chart -->
+
         <!-- adding reset data button this will reset all data  in the graphs when clicked-->
         <div class="reset_btn_wrapper">
           <div class="btn reset-data-btn capitals">
