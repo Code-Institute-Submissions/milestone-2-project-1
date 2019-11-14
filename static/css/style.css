@@ -126,7 +126,7 @@ h2,
 /* also  changing color legend text */
 .footer-copyright,
 .main_header,
-.reset-data-btn a,
+.reset-data-btn,
 #piechart_players_position,
 g.row text,
 g.axis,
@@ -181,7 +181,7 @@ i {
 /* adding navbar hambuger toggler here  */
 
 .navbar .navbar-toggler-icon {
-  background-image: url('https://mdbootstrap.com/img/svg/hamburger6.svg?color=000');
+  background-image: url("https://mdbootstrap.com/img/svg/hamburger6.svg?color=000");
   font-size: 1.5rem;
 }
 
@@ -197,7 +197,8 @@ i {
 /* fixed background Image added here to take up full view height */
 .callout-container {
   height: 100vh;
-  background: url("https://res.cloudinary.com/plyn85/image/upload/v1572370878/milestone-2/football_data_radcs8.jpg") no-repeat fixed;
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1572370878/milestone-2/football_data_radcs8.jpg")
+    no-repeat fixed;
   background-position-x: 50%;
   background-size: cover;
   -webkit-background-size: cover;
@@ -219,7 +220,6 @@ i {
   position: relative;
 }
 
-
 /*football history section*/
 /* setting size of youtube vid in football history section here */
 .football-vid {
@@ -233,7 +233,6 @@ i {
 
 /* small tablets and up */
 @media (min-width: 567px) {
-
   /* setting larger size for navbar barnd an items here for small tablets and bigger devices here  */
   .navbar-brand,
   .navbar-nav {
@@ -270,7 +269,6 @@ i {
 
 /* these where added here to adjust callout section for mobile in landscape view */
 @media screen and (orientation: landscape) and (min-width: 300px) and (max-width: 767px) {
-
   /* making adjustmennts here for navbar an callout section in mobile landscape mode */
   /* much smaller font size set here to make navbar brand and items suit smaller space avaiable on mobile landscape mode here  */
   .navbar-brand,

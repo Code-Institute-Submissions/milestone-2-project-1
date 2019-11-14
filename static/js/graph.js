@@ -229,17 +229,16 @@ d3.csv("data/data.csv").then(function(sportData) {
 
   dc.renderAll();
 });
-var resetBtn = document.getElementsByClassName("reset-data-btn");
-for (var i = 0; i < resetBtn.length; i++) {
-  resetBtn[i].onclick = function() {
-    dc.filterAll();
-    dc.renderAll();
-  };
-}
 
-//Adding onclick function here that will hide call out section and show
-//main graphs section when data an stats button is clicked
 document.addEventListener("DOMContentLoaded", function() {
+  //adding function to target reset data btn to target  button an reset all data when clicked
+  var resetBtn = document.getElementsByClassName("reset-data-btn");
+  for (var i = 0; i < resetBtn.length; i++) {
+    resetBtn[i].onclick = function() {
+      dc.filterAll();
+      dc.renderAll();
+    };
+  }
   //setting all variables for onclick functions here
   var callOutSection = document.getElementById("callout_text");
   var transferHistorySection = document.getElementById(
@@ -248,20 +247,22 @@ document.addEventListener("DOMContentLoaded", function() {
   var footer = document.getElementById("footer");
   var mainSection = document.getElementById("hiding_section_wrapper");
   var transferHistoryBtn = document.getElementById("transfer_history_btn");
-  var statBtn = document.getElementById("stats_btn");
-  var dataBtn = document.getElementById("data_btn_callout");
+  var statBtn = document.getElementsByClassName("stats_data_btn");
 
-  dataBtn.onclick = function() {
-    callOutSection.classList.add("hide-content");
-    mainSection.classList.remove("hide-content");
-    footer.classList.remove("hide-content");
-  };
-  statBtn.onclick = function() {
-    callOutSection.classList.add("hide-content");
-    mainSection.classList.remove("hide-content");
-    footer.classList.remove("hide-content");
-    transferHistorySection.classList.add("hide-content");
-  };
+  for (var i = 0; i < statBtn.length; i++) {
+    statBtn[i].onclick = function() {
+      callOutSection.classList.add("hide-content");
+      mainSection.classList.remove("hide-content");
+      footer.classList.remove("hide-content");
+      transferHistorySection.classList.add("hide-content");
+    };
+  }
+  // .onclick = function() {
+  //   callOutSection.classList.add("hide-content");
+  //   mainSection.classList.remove("hide-content");
+  //   footer.classList.remove("hide-content");
+
+  // };
 
   transferHistoryBtn.onclick = function() {
     callOutSection.classList.add("hide-content");
