@@ -94,11 +94,11 @@ d3.csv("data/data.csv").then(function(sportData) {
     chart
       .width(w)
       .height(h)
-      .margins(margins)
       .useViewBoxResizing(true);
   }
-  // making charts
+  //end  making charts
   // allCharts(pieChart);
+  allCharts(pieChart);
   pieChart
     .slicesCap(13)
     .othersGrouper(false)
@@ -139,8 +139,10 @@ d3.csv("data/data.csv").then(function(sportData) {
   //end of override function
 
   //scatterplot
+
   allCharts(scatterplot);
   scatterplot
+    .margins(margins)
     .dimension(seasonDim)
     .group(plotGraphSeasonDimGroup)
     .ordinalColors(colors)
@@ -175,6 +177,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     //line chart
     allCharts(lineChart);
   lineChart
+    .margins(margins)
     .dimension(seasonDim)
     .group(totalSpendPerSeasonDim)
     .ordinalColors(["#7181A6"])
@@ -188,39 +191,30 @@ d3.csv("data/data.csv").then(function(sportData) {
     .yAxis()
     .tickFormat(euroFormat);
   //end of linechart
-
+  function rowCharts(chart) {
+    chart
+      .margins(margins)
+      .rowsCap(10)
+      .othersGrouper(false)
+      .ordinalColors(colors)
+      .x(scaleLinear)
+      .elasticX(true)
+      .title(euroSign)
+      .renderTitle(true)
+      .xAxis()
+      .ticks(5)
+      .tickFormat(euroFormat);
+  }
   //league top ten row chart
   allCharts(leagueRowChart);
-  leagueRowChart
-    .rowsCap(10)
-    .othersGrouper(false)
-    .ordinalColors(colors)
-    .dimension(leaugeToDim)
-    .group(groupByTransfer)
-    .x(scaleLinear)
-    .elasticX(true)
-    .title(euroSign)
-    .renderTitle(true)
-    .xAxis()
-    .ticks(5)
-    .tickFormat(euroFormat);
+  rowCharts(leagueRowChart);
+  leagueRowChart.dimension(leaugeToDim).group(groupByTransfer);
 
   //end league top ten row chart
   //teams top ten row chart
   allCharts(teamsRowChart);
-  teamsRowChart
-    .rowsCap(10)
-    .othersGrouper(false)
-    .ordinalColors(colors)
-    .dimension(topTenTeamSpendDim)
-    .group(topTenTeamSpendGroup)
-    .x(scaleLinear)
-    .elasticX(true)
-    .title(euroSign)
-    .renderTitle(true)
-    .xAxis()
-    .ticks(5)
-    .tickFormat(euroFormat);
+  rowCharts(teamsRowChart);
+  teamsRowChart.dimension(topTenTeamSpendDim).group(topTenTeamSpendGroup);
   //end teams top ten row chart
   //player position pie chart
 
