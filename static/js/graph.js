@@ -89,7 +89,8 @@ d3.csv("data/data.csv").then(function(sportData) {
     .reduceSum(transferFeeTotal);
   var playersPositionGroup = playersPositionDim.group();
   // end of reduce an group vatiables
-  //setting function for charts with common functions
+  //setting function for all  charts common functions
+  //every chart will be passed to this function
   function allCharts(chart) {
     chart
       .width(w)
@@ -97,7 +98,7 @@ d3.csv("data/data.csv").then(function(sportData) {
       .useViewBoxResizing(true);
   }
   //end  making charts
-  // allCharts(pieChart);
+  //pie chart
   allCharts(pieChart);
   pieChart
     .slicesCap(13)
@@ -123,7 +124,7 @@ d3.csv("data/data.csv").then(function(sportData) {
       );
     })
     .renderTitle(true);
-  // end player position pie chart
+  // end  pie chart
 
   // Used to override the default angle of the text in pie chart
   // Taken from tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
@@ -139,7 +140,6 @@ d3.csv("data/data.csv").then(function(sportData) {
   //end of override function
 
   //scatterplot
-
   allCharts(scatterplot);
   scatterplot
     .margins(margins)
@@ -191,6 +191,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     .yAxis()
     .tickFormat(euroFormat);
   //end of linechart
+  //adding function here for common functions in both row charts
   function rowCharts(chart) {
     chart
       .margins(margins)
@@ -206,12 +207,14 @@ d3.csv("data/data.csv").then(function(sportData) {
       .tickFormat(euroFormat);
   }
   //league top ten row chart
+  //passed through allCharts and row Charts functions
   allCharts(leagueRowChart);
   rowCharts(leagueRowChart);
   leagueRowChart.dimension(leaugeToDim).group(groupByTransfer);
-
   //end league top ten row chart
+
   //teams top ten row chart
+  //passed through allCharts and row Charts functions
   allCharts(teamsRowChart);
   rowCharts(teamsRowChart);
   teamsRowChart.dimension(topTenTeamSpendDim).group(topTenTeamSpendGroup);
@@ -220,7 +223,7 @@ d3.csv("data/data.csv").then(function(sportData) {
 
   dc.renderAll();
 });
-
+//end of graphs section
 document.addEventListener("DOMContentLoaded", function() {
   //adding function to target reset data btn to target  button an reset all data when clicked
   var resetBtn = document.getElementsByClassName("reset-data-btn");
@@ -239,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var mainSection = document.getElementById("hiding_section_wrapper");
   var transferHistoryBtn = document.getElementById("transfer_history_btn");
   var stat_data_btn = document.getElementsByClassName("stats_data_btn");
-
+  // trageting data an stats butoon here as we I want them both to do the same thing
   for (var i = 0; i < stat_data_btn.length; i++) {
     stat_data_btn[i].onclick = function() {
       callOutSection.classList.add("hide-content");

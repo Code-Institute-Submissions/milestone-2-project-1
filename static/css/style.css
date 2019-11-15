@@ -114,7 +114,7 @@ h2,
 /* targerting both reset data buttons here */
 .reset-data-btn {
   margin-top: 1.5rem;
-  border: 2px solid white;
+  border: 2px solid #ffffff;
   background-color: #724d68;
 }
 
@@ -265,7 +265,7 @@ i {
 
 /* these where added here to adjust callout section for mobile in landscape view */
 @media screen and (orientation: landscape) and (min-width: 300px) and (max-width: 767px) {
-  /* making adjustmennts here for navbar an callout section in mobile landscape mode */
+  /* making adjustments here for navbar an callout section in mobile landscape mode */
   /* much smaller font size set here to make navbar brand and items suit smaller space avaiable on mobile landscape mode here  */
   .navbar-brand,
   .navbar-nav {
