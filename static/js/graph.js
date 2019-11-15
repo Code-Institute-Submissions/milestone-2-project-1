@@ -89,12 +89,17 @@ d3.csv("data/data.csv").then(function(sportData) {
     .reduceSum(transferFeeTotal);
   var playersPositionGroup = playersPositionDim.group();
   // end of reduce an group vatiables
-
+  //setting function for charts with common functions
+  function allCharts(chart) {
+    chart
+      .width(w)
+      .height(h)
+      .margins(margins)
+      .useViewBoxResizing(true);
+  }
   // making charts
+  // allCharts(pieChart);
   pieChart
-    .width(w)
-    .height(h)
-    .useViewBoxResizing(true)
     .slicesCap(13)
     .othersGrouper(false)
     .legend(
@@ -134,11 +139,8 @@ d3.csv("data/data.csv").then(function(sportData) {
   //end of override function
 
   //scatterplot
+  allCharts(scatterplot);
   scatterplot
-    .width(w)
-    .height(h)
-    .useViewBoxResizing(true)
-    .margins(margins)
     .dimension(seasonDim)
     .group(plotGraphSeasonDimGroup)
     .ordinalColors(colors)
@@ -171,33 +173,27 @@ d3.csv("data/data.csv").then(function(sportData) {
     //end scatterplot function
 
     //line chart
-    lineChart
-      .width(w)
-      .height(h)
-      .useViewBoxResizing(true)
-      .margins(margins)
-      .dimension(seasonDim)
-      .group(totalSpendPerSeasonDim)
-      .ordinalColors(["#7181A6"])
-      .x(scaleBand)
-      .xUnits(ordUnits)
-      .renderHorizontalGridLines(true)
-      .curve(d3.curveCatmullRom.alpha(0.5))
-      .renderArea(true)
-      .renderDataPoints(true)
-      .title(euroSign)
-      .yAxis()
-      .tickFormat(euroFormat);
+    allCharts(lineChart);
+  lineChart
+    .dimension(seasonDim)
+    .group(totalSpendPerSeasonDim)
+    .ordinalColors(["#7181A6"])
+    .x(scaleBand)
+    .xUnits(ordUnits)
+    .renderHorizontalGridLines(true)
+    .curve(d3.curveCatmullRom.alpha(0.5))
+    .renderArea(true)
+    .renderDataPoints(true)
+    .title(euroSign)
+    .yAxis()
+    .tickFormat(euroFormat);
   //end of linechart
 
   //league top ten row chart
+  allCharts(leagueRowChart);
   leagueRowChart
-    .width(w)
-    .height(h)
-    .useViewBoxResizing(true)
     .rowsCap(10)
     .othersGrouper(false)
-    .margins(margins)
     .ordinalColors(colors)
     .dimension(leaugeToDim)
     .group(groupByTransfer)
@@ -211,13 +207,10 @@ d3.csv("data/data.csv").then(function(sportData) {
 
   //end league top ten row chart
   //teams top ten row chart
+  allCharts(teamsRowChart);
   teamsRowChart
-    .width(w)
-    .height(h)
-    .useViewBoxResizing(true)
     .rowsCap(10)
     .othersGrouper(false)
-    .margins(margins)
     .ordinalColors(colors)
     .dimension(topTenTeamSpendDim)
     .group(topTenTeamSpendGroup)
