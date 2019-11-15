@@ -47,9 +47,11 @@ text.row,
 /* end of targeting graphs */
 
 /* reusable componets */
-
+/* setting navlinks color to black here when they been hovered or clicked for better visabilty on white background  */
+.navbar-light .navbar-nav .nav-link:link,
+.navbar-light .navbar-nav .nav-link:hover,
 .black {
-  color: black;
+  color: #000000;
 }
 
 /* setting font size, weight and line height for all paragraphs here */
@@ -63,7 +65,7 @@ text.row,
 .titlerow,
 h2,
 .white {
-  color: white;
+  color: #ffffff;
 }
 
 .text-oswald {
@@ -154,7 +156,7 @@ text.row,
 #footer,
 #transfer_history_section,
 #hiding_section_wrapper {
-  background-color: black;
+  background-color: #000000;
 }
 
 /* navbar */
@@ -170,12 +172,6 @@ text.row,
 /* setting font size for logo of football on navbar here */
 i {
   font-size: 1.5rem;
-}
-
-/* setting navlinks color to black here when they been hovered or clicked for better visabilty on white background  */
-.navbar-light .navbar-nav .nav-link:link,
-.navbar-light .navbar-nav .nav-link:hover {
-  color: black;
 }
 
 /* adding navbar hambuger toggler here  */
@@ -256,7 +252,7 @@ i {
 
   /* added here so border takes doesnt take effect in dropdown navbar  */
   .nav-border {
-    border: 4px solid black;
+    border: 4px solid#000000;
     margin: 0 0.2rem 0 0.2rem;
   }
 

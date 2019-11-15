@@ -108,6 +108,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     .ordinalColors(colors)
     .dimension(playersPositionDim)
     .group(playersPositionGroup)
+    // title will display as percent when hovered
     .title(function(d) {
       return (
         d.key[0] +
@@ -130,6 +131,9 @@ d3.csv("data/data.csv").then(function(sportData) {
       return translate + " rotate(" + ang + ")";
     });
   });
+  //end of override function
+
+  //scatterplot
   scatterplot
     .width(w)
     .height(h)
@@ -184,8 +188,8 @@ d3.csv("data/data.csv").then(function(sportData) {
       .title(euroSign)
       .yAxis()
       .tickFormat(euroFormat);
-  //end of line chart
-  //scatterplot function
+  //end of linechart
+
   //league top ten row chart
   leagueRowChart
     .width(w)
@@ -247,22 +251,16 @@ document.addEventListener("DOMContentLoaded", function() {
   var footer = document.getElementById("footer");
   var mainSection = document.getElementById("hiding_section_wrapper");
   var transferHistoryBtn = document.getElementById("transfer_history_btn");
-  var statBtn = document.getElementsByClassName("stats_data_btn");
+  var stat_data_btn = document.getElementsByClassName("stats_data_btn");
 
-  for (var i = 0; i < statBtn.length; i++) {
-    statBtn[i].onclick = function() {
+  for (var i = 0; i < stat_data_btn.length; i++) {
+    stat_data_btn[i].onclick = function() {
       callOutSection.classList.add("hide-content");
       mainSection.classList.remove("hide-content");
       footer.classList.remove("hide-content");
       transferHistorySection.classList.add("hide-content");
     };
   }
-  // .onclick = function() {
-  //   callOutSection.classList.add("hide-content");
-  //   mainSection.classList.remove("hide-content");
-  //   footer.classList.remove("hide-content");
-
-  // };
 
   transferHistoryBtn.onclick = function() {
     callOutSection.classList.add("hide-content");
