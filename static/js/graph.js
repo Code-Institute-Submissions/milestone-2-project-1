@@ -163,7 +163,6 @@ d3.csv("data/data.csv").then(function(sportData) {
         d3.format(".2s")(d.key[1])
       );
     })
-
     .x(scaleBand)
     .xUnits(ordUnits)
     .brushOn(false)
@@ -242,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var mainSection = document.getElementById("hiding_section_wrapper");
   var transferHistoryBtn = document.getElementById("transfer_history_btn");
   var stat_data_btn = document.getElementsByClassName("stats_data_btn");
-  // trageting data an stats butoon here as we I want them both to do the same thing
+  // targeting data an stats button here as we I want them both to do the same thing
   for (var i = 0; i < stat_data_btn.length; i++) {
     stat_data_btn[i].onclick = function() {
       callOutSection.classList.add("hide-content");
