@@ -227,10 +227,10 @@ document.addEventListener("DOMContentLoaded", function() {
   //adding function to target reset data btn to target  button an reset all data when clicked
   var resetBtn = document.getElementsByClassName("reset-data-btn");
   for (var i = 0; i < resetBtn.length; i++) {
-    resetBtn[i].onclick = function() {
+    resetBtn[i].addEventListener("click", function() {
       dc.filterAll();
       dc.renderAll();
-    };
+    });
   }
   //setting all variables for onclick functions here
   var callOutSection = document.getElementById("callout_text");
@@ -241,20 +241,22 @@ document.addEventListener("DOMContentLoaded", function() {
   var mainSection = document.getElementById("hiding_section_wrapper");
   var transferHistoryBtn = document.getElementById("transfer_history_btn");
   var stat_data_btn = document.getElementsByClassName("stats_data_btn");
+
   // targeting data an stats button here as we I want them both to do the same thing
+
   for (var i = 0; i < stat_data_btn.length; i++) {
-    stat_data_btn[i].onclick = function() {
+    stat_data_btn[i].addEventListener("click", function() {
       callOutSection.classList.add("hide-content");
       mainSection.classList.remove("hide-content");
       footer.classList.remove("hide-content");
       transferHistorySection.classList.add("hide-content");
-    };
+    });
   }
 
-  transferHistoryBtn.onclick = function() {
+  transferHistoryBtn.addEventListener("click", function() {
     callOutSection.classList.add("hide-content");
     mainSection.classList.add("hide-content");
     transferHistorySection.classList.remove("hide-content");
     footer.classList.remove("hide-content");
-  };
+  });
 });
