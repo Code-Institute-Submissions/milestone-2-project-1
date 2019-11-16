@@ -81,7 +81,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   var totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
 
   var plotGraphSeasonDimGroup = plottingTheDotsDim.group();
-  console.log(plotGraphSeasonDimGroup.all());
+
   var groupByTransfer = leaugeToDim.group().reduceSum(transferFeeTotal);
 
   var topTenTeamSpendGroup = topTenTeamSpendDim
@@ -243,7 +243,6 @@ document.addEventListener("DOMContentLoaded", function() {
   var stat_data_btn = document.getElementsByClassName("stats_data_btn");
 
   // targeting data an stats button here as we I want them both to do the same thing
-
   for (var i = 0; i < stat_data_btn.length; i++) {
     stat_data_btn[i].addEventListener("click", function() {
       callOutSection.classList.add("hide-content");
