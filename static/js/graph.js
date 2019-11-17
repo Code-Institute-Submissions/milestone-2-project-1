@@ -1,3 +1,4 @@
+
 //calling csv data here then passing though crossfilter function
 d3.csv("data/data.csv").then(function(sportData) {
   var ndx = crossfilter(sportData);
@@ -38,6 +39,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     bottom: 70,
     left: 70
   };
+
   //setting scalebands ordinal units which will be passed on to the xaxis functions of charts and  Graphs below
   var scaleBand = d3.scaleBand();
   var ordUnits = dc.units.ordinal;
@@ -142,7 +144,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   //scatterplot
   allCharts(scatterplot);
   scatterplot
-    .margins(margins)
+
     .dimension(seasonDim)
     .group(plotGraphSeasonDimGroup)
     .ordinalColors(colors)
@@ -222,6 +224,7 @@ d3.csv("data/data.csv").then(function(sportData) {
 
   dc.renderAll();
 });
+
 //end of graphs section
 document.addEventListener("DOMContentLoaded", function() {
   //adding function to target reset data btn to target  button an reset all data when clicked
