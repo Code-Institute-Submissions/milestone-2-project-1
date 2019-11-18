@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var stat_data_btn = document.getElementsByClassName("stats_data_btn");
 
   // targeting data an stats button here as we I want them both to do the same thing
-  for (i < stat_data_btn.length; i++) {
+  for (i = 0; i < stat_data_btn.length; i++) {
     stat_data_btn[i].addEventListener("click", function() {
       callOutSection.classList.add("hide-content");
       mainSection.classList.remove("hide-content");
