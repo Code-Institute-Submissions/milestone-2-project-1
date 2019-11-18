@@ -1,4 +1,3 @@
-
 //calling csv data here then passing though crossfilter function
 d3.csv("data/data.csv").then(function(sportData) {
   var ndx = crossfilter(sportData);
@@ -139,12 +138,12 @@ d3.csv("data/data.csv").then(function(sportData) {
       return translate + " rotate(" + ang + ")";
     });
   });
-  //end of override function
+  end of override function
 
   //scatterplot
   allCharts(scatterplot);
   scatterplot
-
+    .margins(margins)
     .dimension(seasonDim)
     .group(plotGraphSeasonDimGroup)
     .ordinalColors(colors)
@@ -221,10 +220,8 @@ d3.csv("data/data.csv").then(function(sportData) {
   teamsRowChart.dimension(topTenTeamSpendDim).group(topTenTeamSpendGroup);
   //end teams top ten row chart
   //player position pie chart
-
   dc.renderAll();
 });
-
 //end of graphs section
 document.addEventListener("DOMContentLoaded", function() {
   //adding function to target reset data btn to target  button an reset all data when clicked
