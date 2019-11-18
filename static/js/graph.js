@@ -171,11 +171,11 @@ d3.csv("data/data.csv").then(function(sportData) {
     .clipPadding(1)
     .renderVerticalGridLines(true)
     .yAxis()
-    .tickFormat(euroFormat),
-    //end scatterplot function
+    .tickFormat(euroFormat);
+  //end scatterplot function
 
-    //line chart
-    allCharts(lineChart);
+  //line chart
+  allCharts(lineChart);
   lineChart
     .margins(margins)
     .dimension(seasonDim)
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var stat_data_btn = document.getElementsByClassName("stats_data_btn");
 
   // targeting data an stats button here as we I want them both to do the same thing
-  for (var i = 0; i < stat_data_btn.length; i++) {
+  for (i < stat_data_btn.length; i++) {
     stat_data_btn[i].addEventListener("click", function() {
       callOutSection.classList.add("hide-content");
       mainSection.classList.remove("hide-content");
