@@ -138,7 +138,7 @@ d3.csv("data/data.csv").then(function(sportData) {
       return translate + " rotate(" + ang + ")";
     });
   });
-  end of override function
+  //  end of override function
 
   //scatterplot
   allCharts(scatterplot);
