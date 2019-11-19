@@ -12,22 +12,22 @@ d3.csv("data/data.csv").then(function(sportData) {
     return d.key + " €" + d3.format(".2s")(d.value);
   };
   // setting colors variable here that will be passed into colors function in charts below
-  var colors = [
-    "#3F1D1D",
-    "#4F272D",
-    "#5D323F",
-    "#693E53",
-    "#724D68",
-    "#765D7E",
-    "#766E93",
-    "#7181A6",
-    "#6894B6",
-    "#5BA7C3",
-    "#4DBBCC",
-    "#44CDCF",
-    "#47E0CE",
-    "#5AF1C9"
-  ];
+  // var colors = [
+  //   "#3F1D1D",
+  //   "#4F272D",
+  //   "#5D323F",
+  //   "#693E53",
+  //   "#724D68",
+  //   "#765D7E",
+  //   "#766E93",
+  //   "#7181A6",
+  //   "#6894B6",
+  //   "#5BA7C3",
+  //   "#4DBBCC",
+  //   "#44CDCF",
+  //   "#47E0CE",
+  //   "#5AF1C9"
+  // ];
   //setting height an width variables that will be passed into width an height functions of graphs  charts below
   var w = 800;
   var h = 400;
@@ -82,7 +82,7 @@ d3.csv("data/data.csv").then(function(sportData) {
   var totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
 
   var plotGraphSeasonDimGroup = plottingTheDotsDim.group();
-
+  console.log(plotGraphSeasonDimGroup.all());
   var groupByTransfer = leaugeToDim.group().reduceSum(transferFeeTotal);
 
   var topTenTeamSpendGroup = topTenTeamSpendDim
@@ -112,7 +112,7 @@ d3.csv("data/data.csv").then(function(sportData) {
         .itemHeight(16)
         .gap(2)
     )
-    .ordinalColors(colors)
+    // .ordinalColors(colors)
     .dimension(playersPositionDim)
     .group(playersPositionGroup)
     // title will display as percent when hovered
@@ -146,7 +146,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     .margins(margins)
     .dimension(seasonDim)
     .group(plotGraphSeasonDimGroup)
-    .ordinalColors(colors)
+    // .ordinalColors(colors)
     .colorAccessor(function(d) {
       return d.key[5];
     })
@@ -197,7 +197,7 @@ d3.csv("data/data.csv").then(function(sportData) {
       .margins(margins)
       .rowsCap(10)
       .othersGrouper(false)
-      .ordinalColors(colors)
+      // .ordinalColors(colors)
       .x(scaleLinear)
       .elasticX(true)
       .title(euroSign)
