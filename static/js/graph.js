@@ -180,7 +180,7 @@ d3.csv("data/data.csv").then(function(sportData) {
     .margins(margins)
     .dimension(seasonDim)
     .group(totalSpendPerSeasonDim)
-    .ordinalColors(["#7181A6"])
+    // .ordinalColors(["#7181A6"])
     .x(scaleBand)
     .xUnits(ordUnits)
     .renderHorizontalGridLines(true)
