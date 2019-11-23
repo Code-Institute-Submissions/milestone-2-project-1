@@ -1,14 +1,14 @@
 //calling csv data here then passing though crossfilter function
 d3.csv("data/data.csv").then(function(sportData) {
-  var ndx = crossfilter(sportData);
+  const ndx = crossfilter(sportData);
 
   //adding functions here to be used in graph buliding functions below
   //changes format on x an y  axis  to display in monatary amount
-  var euroFormat = function(d) {
+  const euroFormat = function(d) {
     return "€" + d3.format(".2s")(d);
   };
 
-  var euroSign = function(d) {
+  const euroSign = function(d) {
     return d.key + " €" + d3.format(".2s")(d.value);
   };
   // setting colors variable here that will be passed into colors function in charts below
@@ -32,10 +32,10 @@ d3.csv("data/data.csv").then(function(sportData) {
   dc.config.defaultColors(colors);
 
   //setting height an width variables that will be passed into width an height functions of graphs  charts below
-  var w = 800;
-  var h = 400;
+  let w = 800;
+  let h = 400;
   //setting margins variable that will be passed into margins functions in the charts below
-  var margins = {
+  let margins = {
     top: 0,
     right: 0,
     bottom: 70,
@@ -43,21 +43,21 @@ d3.csv("data/data.csv").then(function(sportData) {
   };
 
   //setting scalebands ordinal units which will be passed on to the xaxis functions of charts and  Graphs below
-  var scaleBand = d3.scaleBand();
-  var ordUnits = dc.units.ordinal;
-  var scaleLinear = d3.scaleLinear();
+  const scaleBand = d3.scaleBand();
+  const ordUnits = dc.units.ordinal;
+  const scaleLinear = d3.scaleLinear();
   //setting graphs variables for graphs an charts below
-  var lineChart = dc.lineChart("#line_graph");
-  var scatterplot = dc.scatterPlot("#scatterplot_graph");
-  var leagueRowChart = dc.rowChart("#leagues_spending_rowchart");
-  var teamsRowChart = dc.rowChart("#teams_spending_rowchart");
-  var pieChart = dc.pieChart("#piechart_players_position");
+  const lineChart = dc.lineChart("#line_graph");
+  const scatterplot = dc.scatterPlot("#scatterplot_graph");
+  const leagueRowChart = dc.rowChart("#leagues_spending_rowchart");
+  const teamsRowChart = dc.rowChart("#teams_spending_rowchart");
+  const pieChart = dc.pieChart("#piechart_players_position");
 
   //dimensions set here
-  var seasonDim = ndx.dimension(function(d) {
+  let seasonDim = ndx.dimension(function(d) {
     return d.Season;
   });
-  var plottingTheDotsDim = ndx.dimension(function(d) {
+  let plottingTheDotsDim = ndx.dimension(function(d) {
     return [
       d.Season,
       d.Transfer_fee,
@@ -67,31 +67,31 @@ d3.csv("data/data.csv").then(function(sportData) {
       d.Position
     ];
   });
-  var leaugeToDim = ndx.dimension(function(d) {
+  let leaugeToDim = ndx.dimension(function(d) {
     return d.League_to;
   });
-  var topTenTeamSpendDim = ndx.dimension(function(d) {
+  let topTenTeamSpendDim = ndx.dimension(function(d) {
     return d.Team_to;
   });
 
-  var playersPositionDim = ndx.dimension(function(d) {
+  let playersPositionDim = ndx.dimension(function(d) {
     return [d.Position];
   });
   //groups
   //setting transfer fee total to be passed into reducesum functions below
-  var transferFeeTotal = function(d) {
+  let transferFeeTotal = function(d) {
     return [d.Transfer_fee];
   };
-  var totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
+  let totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
 
-  var plotGraphSeasonDimGroup = plottingTheDotsDim.group();
+  let plotGraphSeasonDimGroup = plottingTheDotsDim.group();
   // console.log(plotGraphSeasonDimGroup.all());
-  var groupByTransfer = leaugeToDim.group().reduceSum(transferFeeTotal);
+  let groupByTransfer = leaugeToDim.group().reduceSum(transferFeeTotal);
 
-  var topTenTeamSpendGroup = topTenTeamSpendDim
+  let topTenTeamSpendGroup = topTenTeamSpendDim
     .group()
     .reduceSum(transferFeeTotal);
-  var playersPositionGroup = playersPositionDim.group();
+  let playersPositionGroup = playersPositionDim.group();
   // end of reduce an group vatiables
   //setting function for all  charts common functions
   //every chart will be passed to this function
@@ -135,8 +135,8 @@ d3.csv("data/data.csv").then(function(sportData) {
   // Taken from tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
   pieChart.on("renderlet", function() {
     pieChart.selectAll("text.pie-slice").attr("transform", function(d) {
-      var translate = d3.select(this).attr("transform");
-      var ang = ((((d.startAngle + d.endAngle) / 2) * 180) / Math.PI) % 360;
+      let translate = d3.select(this).attr("transform");
+      let ang = ((((d.startAngle + d.endAngle) / 2) * 180) / Math.PI) % 360;
       if (ang < 180) ang -= 90;
       else ang += 90;
       return translate + " rotate(" + ang + ")";
@@ -176,7 +176,6 @@ d3.csv("data/data.csv").then(function(sportData) {
     .renderVerticalGridLines(true)
     .yAxis()
     .tickFormat(euroFormat);
-  console.log(scatterplot);
   //end scatterplot function
 
   //line chart
@@ -229,25 +228,25 @@ d3.csv("data/data.csv").then(function(sportData) {
 //end of graphs section
 document.addEventListener("DOMContentLoaded", function() {
   //adding function to target reset data btn to target  button an reset all data when clicked
-  var resetBtn = document.getElementsByClassName("reset-data-btn");
-  for (var i = 0; i < resetBtn.length; i++) {
+  let resetBtn = document.getElementsByClassName("reset-data-btn");
+  for (let i = 0; i < resetBtn.length; i++) {
     resetBtn[i].addEventListener("click", function() {
       dc.filterAll();
       dc.renderAll();
     });
   }
   //setting all variables for onclick functions here
-  var callOutSection = document.getElementById("callout_text");
-  var transferHistorySection = document.getElementById(
+  let callOutSection = document.getElementById("callout_text");
+  let transferHistorySection = document.getElementById(
     "transfer_history_section"
   );
-  var footer = document.getElementById("footer");
-  var mainSection = document.getElementById("hiding_section_wrapper");
-  var transferHistoryBtn = document.getElementById("transfer_history_btn");
-  var stat_data_btn = document.getElementsByClassName("stats_data_btn");
+  let footer = document.getElementById("footer");
+  let mainSection = document.getElementById("hiding_section_wrapper");
+  let transferHistoryBtn = document.getElementById("transfer_history_btn");
+  let stat_data_btn = document.getElementsByClassName("stats_data_btn");
 
   // targeting data an stats button here as we I want them both to do the same thing
-  for (i = 0; i < stat_data_btn.length; i++) {
+  for (let i = 0; i < stat_data_btn.length; i++) {
     stat_data_btn[i].addEventListener("click", function() {
       callOutSection.classList.add("hide-content");
       mainSection.classList.remove("hide-content");
