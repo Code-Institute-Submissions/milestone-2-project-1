@@ -8,6 +8,10 @@ html {
   font-size: 16px;
 }
 
+/* adding this for the last bit of  text on x axis on linechart  fully visable */
+.dc-chart svg {
+  overflow: visible;
+}
 /* removing all margins and padding from bootsrap rows an cols */
 .container-fluid,
 .container,
@@ -20,11 +24,11 @@ html {
 
 /* targeting the  graphs an charts here */
 /* targeting x axis to add angle tot text to make it visable*/
-.x.axis text {
+/* .x.axis text {
   text-anchor: end !important;
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
-}
+} */
 
 /* adding weight and font size to axis text */
 .x.axis text,

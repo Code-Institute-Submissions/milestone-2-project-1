@@ -52,7 +52,6 @@ d3.csv("data/data.csv").then(function(sportData) {
   const leagueRowChart = dc.rowChart("#leagues_spending_rowchart");
   const teamsRowChart = dc.rowChart("#teams_spending_rowchart");
   const pieChart = dc.pieChart("#piechart_players_position");
-
   //dimensions set here
   let seasonDim = ndx.dimension(function(d) {
     return d.Season;
@@ -93,14 +92,33 @@ d3.csv("data/data.csv").then(function(sportData) {
     .reduceSum(transferFeeTotal);
   let playersPositionGroup = playersPositionDim.group();
   // end of reduce an group vatiables
-  //setting function for all  charts common functions
-  //every chart will be passed to this function
+
+  //charts section
+  //adding functions here to change the angle of the line chart and scatterplot chart
+  // so text does not overlap
+  lineChart.on("renderlet", function(chart) {
+    // rotate x-axis labels
+    chart
+      .selectAll("g.x text")
+      .attr("transform", "translate(-5,20) rotate(315)");
+  });
+
+  scatterplot.on("renderlet", function(chart) {
+    // rotate x-axis labels
+    chart
+      .selectAll("g.x text")
+      .attr("transform", "translate(-5,20) rotate(315)");
+  });
+  // }
+  // setting function for all  charts common functions
+  // every chart will be passed to this function
   function allCharts(chart) {
     chart
       .width(w)
       .height(h)
       .useViewBoxResizing(true);
   }
+
   //end  making charts
   //pie chart
   allCharts(pieChart);
