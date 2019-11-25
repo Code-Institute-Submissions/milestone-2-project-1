@@ -96,20 +96,19 @@ d3.csv("data/data.csv").then(function(sportData) {
   //charts section
   //adding functions here to change the angle of the line chart and scatterplot chart
   // so text does not overlap
-  lineChart.on("renderlet", function(chart) {
-    // rotate x-axis labels
-    chart
-      .selectAll("g.x text")
-      .attr("transform", "translate(-5,20) rotate(315)");
-  });
+  function xaxisAngle(chart) {
+    chart.on("renderlet", function() {
+      // rotate x-axis labels
+      chart
+        .selectAll("g.x text")
+        .attr("transform", "translate(-5,20) rotate(315)");
+    });
+  }
 
-  scatterplot.on("renderlet", function(chart) {
-    // rotate x-axis labels
-    chart
-      .selectAll("g.x text")
-      .attr("transform", "translate(-5,20) rotate(315)");
-  });
-  // }
+  xaxisAngle(scatterplot);
+  xaxisAngle(lineChart);
+  //end of xaxis angle function
+
   // setting function for all  charts common functions
   // every chart will be passed to this function
   function allCharts(chart) {
