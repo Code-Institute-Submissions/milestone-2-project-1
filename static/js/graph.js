@@ -122,6 +122,8 @@ document.addEventListener("DOMContentLoaded", function() {
       chart
         .width(w)
         .height(h)
+        .transitionDuration(1000) // animation speed (1000ms)
+        .transitionDelay(500) // delay animation start (by 500ms)
         .useViewBoxResizing(true);
     }
 
