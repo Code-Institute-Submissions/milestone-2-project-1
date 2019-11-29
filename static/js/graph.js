@@ -1,21 +1,17 @@
+//This will load page once poage Loads
 document.addEventListener("DOMContentLoaded", function() {
   //calling csv data here then passing though crossfilter function
-
+  //Load Data
   d3.csv("data/data.csv").then(function(data) {
     const ndx = crossfilter(data);
-    //csv files have numbers so need to be parsed
+
+    //Loop threw the data an parse transfers fees here
     data.forEach(function(d) {
       d.Transfer_fee = parseInt(d.Transfer_fee);
     });
-    // adding functions here to be used in graph buliding functions below
-    // changes format on x an y  axis  to display in monatary amount
-    const euroFormat = function(d) {
-      return "€" + d3.format(".2s")(d);
-    };
+    //end of parsing data
 
-    const euroSign = function(d) {
-      return d.key + " €" + d3.format(".2s")(d.value);
-    };
+    //This section will create variables that will be passed in to graphs and charts//////////////////////////////////////////////////////////
     // setting colors variable here that will be passed into colors function in charts below
     let colors = [
       "#3F1D1D",
@@ -36,6 +32,16 @@ document.addEventListener("DOMContentLoaded", function() {
     //overriding dc default colors passing In colors var from above
     dc.config.defaultColors(colors);
 
+    // adding functions here to be used in graph buliding functions below
+    // changes format on x an y  axis  to display in monatary amount
+    const euroFormat = function(d) {
+      return "€" + d3.format(".2s")(d);
+    };
+
+    const euroSign = function(d) {
+      return d.key + " €" + d3.format(".2s")(d.value);
+    };
+
     //setting height an width variables that will be passed into width an height functions of graphs  charts below
     let w = 800;
     let h = 400;
@@ -46,8 +52,41 @@ document.addEventListener("DOMContentLoaded", function() {
       bottom: 70,
       left: 70
     };
+    //Varaible for Pie Chart title added  here
+    let pieChartLegend = dc
+      .legend()
+      .x(4)
+      .y(0)
+      .itemHeight(16)
+      .gap(2);
 
-    //setting scalebands ordinal units which will be passed on to the xaxis functions of charts and  Graphs below
+    //Variable for piechart title added  here so the position of the player and percentage is displayed
+    let pieChartTitle = function(d) {
+      return (
+        d.key[0] +
+        " " +
+        Math.floor((d.value / ndx.groupAll().value()) * 100) +
+        "%"
+      );
+    };
+    //Varaiable added here for scatterplot function
+    let scatterplotTitle = function(d) {
+      return (
+        "In " +
+        d.key[0] +
+        " " +
+        d.key[2] +
+        " Was Transfered From " +
+        d.key[3] +
+        " to " +
+        d.key[4] +
+        " for €" +
+        d3.format(".2s")(d.key[1])
+      );
+    };
+
+    //setting scalebands ordinal units an scaleBand to variables
+    //which will be passed on to the x-axis functions of charts and  Graphs below
     const scaleBand = d3.scaleBand();
     const ordUnits = dc.units.ordinal;
     const scaleLinear = d3.scaleLinear();
@@ -57,10 +96,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const lineChart = dc.lineChart("#line_graph");
     const leagueRowChart = dc.rowChart("#leagues_spending_rowchart");
     const teamsRowChart = dc.rowChart("#teams_spending_rowchart");
-    //dimensions set here
+    //end of variables section///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //Start of Dimension an group section ////////////////////////////////////////////////////////////////////////////////////////////
+    //All dimensions set here with will passed Into dimension functions of charts an graphs
     let seasonDim = ndx.dimension(function(d) {
       return d.Season;
     });
+
     let plottingTheDotsDim = ndx.dimension(function(d) {
       return [
         d.Season,
@@ -71,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
         d.Position
       ];
     });
+
     let leaugeToDim = ndx.dimension(function(d) {
       return d.League_to;
     });
@@ -79,10 +123,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     let playersPositionDim = ndx.dimension(function(d) {
-      return d.Position;
+      return [d.Position];
     });
 
-    //groups set here
+    //All dimensions are grouped below
     //setting transfer fee total to be passed into reducesum functions below
     let transferFeeTotal = function(d) {
       return [d.Transfer_fee];
@@ -97,106 +141,49 @@ document.addEventListener("DOMContentLoaded", function() {
       .group()
       .reduceSum(transferFeeTotal);
     let playersPositionGroup = playersPositionDim.group();
-    console.log(playersPositionGroup.all());
-    // end of reduce an group vatiables
+    // end of reduce an group vatiables///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //charts section
-    //adding function here to change the angle of the line chart and scatterplot chart
-    // so text does not overlap
-    function xaxisAngle(chart) {
-      chart.on("renderlet", function() {
-        // rotate x-axis labels
-        chart
-          .selectAll("g.x text")
-          .attr("transform", "translate(-5,20) rotate(315)");
-      });
-    }
-    //passing scatterplot and linechart into function from above
-    xaxisAngle(scatterplot);
-    xaxisAngle(lineChart);
-    //end of xaxis angle function
-
-    // setting function for all  charts common functions
-    // every chart will be passed to this function
+    //Start of chart building section////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //First function is created  for all charts and there common functions
+    //Every chart will be passed to this function
     function allCharts(chart) {
       chart
         .width(w)
         .height(h)
-        .transitionDuration(1000) // animation speed (1000ms)
+        .transitionDuration(1200) // animation speed (1000ms)
         .transitionDelay(500) // delay animation start (by 500ms)
         .useViewBoxResizing(true);
     }
-
-    //end  making charts
-    //pie chart
+    //Pie chart
     allCharts(pieChart);
     pieChart
       .dimension(playersPositionDim)
       .group(playersPositionGroup)
       .slicesCap(13)
       .othersGrouper(false)
-      .legend(
-        dc
-          .legend()
-          .x(4)
-          .y(0)
-          .itemHeight(16)
-          .gap(2)
-      )
+      .legend(pieChartLegend)
       // title will display as percent when hovered
-      .title(function(d) {
-        return (
-          // d.key[0] +
-          // " " +
-          Math.floor((d.value / ndx.groupAll().value()) * 100) + "%"
-        );
-      })
+      .title(pieChartTitle)
       .renderTitle(true);
     // end  pie chart
-
-    // Used to override the default angle of the text in pie chart
-    // Taken from tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
-    pieChart.on("renderlet", function() {
-      pieChart.selectAll("text.pie-slice").attr("transform", function(d) {
-        let translate = d3.select(this).attr("transform");
-        let ang = ((((d.startAngle + d.endAngle) / 2) * 180) / Math.PI) % 360;
-        if (ang < 180) ang -= 90;
-        else ang += 90;
-        return translate + " rotate(" + ang + ")";
-      });
-    });
-    //  end of override function
-
     //scatterplot
     allCharts(scatterplot);
     scatterplot
       .margins(margins)
       .dimension(seasonDim)
       .group(plotGraphSeasonDimGroup)
+      .title(scatterplotTitle)
       .ordinalColors(colors)
       .colorAccessor(function(d) {
         return d.key[5];
       })
-      .title(function(d) {
-        return (
-          "In " +
-          d.key[0] +
-          " " +
-          d.key[2] +
-          " Was Transfered From " +
-          d.key[3] +
-          " to " +
-          d.key[4] +
-          " for €" +
-          d3.format(".2s")(d.key[1])
-        );
-      })
       .x(scaleBand)
       .xUnits(ordUnits)
       .brushOn(false)
-      .symbolSize(6)
-      .clipPadding(1)
-      .renderVerticalGridLines(true)
+      .symbolSize(10)
+      .clipPadding(10)
+      .renderHorizontalGridLines(true) // show chart lines (horizontal)
+      .renderVerticalGridLines(true) // show chart lines (verical)
       .yAxis()
       .tickFormat(euroFormat);
     //end scatterplot function
@@ -223,7 +210,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .margins(margins)
         .rowsCap(10)
         .othersGrouper(false)
-        // .ordinalColors(colors)
         .x(scaleLinear)
         .elasticX(true)
         .title(euroSign)
@@ -238,50 +224,77 @@ document.addEventListener("DOMContentLoaded", function() {
     rowCharts(leagueRowChart);
     leagueRowChart.dimension(leaugeToDim).group(groupByTransfer);
     //end league top ten row chart
-
     //teams top ten row chart
     //passed through allCharts and row Charts functions
     allCharts(teamsRowChart);
     rowCharts(teamsRowChart);
     teamsRowChart.dimension(topTenTeamSpendDim).group(topTenTeamSpendGroup);
     //end teams top ten row chart
-    //player position pie chart
     dc.renderAll();
-  });
-  //end of graphs section
+    //end of graphs section////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  //adding function to target reset data btn to target  button an reset all data when clicked
-  let resetBtn = document.getElementsByClassName("reset-data-btn");
-  for (let i = 0; i < resetBtn.length; i++) {
-    resetBtn[i].addEventListener("click", function() {
-      dc.filterAll();
-      dc.renderAll();
+    //2 functions added below to override default text angle of linechart,scatterplot chart an piechart
+    //Scatterplot and Linechart function
+    function xaxisAngle(chart) {
+      chart.on("renderlet", function() {
+        // rotate x-axis labels
+        chart
+          .selectAll("g.x text")
+          .attr("transform", "translate(-40,30) rotate(315)");
+      });
+    }
+    //passing scatterplot and linechart into function from above
+    xaxisAngle(scatterplot);
+    xaxisAngle(lineChart);
+    //end of xaxis angle function
+
+    // Taken from tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
+    //Pie Chart function
+    pieChart.on("renderlet", function() {
+      pieChart.selectAll("text.pie-slice").attr("transform", function(d) {
+        let translate = d3.select(this).attr("transform");
+        let ang = ((((d.startAngle + d.endAngle) / 2) * 180) / Math.PI) % 360;
+        if (ang < 180) ang -= 90;
+        else ang += 90;
+        return translate + " rotate(" + ang + ")";
+      });
     });
-  }
-  //setting all variables for onclick functions here
-  let callOutSection = document.getElementById("callout_text");
-  let transferHistorySection = document.getElementById(
-    "transfer_history_section"
-  );
-  let footer = document.getElementById("footer");
-  let mainSection = document.getElementById("hiding_section_wrapper");
-  let transferHistoryBtn = document.getElementById("transfer_history_btn");
-  let stat_data_btn = document.getElementsByClassName("stats_data_btn");
+    //end of piechart function
 
-  // targeting data an stats button here as we I want them both to do the same thing
-  for (let i = 0; i < stat_data_btn.length; i++) {
-    stat_data_btn[i].addEventListener("click", function() {
+    //adding function to target reset data btn to target  button an reset all data when clicked
+    let resetBtn = document.getElementsByClassName("reset-data-btn");
+    for (let i = 0; i < resetBtn.length; i++) {
+      resetBtn[i].addEventListener("click", function() {
+        dc.filterAll();
+        dc.renderAll();
+      });
+    }
+    //setting all variables for onclick functions here
+    let callOutSection = document.getElementById("callout_text");
+    let transferHistorySection = document.getElementById(
+      "transfer_history_section"
+    );
+    let footer = document.getElementById("footer");
+    let mainSection = document.getElementById("hiding_section_wrapper");
+    let transferHistoryBtn = document.getElementById("transfer_history_btn");
+    let stat_data_btn = document.getElementsByClassName("stats_data_btn");
+
+    // targeting data an stats button here as we I want them both to do the same thing
+    for (let i = 0; i < stat_data_btn.length; i++) {
+      stat_data_btn[i].addEventListener("click", function() {
+        callOutSection.classList.add("hide-content");
+        mainSection.classList.remove("hide-content");
+        footer.classList.remove("hide-content");
+        transferHistorySection.classList.add("hide-content");
+      });
+    }
+
+    transferHistoryBtn.addEventListener("click", function() {
       callOutSection.classList.add("hide-content");
-      mainSection.classList.remove("hide-content");
+      mainSection.classList.add("hide-content");
+      transferHistorySection.classList.remove("hide-content");
       footer.classList.remove("hide-content");
-      transferHistorySection.classList.add("hide-content");
     });
-  }
-
-  transferHistoryBtn.addEventListener("click", function() {
-    callOutSection.classList.add("hide-content");
-    mainSection.classList.add("hide-content");
-    transferHistorySection.classList.remove("hide-content");
-    footer.classList.remove("hide-content");
   });
 });
+//End of Dom Manipulation section///////////////////////////////////////////////////////////////////////////////////////
