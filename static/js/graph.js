@@ -1,4 +1,4 @@
-//This will load page once poage Loads
+//This will load page once page Loads
 document.addEventListener("DOMContentLoaded", function() {
   //calling csv data here then passing though crossfilter function
   //Load Data
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
       bottom: 70,
       left: 70
     };
-    //Varaible for Pie Chart title added  here
+    //Varaible for Pie Chart Legend  added  here
     let pieChartLegend = dc
       .legend()
       .x(4)
@@ -187,7 +187,6 @@ document.addEventListener("DOMContentLoaded", function() {
       .yAxis()
       .tickFormat(euroFormat);
     //end scatterplot function
-
     //line chart
     allCharts(lineChart);
     lineChart
@@ -259,42 +258,43 @@ document.addEventListener("DOMContentLoaded", function() {
         return translate + " rotate(" + ang + ")";
       });
     });
-    //end of piechart function
+  });
+  //end of piechart function
 
-    //adding function to target reset data btn to target  button an reset all data when clicked
-    let resetBtn = document.getElementsByClassName("reset-data-btn");
-    for (let i = 0; i < resetBtn.length; i++) {
-      resetBtn[i].addEventListener("click", function() {
-        dc.filterAll();
-        dc.renderAll();
-      });
-    }
-    //setting all variables for onclick functions here
-    let callOutSection = document.getElementById("callout_text");
-    let transferHistorySection = document.getElementById(
-      "transfer_history_section"
-    );
-    let footer = document.getElementById("footer");
-    let mainSection = document.getElementById("hiding_section_wrapper");
-    let transferHistoryBtn = document.getElementById("transfer_history_btn");
-    let stat_data_btn = document.getElementsByClassName("stats_data_btn");
-
-    // targeting data an stats button here as we I want them both to do the same thing
-    for (let i = 0; i < stat_data_btn.length; i++) {
-      stat_data_btn[i].addEventListener("click", function() {
-        callOutSection.classList.add("hide-content");
-        mainSection.classList.remove("hide-content");
-        footer.classList.remove("hide-content");
-        transferHistorySection.classList.add("hide-content");
-      });
-    }
-
-    transferHistoryBtn.addEventListener("click", function() {
-      callOutSection.classList.add("hide-content");
-      mainSection.classList.add("hide-content");
-      transferHistorySection.classList.remove("hide-content");
-      footer.classList.remove("hide-content");
+  //Dom Manipulation section///////////////////////////////////////////////////////////////////////////////////////
+  //adding function to target reset data btn to target  button an reset all data when clicked
+  let resetBtn = document.getElementsByClassName("reset-data-btn");
+  for (let i = 0; i < resetBtn.length; i++) {
+    resetBtn[i].addEventListener("click", function() {
+      dc.filterAll();
+      dc.renderAll();
     });
+  }
+  //setting all variables for onclick functions here
+  let callOutSection = document.getElementById("callout_text");
+  let transferHistorySection = document.getElementById(
+    "transfer_history_section"
+  );
+  let footer = document.getElementById("footer");
+  let mainSection = document.getElementById("hiding_section_wrapper");
+  let transferHistoryBtn = document.getElementById("transfer_history_btn");
+  let stat_data_btn = document.getElementsByClassName("stats_data_btn");
+
+  // targeting data an stats button here as we I want them both to do the same thing
+  for (let i = 0; i < stat_data_btn.length; i++) {
+    stat_data_btn[i].addEventListener("click", function() {
+      callOutSection.classList.add("hide-content");
+      mainSection.classList.remove("hide-content");
+      footer.classList.remove("hide-content");
+      transferHistorySection.classList.add("hide-content");
+    });
+  }
+
+  transferHistoryBtn.addEventListener("click", function() {
+    callOutSection.classList.add("hide-content");
+    mainSection.classList.add("hide-content");
+    transferHistorySection.classList.remove("hide-content");
+    footer.classList.remove("hide-content");
   });
 });
 //End of Dom Manipulation section///////////////////////////////////////////////////////////////////////////////////////
