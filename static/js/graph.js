@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
       return d.key + " €" + d3.format(".2s")(d.value);
     };
 
-    //setting height an width variables that will be passed into width an height functions of graphs  charts below
+    //setting height an width variables that will be passed into width an height functions of graphs and charts below
     let w = 800;
     let h = 400;
     //setting margins variable that will be passed into margins functions in the charts below
@@ -69,7 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
         "%"
       );
     };
-    //Varaiable added here for scatterplot function
+    //Variable added here for scatterplot Title function
+    //This will display season, players name, season he was transferd,
+    //teams from and too and the amount transfered for when scatterplot dot is hovered over
     let scatterplotTitle = function(d) {
       return (
         "In " +
@@ -85,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
       );
     };
 
-    //setting scalebands ordinal units an scaleBand to variables
+    //setting scaleLinear, ordinal units an scaleBand to variables
     //which will be passed on to the x-axis functions of charts and  Graphs below
     const scaleBand = d3.scaleBand();
     const ordUnits = dc.units.ordinal;
@@ -100,10 +102,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Start of Dimension an group section ////////////////////////////////////////////////////////////////////////////////////////////
     //All dimensions set here with will passed Into dimension functions of charts an graphs
+    //returning the season here
     let seasonDim = ndx.dimension(function(d) {
       return d.Season;
     });
-
+    //returning the season,transfer fee, players name,
+    //team transferd from and team transfered too as well as players position here
     let plottingTheDotsDim = ndx.dimension(function(d) {
       return [
         d.Season,
@@ -114,14 +118,15 @@ document.addEventListener("DOMContentLoaded", function() {
         d.Position
       ];
     });
-
+    //returning the league  here
     let leaugeToDim = ndx.dimension(function(d) {
       return d.League_to;
     });
+    //returning the team transfered too here
     let topTenTeamSpendDim = ndx.dimension(function(d) {
       return d.Team_to;
     });
-
+    //returning the Players position  here
     let playersPositionDim = ndx.dimension(function(d) {
       return [d.Position];
     });
@@ -131,15 +136,17 @@ document.addEventListener("DOMContentLoaded", function() {
     let transferFeeTotal = function(d) {
       return [d.Transfer_fee];
     };
+    //Reducing hte season data by the transfer amount here
     let totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
-
+    //grouping all the data from the plottingTheDotsDim variable to be used on scatterplot
     let plotGraphSeasonDimGroup = plottingTheDotsDim.group();
-    // console.log(plotGraphSeasonDimGroup.all());
+    //Reducing the the leauge too data by the transfer fee total
     let groupByTransfer = leaugeToDim.group().reduceSum(transferFeeTotal);
-
+    //Reducing the team to data by transfer fee total
     let topTenTeamSpendGroup = topTenTeamSpendDim
       .group()
       .reduceSum(transferFeeTotal);
+    //Grouping  the players position data
     let playersPositionGroup = playersPositionDim.group();
     // end of reduce an group vatiables///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -262,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function() {
   //end of piechart function
 
   //Dom Manipulation section///////////////////////////////////////////////////////////////////////////////////////
-  //adding function to target reset data btn to target  button an reset all data when clicked
+  //adding function to target reset data btn to target  button and reset all data when clicked
   let resetBtn = document.getElementsByClassName("reset-data-btn");
   for (let i = 0; i < resetBtn.length; i++) {
     resetBtn[i].addEventListener("click", function() {
@@ -281,6 +288,8 @@ document.addEventListener("DOMContentLoaded", function() {
   let stat_data_btn = document.getElementsByClassName("stats_data_btn");
 
   // targeting data an stats button here as we I want them both to do the same thing
+  //When the stats or data buttonss are clicked
+  //Main callout section will be hidden and data section and footer will be visable
   for (let i = 0; i < stat_data_btn.length; i++) {
     stat_data_btn[i].addEventListener("click", function() {
       callOutSection.classList.add("hide-content");
@@ -289,7 +298,9 @@ document.addEventListener("DOMContentLoaded", function() {
       transferHistorySection.classList.add("hide-content");
     });
   }
-
+  //When transfer history button is clicked
+  //Callout section and main section will be hidden
+  //Transfer history section and footer will be visable
   transferHistoryBtn.addEventListener("click", function() {
     callOutSection.classList.add("hide-content");
     mainSection.classList.add("hide-content");
