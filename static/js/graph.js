@@ -240,8 +240,7 @@ document.addEventListener("DOMContentLoaded", function() {
     dc.renderAll();
 
     /*2 functions added below to override 
-    default text angle of linechart,scatterplot an piechart
-    scatterplot and Linechart function*/
+    default text angle of linechart, scatterplot and piechart*/
 
     function xaxisAngle(chart) {
       chart.on("renderlet", function() {
