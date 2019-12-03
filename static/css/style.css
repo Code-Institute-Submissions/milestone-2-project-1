@@ -7,7 +7,7 @@ html {
   font-size: 16px;
 }
 
-/* adding this to make  the last bit of  text on x axis on linechart  fully visable */
+/* adding this to make  the last bit of  text on x axis on linechart fully visable */
 .dc-chart svg {
   overflow: visible;
 }
@@ -77,8 +77,8 @@ h2,
 }
 
 /* setting margins tops to give enough space between rows that wrap each subsection of the main section here  */
-.transfer_history_section,
-.graph_section {
+.transfer-history-section,
+.graph-section {
   margin-top: 2rem;
 }
 
@@ -86,8 +86,8 @@ h2,
 
 /* buttons  */
 /* targeting data button in callout section here  */
-.data_btn {
-  border: 4px solid white;
+.data-btn {
+  border: 4px solid #ffffff;
   width: 50%;
   font-size: 1.5rem;
   font-weight: 700;
@@ -102,7 +102,7 @@ h2,
 }
 
 /* adding style for reset data button */
-.reset_btn_wrapper {
+.reset-btn-wrapper {
   text-align: center;
 }
 
@@ -122,7 +122,7 @@ h2,
 /* barlow semi condensed added to all smaller text here as well as font size and weight being set  */
 /* also  changing color legend text */
 .footer-copyright,
-.main_header,
+.main-header,
 .reset-data-btn,
 #piechart_players_position,
 g.row text,
@@ -134,23 +134,23 @@ text.pie-slice.pie-label,
 text.row,
 .text-barlow {
   font-family: "Barlow Semi Condensed", sans-serif;
-  color: white;
+  color: #ffffff;
   font-size: 1.1rem;
   font-weight: 700;
-  fill: white;
+  fill: #ffffff;
 }
 
 /* setting font  margin top on main headers here so there not hidden under the fixed navabar */
 /* font size will over ride font size on main header from above */
-.main_header {
+.main-header {
   margin-top: 7rem;
   font-size: 2rem;
 }
 
 /* setting background color of all  sections */
 #footer,
-#transfer_history_section,
-#hiding_section_wrapper {
+#transfer-history-section,
+#hiding-section-wrapper {
   background-color: #000000;
 }
 
@@ -206,7 +206,7 @@ i {
 }
 
 /* positioning callout text here  */
-#callout_text {
+#callout-text {
   margin-top: 1.5rem;
   position: relative;
 }
@@ -232,8 +232,8 @@ i {
   }
 
   /* targeting data button in callout section here  */
-  .data_btn {
-    border: 4px solid white;
+  .data-btn {
+    border: 4px solid#ffffff;
     margin: 0 0.2rem 0 0.2rem;
     font-size: 2.5rem;
     font-weight: 700;
@@ -241,7 +241,7 @@ i {
   }
 
   /* setting larger font size foe main text of callout page here for small tablets and bigger devices */
-  .callout_main_text {
+  .callout-main-text {
     font-size: 2rem;
   }
 
@@ -252,8 +252,8 @@ i {
   }
 
   /* linegraph an transfer history section setting differnt margin top here to giv more space on small tablets and bigger devices */
-  .transfer_history_section,
-  .graph_section {
+  .transfer-history-section,
+  .graph-section {
     margin-top: 4.5rem;
   }
 }
@@ -272,12 +272,12 @@ i {
   }
 
   /* setting  smaller callout section text here  */
-  .callout_main_text {
+  .callout-main-text {
     font-size: 1rem;
   }
 
   /* setting smaller font size */
-  .data_btn {
+  .data-btn {
     font-size: 1rem;
     width: 30%;
   }

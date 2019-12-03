@@ -102,11 +102,11 @@ document.addEventListener("DOMContentLoaded", function() {
     /*setting graphs variables for 
     graphs an charts below*/
 
-    const pieChart = dc.pieChart("#piechart_players_position");
-    const scatterplot = dc.scatterPlot("#scatterplot_graph");
-    const lineChart = dc.lineChart("#line_graph");
-    const leagueRowChart = dc.rowChart("#leagues_spending_rowchart");
-    const teamsRowChart = dc.rowChart("#teams_spending_rowchart");
+    const pieChart = dc.pieChart("#piechart-players-position");
+    const scatterplot = dc.scatterPlot("#scatterplot-graph");
+    const lineChart = dc.lineChart("#line-graph");
+    const leagueRowChart = dc.rowChart("#leagues-spending-rowchart");
+    const teamsRowChart = dc.rowChart("#teams-spending-rowchart");
 
     /*Start of Dimension an group section 
     All dimensions and groups  set here with will 
@@ -233,6 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
     allCharts(leagueRowChart);
     rowCharts(leagueRowChart);
     leagueRowChart.dimension(leaugeToDim).group(groupByTransfer);
+
     allCharts(teamsRowChart);
     rowCharts(teamsRowChart);
     teamsRowChart.dimension(topTenTeamSpendDim).group(topTenTeamSpendGroup);
@@ -281,14 +282,14 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  let callOutSection = document.getElementById("callout_text");
+  let callOutSection = document.getElementById("callout-text");
   let transferHistorySection = document.getElementById(
-    "transfer_history_section"
+    "transfer-history-section"
   );
   let footer = document.getElementById("footer");
-  let mainSection = document.getElementById("hiding_section_wrapper");
-  let transferHistoryBtn = document.getElementById("transfer_history_btn");
-  let stat_data_btn = document.getElementsByClassName("stats_data_btn");
+  let mainSection = document.getElementById("hiding-section-wrapper");
+  let transferHistoryBtn = document.getElementById("transfer-history-btn");
+  let stat_data_btn = document.getElementsByClassName("stats-data-btn");
 
   /* targeting data an stats button here 
      adding and removing hide content section when clicked
