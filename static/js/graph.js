@@ -1,18 +1,20 @@
-//This will load page once page Loads
 document.addEventListener("DOMContentLoaded", function() {
-  //calling csv data here then passing though crossfilter function
-  //Load Data
   d3.csv("data/data.csv").then(function(data) {
+    /*calling csv data here then 
+    passing though crossfilter function*/
+
     const ndx = crossfilter(data);
 
-    //Loop threw the data an parse transfers fees here
+    /* Looping threw the data and 
+    parsing transfers fees data here */
+
     data.forEach(function(d) {
       d.Transfer_fee = parseInt(d.Transfer_fee);
     });
-    //end of parsing data
 
-    //This section will create variables that will be passed in to graphs and charts//////////////////////////////////////////////////////////
-    // setting colors variable here that will be passed into colors function in charts below
+    /*Variables section all variables will be passed 
+    Into graph building functions below*/
+
     let colors = [
       "#3F1D1D",
       "#4F272D",
@@ -29,11 +31,12 @@ document.addEventListener("DOMContentLoaded", function() {
       "#47E0CE",
       "#5AF1C9"
     ];
-    //overriding dc default colors passing In colors var from above
-    dc.config.defaultColors(colors);
 
-    // adding functions here to be used in graph buliding functions below
-    // changes format on x an y  axis  to display in monatary amount
+    dc.config.defaultColors(colors); //overriding dc default colors
+
+    /* adding functions here to be used in graph buliding functions below
+     changes format on x an y  axis to display in monatary amount */
+
     const euroFormat = function(d) {
       return "€" + d3.format(".2s")(d);
     };
@@ -42,17 +45,16 @@ document.addEventListener("DOMContentLoaded", function() {
       return d.key + " €" + d3.format(".2s")(d.value);
     };
 
-    //setting height an width variables that will be passed into width an height functions of graphs and charts below
     let w = 800;
     let h = 400;
-    //setting margins variable that will be passed into margins functions in the charts below
+
     let margins = {
       top: 0,
       right: 0,
       bottom: 70,
       left: 70
     };
-    //Varaible for Pie Chart Legend  added  here
+
     let pieChartLegend = dc
       .legend()
       .x(4)
@@ -60,7 +62,9 @@ document.addEventListener("DOMContentLoaded", function() {
       .itemHeight(16)
       .gap(2);
 
-    //Variable for piechart title added  here so the position of the player and percentage is displayed
+    /*Variable for piechart title added  here so 
+    the position of the player and percentage is displayed*/
+
     let pieChartTitle = function(d) {
       return (
         d.key[0] +
@@ -69,9 +73,10 @@ document.addEventListener("DOMContentLoaded", function() {
         "%"
       );
     };
-    //Variable added here for scatterplot Title function
-    //This will display season, players name, season he was transferd,
-    //teams from and too and the amount transfered for when scatterplot dot is hovered over
+
+    /*Variable added here for scatterplot title function
+    this will display season, players name, season he was transferd */
+
     let scatterplotTitle = function(d) {
       return (
         "In " +
@@ -87,27 +92,30 @@ document.addEventListener("DOMContentLoaded", function() {
       );
     };
 
-    //setting scaleLinear, ordinal units an scaleBand to variables
-    //which will be passed on to the x-axis functions of charts and  Graphs below
+    /*setting scaleLinear, ordinal units an scaleBand to variables
+      which will be passed on to the x-axis functions of charts and  graphs below */
+
     const scaleBand = d3.scaleBand();
     const ordUnits = dc.units.ordinal;
     const scaleLinear = d3.scaleLinear();
-    //setting graphs variables for graphs an charts below
+
+    /*setting graphs variables for 
+    graphs an charts below*/
+
     const pieChart = dc.pieChart("#piechart_players_position");
     const scatterplot = dc.scatterPlot("#scatterplot_graph");
     const lineChart = dc.lineChart("#line_graph");
     const leagueRowChart = dc.rowChart("#leagues_spending_rowchart");
     const teamsRowChart = dc.rowChart("#teams_spending_rowchart");
-    //end of variables section///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //Start of Dimension an group section ////////////////////////////////////////////////////////////////////////////////////////////
-    //All dimensions set here with will passed Into dimension functions of charts an graphs
-    //returning the season here
+    /*Start of Dimension an group section 
+    All dimensions and groups  set here with will 
+    passed Into dimension functions of charts an graphs*/
+
     let seasonDim = ndx.dimension(function(d) {
       return d.Season;
     });
-    //returning the season,transfer fee, players name,
-    //team transferd from and team transfered too as well as players position here
+
     let plottingTheDotsDim = ndx.dimension(function(d) {
       return [
         d.Season,
@@ -118,50 +126,48 @@ document.addEventListener("DOMContentLoaded", function() {
         d.Position
       ];
     });
-    //returning the league  here
+
     let leaugeToDim = ndx.dimension(function(d) {
       return d.League_to;
     });
-    //returning the team transfered too here
+
     let topTenTeamSpendDim = ndx.dimension(function(d) {
       return d.Team_to;
     });
-    //returning the Players position  here
+
     let playersPositionDim = ndx.dimension(function(d) {
       return [d.Position];
     });
 
-    //All dimensions are grouped below
-    //setting transfer fee total to be passed into reducesum functions below
     let transferFeeTotal = function(d) {
       return [d.Transfer_fee];
     };
-    //Reducing hte season data by the transfer amount here
+
     let totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
-    //grouping all the data from the plottingTheDotsDim variable to be used on scatterplot
+
     let plotGraphSeasonDimGroup = plottingTheDotsDim.group();
-    //Reducing the the leauge too data by the transfer fee total
+
     let groupByTransfer = leaugeToDim.group().reduceSum(transferFeeTotal);
-    //Reducing the team to data by transfer fee total
+
     let topTenTeamSpendGroup = topTenTeamSpendDim
       .group()
       .reduceSum(transferFeeTotal);
-    //Grouping  the players position data
-    let playersPositionGroup = playersPositionDim.group();
-    // end of reduce an group vatiables///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //Start of chart building section////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //First function is created  for all charts and there common functions
-    //Every chart will be passed to this function
+    let playersPositionGroup = playersPositionDim.group();
+
+    /*Start of chart building section
+       first function is created  for all charts and there common functions
+       every chart will be passed to this function*/
+
     function allCharts(chart) {
       chart
         .width(w)
         .height(h)
-        .transitionDuration(1200) // animation speed (1000ms)
-        .transitionDelay(500) // delay animation start (by 500ms)
+        .transitionDuration(1200)
+        .transitionDelay(500)
         .useViewBoxResizing(true);
     }
-    //Pie chart
+
     allCharts(pieChart);
     pieChart
       .dimension(playersPositionDim)
@@ -169,11 +175,9 @@ document.addEventListener("DOMContentLoaded", function() {
       .slicesCap(13)
       .othersGrouper(false)
       .legend(pieChartLegend)
-      // title will display as percent when hovered
       .title(pieChartTitle)
       .renderTitle(true);
-    // end  pie chart
-    //scatterplot
+
     allCharts(scatterplot);
     scatterplot
       .margins(margins)
@@ -189,12 +193,11 @@ document.addEventListener("DOMContentLoaded", function() {
       .brushOn(false)
       .symbolSize(10)
       .clipPadding(10)
-      .renderHorizontalGridLines(true) // show chart lines (horizontal)
-      .renderVerticalGridLines(true) // show chart lines (verical)
+      .renderHorizontalGridLines(true)
+      .renderVerticalGridLines(true)
       .yAxis()
       .tickFormat(euroFormat);
-    //end scatterplot function
-    //line chart
+
     allCharts(lineChart);
     lineChart
       .margins(margins)
@@ -209,8 +212,10 @@ document.addEventListener("DOMContentLoaded", function() {
       .title(euroSign)
       .yAxis()
       .tickFormat(euroFormat);
-    //end of linechart
-    //adding function here for common functions in both row charts
+
+    /*adding function here for common 
+    functions in both row charts*/
+
     function rowCharts(chart) {
       chart
         .margins(margins)
@@ -224,23 +229,20 @@ document.addEventListener("DOMContentLoaded", function() {
         .ticks(5)
         .tickFormat(euroFormat);
     }
-    //league top ten row chart
-    //passed through allCharts and row Charts functions
+
     allCharts(leagueRowChart);
     rowCharts(leagueRowChart);
     leagueRowChart.dimension(leaugeToDim).group(groupByTransfer);
-    //end league top ten row chart
-    //teams top ten row chart
-    //passed through allCharts and row Charts functions
     allCharts(teamsRowChart);
     rowCharts(teamsRowChart);
     teamsRowChart.dimension(topTenTeamSpendDim).group(topTenTeamSpendGroup);
-    //end teams top ten row chart
-    dc.renderAll();
-    //end of graphs section////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //2 functions added below to override default text angle of linechart,scatterplot chart an piechart
-    //Scatterplot and Linechart function
+    dc.renderAll();
+
+    /*2 functions added below to override 
+    default text angle of linechart,scatterplot an piechart
+    scatterplot and Linechart function*/
+
     function xaxisAngle(chart) {
       chart.on("renderlet", function() {
         // rotate x-axis labels
@@ -249,13 +251,12 @@ document.addEventListener("DOMContentLoaded", function() {
           .attr("transform", "translate(-40,30) rotate(315)");
       });
     }
-    //passing scatterplot and linechart into function from above
     xaxisAngle(scatterplot);
     xaxisAngle(lineChart);
-    //end of xaxis angle function
 
-    // Taken from tutorial found at https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart
-    //Pie Chart function
+    /* Taken from tutorial found at 
+    https://stackoverflow.com/questions/38901300/rotate-pie-label-in-dc-js-pie-chart*/
+
     pieChart.on("renderlet", function() {
       pieChart.selectAll("text.pie-slice").attr("transform", function(d) {
         let translate = d3.select(this).attr("transform");
@@ -266,10 +267,13 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   });
-  //end of piechart function
 
-  //Dom Manipulation section///////////////////////////////////////////////////////////////////////////////////////
-  //adding function to target reset data btn to target  button and reset all data when clicked
+  /*All functions added below 
+       target the dom*/
+
+  /* targeting both  button to  reset 
+  all data when clicked */
+
   let resetBtn = document.getElementsByClassName("reset-data-btn");
   for (let i = 0; i < resetBtn.length; i++) {
     resetBtn[i].addEventListener("click", function() {
@@ -277,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function() {
       dc.renderAll();
     });
   }
-  //setting all variables for onclick functions here
+
   let callOutSection = document.getElementById("callout_text");
   let transferHistorySection = document.getElementById(
     "transfer_history_section"
@@ -287,9 +291,10 @@ document.addEventListener("DOMContentLoaded", function() {
   let transferHistoryBtn = document.getElementById("transfer_history_btn");
   let stat_data_btn = document.getElementsByClassName("stats_data_btn");
 
-  // targeting data an stats button here as we I want them both to do the same thing
-  //When the stats or data buttonss are clicked
-  //Main callout section will be hidden and data section and footer will be visable
+  /* targeting data an stats button here 
+     adding and removing hide content section when clicked
+  */
+
   for (let i = 0; i < stat_data_btn.length; i++) {
     stat_data_btn[i].addEventListener("click", function() {
       callOutSection.classList.add("hide-content");
@@ -298,9 +303,10 @@ document.addEventListener("DOMContentLoaded", function() {
       transferHistorySection.classList.add("hide-content");
     });
   }
-  //When transfer history button is clicked
-  //Callout section and main section will be hidden
-  //Transfer history section and footer will be visable
+  /* targeting transfer history section button here
+   adding and removing hide content section when clicked
+   */
+
   transferHistoryBtn.addEventListener("click", function() {
     callOutSection.classList.add("hide-content");
     mainSection.classList.add("hide-content");
@@ -308,4 +314,3 @@ document.addEventListener("DOMContentLoaded", function() {
     footer.classList.remove("hide-content");
   });
 });
-//End of Dom Manipulation section///////////////////////////////////////////////////////////////////////////////////////
