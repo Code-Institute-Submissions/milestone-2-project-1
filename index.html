@@ -53,7 +53,6 @@
             </li>
             <li class="nav-item">
               <!-- when stats button is clicked it hides callout and transfer history sections an shows data and footer sections -->
-              <!-- this is done my adding and  removing hide-content class with javascirpt in the graph.js file. -->
               <a
                 href="#"
                 class="nav-link text-barlow nav-border stats_data_btn"
@@ -64,7 +63,6 @@
             </li>
             <li class="nav-item nav-border">
               <!-- when transfer history button is clicked it hides callout and data sections an shows  and transfer footer sections -->
-              <!-- this is done my adding and  removing hide-content class with javascirpt in the graph.js file. -->
               <a
                 class="nav-link text-barlow transfer_history_btn"
                 id="transfer_history_btn"
@@ -78,8 +76,7 @@
       </nav>
     </header>
     <!-- Callout section -->
-    <!-- bootsrap col and row classes used here section is the row an a col-8 
-      Is centered in the row an conatins the main callout text -->
+    <!-- bootsrap col and row classes used here section is the row an a col-8 conatins the main callout text -->
     <main>
       <section
         class="container-fluid img-wrapper callout-container row"
@@ -107,7 +104,7 @@
         </div>
       </section>
       <!-- end of callout section -->
-      <!-- main graphs section -->
+      <!-- start main graphs section -->
       <!-- all graphs will be added in this section -->
       <section class="container-fluid hide-content" id="hiding_section_wrapper">
         <!-- row here wraps main header and will take up full column on all devices-->
@@ -124,11 +121,10 @@
             Reset
           </button>
         </div>
-        <!--Pie Chart For Players Position -->
+        <!--start of section-->
         <!-- this row wraps row chart text heading and text -->
         <div class="row  justify-content-center">
           <!-- chart  will be displayed in a col ten on mobile col 8 on desktop and above  -->
-          <!-- ordered will be switchted from text displaying frist above rowchart on mobile to graph first with text to the right on desktop an above -->
           <div
             class="col-10 col-xl-8 order-2 order-xl-1  graph_section"
             id="piechart_players_position"
@@ -152,13 +148,11 @@
             </p>
           </div>
         </div>
-        <!-- end of pie chart -->
-        <!-- start of scatterplot -->
+        <!-- end of section -->
+        <!-- start of section -->
         <!-- this row wraps line graph text heading and text -->
         <div class="row  justify-content-center">
-          <!-- Every Transfer By season scatterplot  graph added here  -->
           <!-- graph will be displayed in a col ten on mobile col 8 on desktop and above  -->
-          <!-- ordered will be switchted from text displaying frist above scatterplot on mobile to graph first with text to the right on desktop an above -->
           <div class="col-10  col-xl-4 text-oswald graph_section">
             <h2>
               Every Transfer By Season
@@ -180,11 +174,10 @@
             id="scatterplot_graph"
           ></div>
         </div>
-        <!-- end of scatterplot graph -->
-        <!-- start of line graph -->
+        <!-- end of section -->
+        <!-- start of section -->
         <!-- this row wraps line graph text heading and text -->
         <div class="row justify-content-center">
-          <!-- total amount spent per season line graph added here  -->
           <!-- graph will be displayed in a col ten on mobile col 8 on desktop and above  -->
           <!-- ordered will be switchted from text displaying first above graph on mobile to graph first with text to the right on desktop an above -->
           <div
@@ -211,7 +204,7 @@
         </div>
         <!-- end of line graph -->
 
-        <!--start of top ten leagues rowchart-->
+        <!--start of section-->
         <!-- this row wraps row chart text heading and text -->
         <div class="row  justify-content-center">
           <!-- chart will be displayed in a col ten on mobile col 8 on desktop and above  -->
@@ -237,8 +230,8 @@
             </p>
           </div>
         </div>
-        <!-- end of top ten leagues row chart -->
-        <!-- start of top ten teams rowchart -->
+        <!-- end of section -->
+        <!-- start of section -->
         <!-- this row wraps row chart text heading and text -->
         <div class="row  justify-content-center">
           <!-- chart  will be displayed in a col ten on mobile col 8 on desktop and above  -->
@@ -272,9 +265,8 @@
           </button>
         </div>
       </section>
-      <!-- football transfer history section -->
+      <!-- start of section -->
       <!-- transfer history section that will only be visable when transfer history btn is was clicked -->
-      <!-- a display none class is added in the css then removed using javascript in graph.js -->
       <section
         id="transfer_history_section"
         class="hide-content container-fluid"
@@ -318,7 +310,7 @@
           </div>
         </div>
         <!-- end of footballs first transfer section -->
-        <!-- footballs first million pound player section -->
+        <!-- start of  section -->
         <!-- this row wraps row chart text heading and text -->
         <div class="row  justify-content-center">
           <!-- Image will be displayed in a col ten on mobile col 6 on desktop and above  -->
@@ -345,7 +337,7 @@
             />
           </div>
         </div>
-        <!-- end of footballs first million pound player section -->
+        <!-- end of section -->
         <!-- footballs first 100  million pound player section -->
         <!-- this row wraps row chart text heading and text -->
         <div class="row  justify-content-center">
@@ -380,8 +372,8 @@
             </p>
           </div>
         </div>
-        <!-- end of footballs first 100 million pound player section -->
-        <!--footballs most expesive player ever section-->
+        <!-- end of section -->
+        <!--start of section-->
         <!-- this row wraps row chart text heading and text -->
         <div class="row  justify-content-center">
           <!-- Image will be displayed in a col ten on mobile col 6 on desktop and above  -->
@@ -408,8 +400,7 @@
             />
           </div>
         </div>
-        <!-- end of footballs most expensive player ever section -->
-        <!-- Is money ruining the beautiful game  -->
+        <!-- end of section -->
         <!-- this row wraps row chart text heading and text -->
         <div class="row  justify-content-center">
           <!-- Video will be displayed in a col ten on mobile col 6 on desktop and above  -->
@@ -440,12 +431,11 @@
             </p>
           </div>
         </div>
-        <!-- end of is money ruining the beautiful game -->
+        <!-- end of is section -->
       </section>
       <!-- end of football transfer history section -->
       <!-- start of Footer -->
       <!-- footer will be hidden when callout section is visable or when home button is clicked -->
-      <!-- this was used by adding display none class in css an reoming it when data, stats, or tranfer history buttons are clicked -->
       <section>
         <footer id="footer" class="hide-content">
           <!-- Copyright -->
