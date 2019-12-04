@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", function() {
   /*All functions added below 
        target the dom*/
 
-  /* targeting both  button to  reset 
+  /* targeting both  buttons to  reset 
   all data when clicked */
 
   let resetBtn = document.getElementsByClassName("reset-data-btn");
@@ -281,6 +281,9 @@ document.addEventListener("DOMContentLoaded", function() {
       dc.renderAll();
     });
   }
+
+  /* Setting variables  for 
+        event Listeners */
 
   let callOutSection = document.getElementById("callout-text");
   let transferHistorySection = document.getElementById(
