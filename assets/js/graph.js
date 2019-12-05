@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  d3.csv("data/data.csv").then(function(data) {
+  d3.csv("assets/data/data.csv").then(function(data) {
     /*calling csv data here then 
     passing though crossfilter function*/
 
