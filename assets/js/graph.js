@@ -38,11 +38,11 @@ document.addEventListener("DOMContentLoaded", function() {
      changes format on x an y  axis to display in monatary amount */
 
     const euroFormat = function(d) {
-      return "€" + d3.format(".2s")(d);
+      return ` € ${d3.format(".2s")(d)}`;
     };
 
     const euroSign = function(d) {
-      return d.key + " €" + d3.format(".2s")(d.value);
+      return ` ${d.key} €${d3.format(".2s")(d.value)}`;
     };
 
     let w = 800;
@@ -66,30 +66,18 @@ document.addEventListener("DOMContentLoaded", function() {
     the position of the player and percentage is displayed*/
 
     let pieChartTitle = function(d) {
-      return (
-        d.key[0] +
-        " " +
-        Math.floor((d.value / ndx.groupAll().value()) * 100) +
-        "%"
-      );
+      return `${d.key[0]} ${Math.floor(
+        (d.value / ndx.groupAll().value()) * 100
+      )}%`;
     };
 
     /*Variable added here for scatterplot title function
     this will display season, players name, season he was transferd */
 
     let scatterplotTitle = function(d) {
-      return (
-        "In " +
-        d.key[0] +
-        " " +
-        d.key[2] +
-        " Was Transfered From " +
-        d.key[3] +
-        " to " +
-        d.key[4] +
-        " for €" +
-        d3.format(".2s")(d.key[1])
-      );
+      return ` In ${d.key[0]} ${d.key[2]} Was Transfered From ${d.key[3]} to ${
+        d.key[4]
+      } for €${d3.format(".2s")(d.key[1])}`;
     };
 
     /*setting scaleLinear, ordinal units an scaleBand to variables
@@ -295,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let stat_data_btn = document.getElementsByClassName("stats-data-btn");
 
   /* targeting data an stats button here 
-     adding and removing hide content section when clicked
+     adding and removing hide content class when clicked
   */
 
   for (let i = 0; i < stat_data_btn.length; i++) {
