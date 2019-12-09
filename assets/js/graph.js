@@ -5,6 +5,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const ndx = crossfilter(data);
 
+    /* declaring width and 
+    height varibales here */
+
+    const WIDTH = 800;
+    const HEIGHT = 400;
+
     /* Looping threw the data and 
     parsing transfers fees data here */
 
@@ -44,9 +50,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const euroSign = function(d) {
       return ` ${d.key} €${d3.format(".2s")(d.value)}`;
     };
-
-    let w = 800;
-    let h = 400;
 
     let margins = {
       top: 0,
@@ -90,6 +93,9 @@ document.addEventListener("DOMContentLoaded", function() {
     /*setting graphs variables for 
     graphs an charts below*/
 
+    // function Chart(dc) {
+    //   this.dc = dc;
+    // }
     const pieChart = dc.pieChart("#piechart-players-position");
     const scatterplot = dc.scatterPlot("#scatterplot-graph");
     const lineChart = dc.lineChart("#line-graph");
@@ -131,7 +137,9 @@ document.addEventListener("DOMContentLoaded", function() {
       return [d.Transfer_fee];
     };
 
-    let totalSpendPerSeasonDim = seasonDim.group().reduceSum(transferFeeTotal);
+    let totalSpendPerSeasonDim = seasonDim.group().reduceSum(function(d) {
+      return d.Transfer_fee;
+    });
 
     let plotGraphSeasonDimGroup = plottingTheDotsDim.group();
 
@@ -149,8 +157,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function allCharts(chart) {
       chart
-        .width(w)
-        .height(h)
+        .width(WIDTH)
+        .height(HEIGHT)
         .transitionDuration(1200)
         .transitionDelay(500)
         .useViewBoxResizing(true);

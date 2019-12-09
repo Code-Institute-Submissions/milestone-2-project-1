@@ -195,7 +195,9 @@ i {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  display: flexbox;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -282,6 +284,3 @@ i {
     width: 30%;
   }
 }
-
-/* 
-end of media queries */
